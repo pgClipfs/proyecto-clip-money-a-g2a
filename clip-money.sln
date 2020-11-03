@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clip-money", "clip-money\clip-money.csproj", "{D439F20E-26F6-4E49-8F2F-C789637D2438}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D439F20E-26F6-4E49-8F2F-C789637D2438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D439F20E-26F6-4E49-8F2F-C789637D2438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D439F20E-26F6-4E49-8F2F-C789637D2438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D439F20E-26F6-4E49-8F2F-C789637D2438}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7EF240D-AE63-444A-9ADC-76263752CF76}
+	EndGlobalSection
+EndGlobal
