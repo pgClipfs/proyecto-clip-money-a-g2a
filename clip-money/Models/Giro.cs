@@ -5,7 +5,7 @@ using System.Web;
 
 namespace clip_money.Models
 {
-    public class Giro
+    public class Giro : Operaciones
     {
     }
 }

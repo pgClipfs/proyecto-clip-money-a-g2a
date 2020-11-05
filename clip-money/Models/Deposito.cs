@@ -5,7 +5,10 @@ using System.Web;
 
 namespace clip_money.Models
 {
-    public class Deposito
+    public class Deposito : Operaciones
     {
+        private string origen;
+
+        public string Origen { get => origen; set => origen = value; }
     }
 }
