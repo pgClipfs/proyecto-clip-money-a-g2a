@@ -133,14 +133,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OperacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Deposito.cs" />
-    <Compile Include="Models\Extraccion.cs" />
-    <Compile Include="Models\Giro.cs" />
+    <Compile Include="Models\GestorOperaciones.cs" />
     <Compile Include="Models\Operaciones.cs" />
-    <Compile Include="Models\Transferencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

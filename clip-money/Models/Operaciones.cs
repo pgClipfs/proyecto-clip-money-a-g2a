@@ -14,6 +14,8 @@ namespace clip_money.Models
         private double monto;
         private Estado estado;
         private TipoOperacion tipoOperacion;
+        private string destino;
+        private string origen;
 
         public Operaciones()
         {
@@ -32,5 +34,7 @@ namespace clip_money.Models
         public int Id { get => id; set => id = value; }
         public TipoOperacion TipoOperacion { get => tipoOperacion; set => tipoOperacion = value; }
         public Estado Estado { get => estado; set => estado = value; }
+        public string Destino { get => destino; set => destino = value; }
+        public string Origen { get => origen; set => origen = value; }
     }
 }

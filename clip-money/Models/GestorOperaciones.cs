@@ -5,7 +5,11 @@ using System.Web;
 
 namespace clip_money.Models
 {
-    public class Extraccion : Operaciones
+    public class GestorOperaciones
     {
+        public List<Operaciones> obtenerTop10Operaciones()
+        {
+            
+        }  
     }
 }
