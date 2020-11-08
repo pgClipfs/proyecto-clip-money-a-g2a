@@ -141,6 +141,7 @@
     <Compile Include="Models\GestorOperaciones.cs" />
     <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\TipoCuentaVirtual.cs" />
+    <Compile Include="Models\TipoOperacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
