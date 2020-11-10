@@ -135,6 +135,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CuentaVirtualController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OperacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
