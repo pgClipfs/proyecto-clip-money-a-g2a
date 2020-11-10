@@ -21,6 +21,9 @@ namespace clip_money
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundle(BundleTable.Bundles);
+
+            //Elimino que el sistema devuelva en XML, sólo trabajaremos con JSON
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
         }
     }
 }
