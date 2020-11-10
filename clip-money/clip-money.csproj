@@ -132,12 +132,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\CuentaVirtualController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OperacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\CuentaVirtual.cs" />
     <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\GestorCliente.cs" />
+    <Compile Include="Models\GestorCuentaVirtual.cs" />
     <Compile Include="Models\GestorOperaciones.cs" />
     <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\TipoCuentaVirtual.cs" />

@@ -7,9 +7,9 @@ namespace clip_money.Models
 {
     public class GestorOperaciones
     {
-        public List<Operaciones> obtenerTop10Operaciones()
-        {
+        //public List<Operaciones> obtenerTop10Operaciones()
+        //{
             
-        }  
+        //}  
     }
 }
