@@ -11,7 +11,7 @@ namespace clip_money.Models
         private string numOperacion;
         private string fecha;
         private string hora;
-        private double monto;
+        private decimal monto;
         private Estado estado;
         private TipoOperacion tipoOperacion;
         private string destino;
@@ -21,16 +21,24 @@ namespace clip_money.Models
         {
         }
 
-        public Operaciones(double monto, TipoOperacion tipoOperacion)
+        public Operaciones(decimal monto, TipoOperacion tipoOperacion)
         {
             this.Monto = monto;
             this.TipoOperacion = tipoOperacion;
         }
 
+        public Operaciones(string fecha,string hora,TipoOperacion tipoOperacion,decimal monto)
+        {
+            this.fecha = fecha;
+            this.hora = hora;
+            this.tipoOperacion = tipoOperacion;
+            this.monto = monto;
+        }
+
         public string NumOperacion { get => numOperacion; set => numOperacion = value; }
         public string Fecha { get => fecha; set => fecha = value; }
         public string Hora { get => hora; set => hora = value; }
-        public double Monto { get => monto; set => monto = value; }
+        public decimal Monto { get => monto; set => monto = value; }
         public int Id { get => id; set => id = value; }
         public TipoOperacion TipoOperacion { get => tipoOperacion; set => tipoOperacion = value; }
         public Estado Estado { get => estado; set => estado = value; }
