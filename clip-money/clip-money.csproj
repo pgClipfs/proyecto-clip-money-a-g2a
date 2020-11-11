@@ -111,6 +111,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bundles\favicon.ico" />
+    <Content Include="Bundles\index.html" />
+    <Content Include="Bundles\main.js" />
+    <Content Include="Bundles\polyfills.js" />
+    <Content Include="Bundles\runtime.js" />
+    <Content Include="Bundles\styles.js" />
+    <Content Include="Bundles\vendor.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -120,6 +127,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Bundles\main.js.map" />
+    <Content Include="Bundles\polyfills.js.map" />
+    <Content Include="Bundles\runtime.js.map" />
+    <Content Include="Bundles\styles.js.map" />
+    <Content Include="Bundles\vendor.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -135,7 +147,12 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CuentaVirtualController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocalidadController.cs" />
     <Compile Include="Controllers\OperacionesController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ProvinciaController.cs" />
+    <Compile Include="Controllers\SituacionCrediticiaController.cs" />
+    <Compile Include="Controllers\TipoDniController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,9 +161,16 @@
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Models\GestorCliente.cs" />
     <Compile Include="Models\GestorCuentaVirtual.cs" />
+    <Compile Include="Models\GestorDniSitCrediticia.cs" />
     <Compile Include="Models\GestorOperaciones.cs" />
+    <Compile Include="Models\GestorPPL.cs" />
+    <Compile Include="Models\Localidad.cs" />
     <Compile Include="Models\Operaciones.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\Provincia.cs" />
+    <Compile Include="Models\SituacionCrediticia.cs" />
     <Compile Include="Models\TipoCuentaVirtual.cs" />
+    <Compile Include="Models\TipoDni.cs" />
     <Compile Include="Models\TipoOperacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
