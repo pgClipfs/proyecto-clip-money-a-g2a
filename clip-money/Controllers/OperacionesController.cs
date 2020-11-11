@@ -8,10 +8,12 @@ using System.Web.Http;
 
 namespace clip_money.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/operaciones")]
     public class OperacionesController : ApiController
     {
         // GET: api/Persona
-        [Route("api/operaciones/top_diez")]
+        [Route("top_diez")]
         public IEnumerable<Operaciones> Get(long idCV)
         {
             GestorOperaciones gOperaciones = new GestorOperaciones();
