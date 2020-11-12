@@ -1,4 +1,5 @@
-﻿using System;
+﻿using clip_money.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -13,6 +14,8 @@ namespace clip_money
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
+
+            config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
