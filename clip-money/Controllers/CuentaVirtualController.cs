@@ -8,10 +8,10 @@ using clip_money.Models;
 
 namespace clip_money.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/CuentaVirtual")]
     public class CuentaVirtualController : ApiController
     {
+        [Authorize]
         // GET: api/CuentaVirtual
         public IEnumerable<CuentaVirtual> Get()
         {
@@ -19,6 +19,7 @@ namespace clip_money.Controllers
             return gCuentaVirtual.obtenerCuentasVirtuales();
         }
 
+        [Authorize]
         // GET: api/CuentaVirtual/"número de id"
         public CuentaVirtual Get(int id)
         {
@@ -30,23 +31,25 @@ namespace clip_money.Controllers
         public void Post([FromBody] CuentaVirtual nueva)
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
-            //return gCuentaVirtual.nuevaCuentaVirtual(nueva);
+            gCuentaVirtual.nuevaCuentaVirtual(nueva);
 
         }
 
+        [Authorize]
         // PUT: api/CuentaVirtual/"número de id"
-        public void Put(int id, [FromBody] CuentaVirtual mod)
+        public void Put([FromBody] CuentaVirtual mod)
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
-            //return gCuentaVirtual.modificarCuentaVirtual(id);
+            gCuentaVirtual.modificarCuentaVirtual(mod);
 
         }
 
+        [Authorize]
         // DELETE: api/CuentaVirtual/"número de id"
         public void Delete(int id)
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
-            //return gCuentaVirtual.eliminarCuentaVirtual(id);
+            gCuentaVirtual.eliminarCuentaVirtual(id);
 
         }
     }
