@@ -11,6 +11,11 @@ namespace Clip_money.Models
             //cliente = new HashSet<cliente>();
         }
 
+        public Localidad(int id)
+        {
+            this.id = id;
+        }
+
         //Constructor
         public Localidad(int id, string nombre)
         {

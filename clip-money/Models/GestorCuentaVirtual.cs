@@ -90,11 +90,11 @@ namespace clip_money.Models
 
                 comm.Parameters.Add(new SqlParameter("@alias", nueva.Alias));
                 comm.Parameters.Add(new SqlParameter("@cvu", nueva.Cvu));
-                comm.Parameters.Add(new SqlParameter("@nroCuenta", nueva.NroCuenta));
-                comm.Parameters.Add(new SqlParameter("@montoDescubierto", nueva.MontoDescubierto));
-                comm.Parameters.Add(new SqlParameter("@idCliente", nueva.IdCliente));
-                comm.Parameters.Add(new SqlParameter("@idTipoCuenta", nueva.IdTipoCuenta));
-                comm.Parameters.Add(new SqlParameter("@idEstado", nueva.IdEstado));
+                comm.Parameters.Add(new SqlParameter("@nro_cuenta", nueva.NroCuenta));
+                comm.Parameters.Add(new SqlParameter("@monto_descubierto", nueva.MontoDescubierto));
+                comm.Parameters.Add(new SqlParameter("@id_cliente", nueva.IdCliente));
+                comm.Parameters.Add(new SqlParameter("@id_tipo_cuenta", nueva.IdTipoCuenta));
+                comm.Parameters.Add(new SqlParameter("@id_estado", nueva.IdEstado));
 
                 comm.ExecuteNonQuery();
             }
