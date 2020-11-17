@@ -15,8 +15,8 @@ namespace clip_money.Models
         private string fechaNacimiento;
         private TipoDni idTipoDni;
         private string numDni;
-        private byte fotoFrenteDni;
-        private byte fotoDorsoDni;
+        //private byte fotoFrenteDni;
+        //private byte fotoDorsoDni;
         private Localidad idLocalidad;
         private string domicilio;
         private string telefono;
@@ -30,7 +30,7 @@ namespace clip_money.Models
 
         }
 
-        public Cliente(int id, string nombre, string apellido, string sexo, string fechaNacimiento, TipoDni idTipoDni, string numDni, byte fotoFrenteDni, byte fotoDorsoDni, Localidad idLocalidad, string domicilio, string telefono, string email, SituacionCrediticia idSituacionCrediticia, string nombreUsuario, string password)
+        public Cliente(int id, string nombre, string apellido, string sexo, string fechaNacimiento, TipoDni idTipoDni, string numDni/*, byte fotoFrenteDni, byte fotoDorsoDni*/, Localidad idLocalidad, string domicilio, string telefono, string email, SituacionCrediticia idSituacionCrediticia, string nombreUsuario, string password)
         {
             this.id = id;
             this.nombre = nombre;
@@ -39,8 +39,8 @@ namespace clip_money.Models
             this.fechaNacimiento = fechaNacimiento;
             this.idTipoDni = idTipoDni;
             this.numDni = numDni;
-            this.fotoFrenteDni = fotoFrenteDni;
-            this.fotoDorsoDni = fotoDorsoDni;
+            //this.fotoFrenteDni = fotoFrenteDni;
+            //this.fotoDorsoDni = fotoDorsoDni;
             this.idLocalidad = idLocalidad;
             this.domicilio = domicilio;
             this.telefono = telefono;
@@ -57,8 +57,8 @@ namespace clip_money.Models
         public string FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
         public TipoDni IdTipoDni { get => idTipoDni; set => idTipoDni = value; }
         public string NumDni { get => numDni; set => numDni = value; }
-        public byte FotoFrenteDni { get => fotoFrenteDni; set => fotoFrenteDni = value; }
-        public byte FotoDorsoDni { get => fotoDorsoDni; set => fotoDorsoDni = value; }
+        //public byte FotoFrenteDni { get => fotoFrenteDni; set => fotoFrenteDni = value; }
+        //public byte FotoDorsoDni { get => fotoDorsoDni; set => fotoDorsoDni = value; }
         public Localidad IdLocalidad { get => idLocalidad; set => idLocalidad = value; }
         public string Domicilio { get => domicilio; set => domicilio = value; }
         public string Telefono { get => telefono; set => telefono = value; }

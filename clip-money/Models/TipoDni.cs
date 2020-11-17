@@ -11,6 +11,11 @@ namespace Clip_money.Models
             //this.cliente = new HashSet<cliente>();
         }
 
+        public TipoDni(byte id)
+        {
+            this.id = id;
+        }
+
         //Constructor
         public TipoDni(byte id, string nombre)
         {
