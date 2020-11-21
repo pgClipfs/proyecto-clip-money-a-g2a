@@ -5,6 +5,8 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Configuration;
 using Clip_money.Models;
+using System.Net.Http;
+using System.Net;
 
 namespace clip_money.Models
 {
@@ -93,60 +95,93 @@ namespace clip_money.Models
             return cli;
         }
 
-        public void nuevoCliente(Cliente nuevo)
+        public HttpResponseMessage nuevoCliente(Cliente nuevo)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
-            //if (nuevo.)
-            //{
-                
-            //}
+            HttpResponseMessage responseError = new HttpResponseMessage();
+            responseError.StatusCode = HttpStatusCode.BadRequest;
+            responseError.Content = new StringContent("Ya existe un cliente con el mismo número de DNI, email o nombre de usuario");
 
-            using (SqlConnection conn = new SqlConnection(StrConn))
+            HttpResponseMessage responseNuevo = new HttpResponseMessage();
+            responseNuevo.StatusCode = HttpStatusCode.Created;
+            responseNuevo.Content = new StringContent("¡El cliente se agregó con éxito!");
+
+            try
             {
-                conn.Open();
+                if (existeCliente(nuevo.NumDni, nuevo.Email, nuevo.NombreUsuario) == true)
+                {
+                    return responseError;
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(StrConn))
+                    {
+                        conn.Open();
 
-                SqlCommand comm = conn.CreateCommand();
+                        SqlCommand comm = conn.CreateCommand();
 
-                comm.CommandText = "nuevoCliente";
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                        comm.CommandText = "nuevoCliente";
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
 
-                comm.Parameters.Add(new SqlParameter("@nombre", nuevo.Nombre));
-                comm.Parameters.Add(new SqlParameter("@apellido", nuevo.Apellido));
-                comm.Parameters.Add(new SqlParameter("@sexo", nuevo.Sexo));
-                comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
+                        comm.Parameters.Add(new SqlParameter("@nombre", nuevo.Nombre));
+                        comm.Parameters.Add(new SqlParameter("@apellido", nuevo.Apellido));
+                        comm.Parameters.Add(new SqlParameter("@sexo", nuevo.Sexo));
+                        comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
 
-                TipoDni idTipoDni = new TipoDni(nuevo.IdTipoDni.id);
-                comm.Parameters.Add(new SqlParameter("@id_tipo_dni", idTipoDni.id));
+                        TipoDni idTipoDni = new TipoDni(nuevo.IdTipoDni.id);
+                        comm.Parameters.Add(new SqlParameter("@id_tipo_dni", idTipoDni.id));
 
-                comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
-                //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
-                //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
+                        comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
+                        //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
+                        //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
 
-                Localidad idLocalidad = new Localidad(nuevo.IdLocalidad.id);
-                comm.Parameters.Add(new SqlParameter("@id_localidad", idLocalidad.id));
+                        Localidad idLocalidad = new Localidad(nuevo.IdLocalidad.id);
+                        comm.Parameters.Add(new SqlParameter("@id_localidad", idLocalidad.id));
 
-                comm.Parameters.Add(new SqlParameter("@domicilio", nuevo.Domicilio));
-                comm.Parameters.Add(new SqlParameter("@telefono", nuevo.Telefono));
-                comm.Parameters.Add(new SqlParameter("@email", nuevo.Email));
-                comm.Parameters.Add(new SqlParameter("@nombre_usuario", nuevo.NombreUsuario));
-                comm.Parameters.Add(new SqlParameter("@password", nuevo.Password));
+                        comm.Parameters.Add(new SqlParameter("@domicilio", nuevo.Domicilio));
+                        comm.Parameters.Add(new SqlParameter("@telefono", nuevo.Telefono));
+                        comm.Parameters.Add(new SqlParameter("@email", nuevo.Email));
+                        comm.Parameters.Add(new SqlParameter("@nombre_usuario", nuevo.NombreUsuario));
+                        comm.Parameters.Add(new SqlParameter("@password", nuevo.Password));
 
-                comm.ExecuteNonQuery();
+                        comm.ExecuteNonQuery();
+
+                        return responseNuevo;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
         public bool existeCliente(string numDni, string email, string nombreUsuario)
         {
-            Cliente nuevoCliente = new Cliente();
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
-            if (nuevoCliente.NumDni == numDni || nuevoCliente.Email == email || nuevoCliente.NombreUsuario == nombreUsuario)
+            using (SqlConnection conn = new SqlConnection(StrConn))
             {
-                return false;
-            }
+                conn.Open();
 
-            else
-                return true;
+                SqlCommand comm = new SqlCommand("existeCliente", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@numDni", numDni));
+                comm.Parameters.Add(new SqlParameter("@email", email));
+                comm.Parameters.Add(new SqlParameter("@nombreUsuario", nombreUsuario));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         public void eliminarCliente(int id)
@@ -166,41 +201,65 @@ namespace clip_money.Models
             }
         }
 
-        public void modificarCliente(Cliente mod)
+        public HttpResponseMessage modificarCliente(Cliente mod)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
-            using (SqlConnection conn = new SqlConnection(StrConn))
+            HttpResponseMessage responseMod = new HttpResponseMessage();
+            responseMod.StatusCode = HttpStatusCode.OK;
+            responseMod.Content = new StringContent("¡El cliente se modificó con éxito!");
+
+            HttpResponseMessage responseErrorMod = new HttpResponseMessage();
+            responseErrorMod.StatusCode = HttpStatusCode.BadRequest;
+            responseErrorMod.Content = new StringContent("Error, la modificación coincide con un mismo número de DNI, email o nombre de usuario de otro cliente");
+
+            try
             {
-                conn.Open();
+                if (existeCliente(mod.NumDni, mod.Email, mod.NombreUsuario) == true)
+                {
+                    return responseErrorMod;
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(StrConn))
+                    {
+                        conn.Open();
 
-                SqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "modificarCliente";
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                        SqlCommand comm = conn.CreateCommand();
+                        comm.CommandText = "modificarCliente";
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
 
-                comm.Parameters.Add(new SqlParameter("@id", mod.Id));
-                comm.Parameters.Add(new SqlParameter("@nombre", mod.Nombre));
-                comm.Parameters.Add(new SqlParameter("@apellido", mod.Apellido));
-                comm.Parameters.Add(new SqlParameter("@sexo", mod.Sexo));
-                comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", mod.FechaNacimiento));
+                        comm.Parameters.Add(new SqlParameter("@id", mod.Id));
+                        comm.Parameters.Add(new SqlParameter("@nombre", mod.Nombre));
+                        comm.Parameters.Add(new SqlParameter("@apellido", mod.Apellido));
+                        comm.Parameters.Add(new SqlParameter("@sexo", mod.Sexo));
+                        comm.Parameters.Add(new SqlParameter("@fechaNacimiento", mod.FechaNacimiento));
 
-                TipoDni idTipoDni = new TipoDni(mod.IdTipoDni.id);
-                comm.Parameters.Add(new SqlParameter("@id_tipo_dni", idTipoDni.id));
+                        TipoDni idTipoDni = new TipoDni(mod.IdTipoDni.id);
+                        comm.Parameters.Add(new SqlParameter("@idTipoDni", idTipoDni.id));
 
-                comm.Parameters.Add(new SqlParameter("@num_dni", mod.NumDni));
-                //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", mod.FotoFrenteDni));
-                //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", mod.FotoDorsoDni));
+                        comm.Parameters.Add(new SqlParameter("@numDni", mod.NumDni));
+                        //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", mod.FotoFrenteDni));
+                        //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", mod.FotoDorsoDni));
 
-                Localidad idLocalidad = new Localidad(mod.IdLocalidad.id);
-                comm.Parameters.Add(new SqlParameter("@id_localidad", idLocalidad.id));
+                        Localidad idLocalidad = new Localidad(mod.IdLocalidad.id);
+                        comm.Parameters.Add(new SqlParameter("@idLocalidad", idLocalidad.id));
 
-                comm.Parameters.Add(new SqlParameter("@domicilio", mod.Domicilio));
-                comm.Parameters.Add(new SqlParameter("@telefono", mod.Telefono));
-                comm.Parameters.Add(new SqlParameter("@email", mod.Email));
-                comm.Parameters.Add(new SqlParameter("@nombre_usuario", mod.NombreUsuario));
-                comm.Parameters.Add(new SqlParameter("@password", mod.Password));
+                        comm.Parameters.Add(new SqlParameter("@domicilio", mod.Domicilio));
+                        comm.Parameters.Add(new SqlParameter("@telefono", mod.Telefono));
+                        comm.Parameters.Add(new SqlParameter("@email", mod.Email));
+                        comm.Parameters.Add(new SqlParameter("@nombreUsuario", mod.NombreUsuario));
+                        comm.Parameters.Add(new SqlParameter("@password", mod.Password));
 
-                comm.ExecuteNonQuery();
+                        comm.ExecuteNonQuery();
+
+                        return responseMod;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }
