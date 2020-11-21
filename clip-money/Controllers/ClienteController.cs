@@ -29,20 +29,18 @@ namespace clip_money.Controllers
         }
 
         // POST: api/Cliente
-        public Cliente Post([FromBody] Cliente nuevo)
+        public HttpResponseMessage Post([FromBody] Cliente nuevo)
         {
             GestorCliente gCliente = new GestorCliente();
-            gCliente.nuevoCliente(nuevo);
-            return nuevo;
+            return gCliente.nuevoCliente(nuevo);
         }
 
         //[Authorize]
         // PUT: api/Cliente/"número de id"
-        public Cliente Put([FromBody] Cliente mod)
+        public HttpResponseMessage Put([FromBody] Cliente mod)
         {
             GestorCliente gCliente = new GestorCliente();
-            gCliente.modificarCliente(mod);
-            return mod;
+            return gCliente.modificarCliente(mod);
         }
 
         [Authorize]
