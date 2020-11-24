@@ -175,6 +175,136 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
+                    if (true)
+                    {
+
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeCliente_Nombre(string nombre)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeCliente_Nombre", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@nombre", nombre));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeCliente_Apellido(string apellido)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeCliente_Apellido", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@apellido", apellido));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeCliente_NumDni(string numDni)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeCliente_NumDni", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@numDni", numDni));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeCliente_Email(string email)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeCliente_Email", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@email", email));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeCliente_NombreUsuario(string nombreUsuario)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeCliente_NombreUsuario", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@nombreUsuario", nombreUsuario));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
                     return true;
                 }
                 else
@@ -217,6 +347,45 @@ namespace clip_money.Models
             {
                 if (existeCliente(mod.NumDni, mod.Email, mod.NombreUsuario) == true)
                 {
+
+                    if (existeCliente_Nombre(mod.Nombre) == false || existeCliente_Apellido(mod.Apellido) == false || existeCliente_NumDni(mod.NumDni) == false || existeCliente_Email(mod.Email) == false || existeCliente_NombreUsuario(mod.NombreUsuario) == false)
+                    {
+                        using (SqlConnection conn = new SqlConnection(StrConn))
+                        {
+                            conn.Open();
+
+                            SqlCommand comm = conn.CreateCommand();
+                            comm.CommandText = "modificarCliente";
+                            comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            comm.Parameters.Add(new SqlParameter("@id", mod.Id));
+                            comm.Parameters.Add(new SqlParameter("@nombre", mod.Nombre));
+                            comm.Parameters.Add(new SqlParameter("@apellido", mod.Apellido));
+                            comm.Parameters.Add(new SqlParameter("@sexo", mod.Sexo));
+                            comm.Parameters.Add(new SqlParameter("@fechaNacimiento", mod.FechaNacimiento));
+
+                            TipoDni idTipoDni = new TipoDni(mod.IdTipoDni.id);
+                            comm.Parameters.Add(new SqlParameter("@idTipoDni", idTipoDni.id));
+
+                            comm.Parameters.Add(new SqlParameter("@numDni", mod.NumDni));
+                            //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", mod.FotoFrenteDni));
+                            //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", mod.FotoDorsoDni));
+
+                            Localidad idLocalidad = new Localidad(mod.IdLocalidad.id);
+                            comm.Parameters.Add(new SqlParameter("@idLocalidad", idLocalidad.id));
+
+                            comm.Parameters.Add(new SqlParameter("@domicilio", mod.Domicilio));
+                            comm.Parameters.Add(new SqlParameter("@telefono", mod.Telefono));
+                            comm.Parameters.Add(new SqlParameter("@email", mod.Email));
+                            comm.Parameters.Add(new SqlParameter("@nombreUsuario", mod.NombreUsuario));
+                            comm.Parameters.Add(new SqlParameter("@password", mod.Password));
+
+                            comm.ExecuteNonQuery();
+
+                            return responseMod;
+                        }
+                    }
+
                     return responseErrorMod;
                 }
                 else
@@ -262,5 +431,6 @@ namespace clip_money.Models
                 throw;
             }
         }
+
     }
 }
