@@ -7,7 +7,8 @@ import { identifierModuleUrl } from '@angular/compiler';
   providedIn: 'root'
 })
 export class ClienteService {
-  url="https://localhost:44390/api/cliente";
+
+  url="https://localhost:44386//api/cliente";
   list:Cliente[];
 
   constructor(private http:HttpClient) {
@@ -18,9 +19,9 @@ export class ClienteService {
      // let token = va el token aca
       return this.http.get<Cliente[]>(this.url, {headers:header});
    }
-   // +cliente 
+   // 
    onCreateCliente(cliente:Cliente):Observable<Cliente>{
      let header= new HttpHeaders().set('Content-Type', 'application/json');
-     return this.http.post<Cliente>(this.url +"/",{headers:header});
+     return this.http.post<Cliente>(this.url +"/"+cliente ,{headers:header});
    }
 }
