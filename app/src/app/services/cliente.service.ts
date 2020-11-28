@@ -20,8 +20,10 @@ export class ClienteService {
       return this.http.get<Cliente[]>(this.url, {headers:header});
    }
    // 
-   onCreateCliente(cliente:Cliente):Observable<Cliente>{
-     let header= new HttpHeaders().set('Content-Type', 'application/json');
-     return this.http.post<Cliente>(this.url +"/"+cliente ,{headers:header});
-   }
+   onCreateCliente(cliente:Cliente):Observable<any>{
+    let header = new HttpHeaders().set('Content-Type', 'application/json');
+    // let token = va el token aca
+     return this.http.post<Cliente>(this.url ,cliente, {headers:header});
+
+  }
 }

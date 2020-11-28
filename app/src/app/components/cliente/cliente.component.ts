@@ -32,8 +32,9 @@ export class ClienteComponent implements OnInit {
       })
     
     
-
+      console.log(cliente);
     this.selectedCliente = new Cliente();
+    console.log(cliente);
   }
   public onSelect(item: Cliente) {
     this.selectedCliente = item;
