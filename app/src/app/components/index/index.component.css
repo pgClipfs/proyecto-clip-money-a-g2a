@@ -1,0 +1,561 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dynalight&family=Seaweed+Script&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    font-family:  'Noto Sans JP', sans-serif;
+}
+
+.contenedor{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    flex: 1;
+    position: fixed;
+}
+
+
+/*resolucion pantallas grandes*/
+@media(min-width: 992px){
+/*CONTENEDORES DEL CONTENIDO Y DEL LOGIN Y REGISTRO*/
+.contenido{
+    width: 60%;
+    height: 100%;
+    /*background-color: blue;*/
+    position: relative;
+    float: right;
+    background-image: url("../../../assets/images/banner.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.contenido img{
+    width: 100%;
+    height: 100%;
+}
+
+.cont-log-reg{
+    width: 45%;
+    height: 100%;
+    /*background-color: rgb(209, 146, 10);*/
+    position: absolute;
+   
+    
+}
+
+.contenedor-logo-titulo{
+    height: 30%;
+}
+
+.logo{
+    width: 60%;
+    height: 100%;
+    background-image: url("../../../assets/images/logo1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    float: left;
+   
+}
+
+.titulo{
+    width: 40%;
+    height: 100%;
+    float: right;
+    /*background-color: rgb(189, 68, 90);*/
+}
+
+.descripcion{
+    padding-top: 1rem;
+    width: 100%;
+    height: 40%;
+    /*background-color: rgb(151, 140, 142);*/
+    float: left;
+    text-align: center;
+    color:#EB5600 ;
+    
+}
+.descripcion h3{
+    font-size: 2.3rem;
+}
+
+.registro-login{
+    width: 100%;
+    height: 25%;
+    /*background-color: blueviolet;*/
+    display: flex;
+    justify-content: center;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 1rem;
+}
+.registro-login label{
+    color:rgb(189, 177, 177);
+    font-weight: lighter;
+    font-size: small;
+}
+
+.formulario{
+    padding-top: 0px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+
+.link-clip{
+    /*background-color: coral;*/
+    /*position:absolute;*/
+    bottom:0;
+    right:0;
+    margin-top: 1rem;
+}
+
+.link-clip a{
+    text-decoration: none;
+    color:#EB5600 ;
+}
+
+.btnIngresar{
+    padding-bottom: 0.5rem ;
+    padding-top: 0.5rem ;
+    background-color:#EB5600 !important;
+    border: 1px solid #ffffff;  
+}
+.btnIngresar:hover{
+    background-color:#b64707!important;
+    border: 1px solid #ffffff;  
+}
+
+.btnRegistrar{
+    padding-bottom: 0.5rem ;
+    padding-top: 0.5rem ;
+    background-color:#EB5600 !important; 
+    border: 1px solid #ffffff;  
+}
+.btnRegistrar:hover{
+    background-color:#b64707!important;
+    border: 1px solid #ffffff; 
+}
+
+.info-adicional{
+    padding-top: 2rem;
+    width: 100%;
+    height: 30%;
+    /*background-color: rgb(15, 1, 29);*/
+    text-align: right;
+    color: #EB5600;
+    font-family: 'Dynalight', cursive;
+    font-size: 3rem;
+    /*font-family: 'Seaweed Script', cursive;*/
+}
+
+}
+/*RESOLUCION NOTEBOOKS*/
+@media(min-width: 768px) and (max-width: 991px){
+    .contenido{
+        width: 55%;
+        height: 100%;
+        /*background-color: blue;*/
+        position: relative;
+        float: right;
+        background-image: url("../../../assets/images/banner.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+    }
+    
+    .cont-log-reg{
+        width: 45%;
+        height: 100%;
+        /*background-color: rgb(209, 146, 10);*/
+        position: absolute;
+       
+        
+    }
+    
+    .contenedor-logo-titulo{
+        height: 30%;
+    }
+    
+    .logo{
+        width: 60%;
+        height: 100%;
+        background-image: url("../../../assets/images/logo1.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        float: left;
+       
+    }
+    
+    .titulo{
+        width: 40%;
+        height: 100%;
+        float: right;
+        /*background-color: rgb(189, 68, 90);*/
+    }
+    
+    .descripcion{
+        padding-top: 1rem;
+        width: 100%;
+        height: 40%;
+        /*background-color: rgb(151, 140, 142);*/
+        float: left;
+        text-align: center;
+        color:#EB5600 ;
+        
+    }
+    .descripcion h3{
+        font-size: 2rem;
+    }
+    
+    .registro-login{
+        width: 100%;
+        height: 25%;
+        /*background-color: blueviolet;*/
+        display: flex;
+        justify-content: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
+    .registro-login label{
+        color:rgb(189, 177, 177);
+        font-weight: lighter;
+    }
+    
+    .formulario{
+        padding-top: 0px;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    
+    
+    .link-clip{
+        /*background-color: coral;*/
+        /*position:absolute;*/
+        bottom:0;
+        right:0;
+        margin-top: 1rem;
+    }
+    
+    .link-clip a{
+        text-decoration: none;
+        color:#EB5600 ;
+    }
+    
+    .btnIngresar{
+        padding-bottom: 0.5rem ;
+        padding-top: 0.5rem ;
+        background-color:#EB5600 !important;
+        border: 1px solid #ffffff;  
+    }
+    .btnIngresar:hover{
+        background-color:#b64707!important;
+        border: 1px solid #ffffff;  
+    }
+    
+    .btnRegistrar{
+        padding-bottom: 0.5rem ;
+        padding-top: 0.5rem ;
+        background-color:#EB5600 !important; 
+        border: 1px solid #ffffff;  
+    }
+    .btnRegistrar:hover{
+        background-color:#b64707!important;
+        border: 1px solid #ffffff; 
+    }
+    
+    .info-adicional{
+        padding-top: 2rem;
+        width: 100%;
+        height: 20%;
+        /*background-color: rgb(15, 1, 29);*/
+        text-align: right;
+        color: #EB5600;
+        font-family: 'Dynalight', cursive;
+        font-size: 2.5rem;
+
+    }
+}
+
+/*resolucion para TABLETS*/
+@media(min-width: 575px) and (max-width: 768px){
+    .contenido{
+        width: 50%;
+        height: 30%;
+        /*background-color: blue;*/
+        position: relative;
+        float: right;
+        background-image: url("../../../assets/images/banner.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: none;
+        
+    }
+    
+    .cont-log-reg{
+        width: 100%;
+        height: 100%;
+        /*background-color: rgb(209, 146, 10);*/
+        position: absolute;
+       
+        
+    }
+    
+    .contenedor-logo-titulo{
+        height: 30%;
+    }
+    
+    .logo{
+        width: 100%;
+        height: 10.2rem;
+        /*background-color: rgb(179, 255, 0);*/
+        background-image: url("../../../assets/images/logo1.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        padding-top: 2rem;
+       
+    }
+    
+    .titulo{
+        width: 40%;
+        height: 100%;
+        float: right;
+        display: none;
+        /*background-color: rgb(189, 68, 90);*/
+    }
+    
+    .descripcion{
+        padding-top: 1rem;
+        width: 100%;
+        height: 40%;
+        /*background-color: rgb(151, 140, 142);*/
+        float: left;
+        text-align: center;
+        color:#EB5600 ;
+        
+    }
+    .descripcion h3{
+        font-size: 2rem;
+    }
+    
+    .registro-login{
+        width: 100%;
+        height: 30%;
+        /*background-color: blueviolet;*/
+        display: flex;
+        justify-content: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
+    .registro-login label{
+        color:rgb(189, 177, 177);
+        font-weight: lighter;
+    }
+    
+    .formulario{
+        padding-top: 0px;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    
+    
+    .link-clip{
+        /*background-color: coral;*/
+        /*position:absolute;*/
+        bottom:0;
+        right:0;
+        margin-top: 1rem;
+    }
+    
+    .link-clip a{
+        text-decoration: none;
+        color:#EB5600 ;
+    }
+    
+    .btnIngresar{
+        padding-bottom: 0.5rem ;
+        padding-top: 0.5rem ;
+        background-color:#EB5600 !important;
+        border: 1px solid #ffffff;  
+    }
+    .btnIngresar:hover{
+        background-color:#b64707!important;
+        border: 1px solid #ffffff;  
+    }
+    
+    .btnRegistrar{
+        padding-bottom: 0.5rem ;
+        padding-top: 0.5rem ;
+        background-color:#EB5600 !important; 
+        border: 1px solid #ffffff;  
+    }
+    .btnRegistrar:hover{
+        background-color:#b64707!important;
+        border: 1px solid #ffffff; 
+    }
+    
+    .info-adicional{
+        padding-top: 2rem;
+        width: 100%;
+        height: 20%;
+        /*background-color: rgb(15, 1, 29);*/
+        text-align: center;
+        color: #EB5600;
+        font-family: 'Dynalight', cursive;
+        font-size: 3rem;
+    }
+
+}
+
+/*resolucion para movil*/
+@media(max-width: 575px){
+
+    .contenedor{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .contenido{
+        width: 50%;
+        height: 30%;
+        /*background-color: blue;*/
+        position: relative;
+        float: right;
+        background-image: url("../../../assets/images/banner.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: none;
+    }
+    
+    .cont-log-reg{
+        width: 100%;
+        height: 20%;
+        /*background-color: rgb(209, 146, 10);*/
+        position: absolute;
+         
+    }
+    
+    .contenedor-logo-titulo{
+        height: 100%;
+        text-align: center;
+        /*background-color: aqua;*/
+    }
+    
+    .logo{
+        width: 100%;
+        height: 10.2rem;
+        /*background-color: rgb(179, 255, 0);*/
+        background-image: url("../../../assets/images/logo1.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        padding-top: 2rem;
+       
+            
+    }
+    
+    .titulo{
+        width: 40%;
+        height: 100%;
+        float: right;
+        /*background-color: rgb(189, 68, 90);*/
+        display: none;
+    }
+    
+    .descripcion{
+        position: relative;
+        padding-top: 1rem;
+        width: 100%;
+        height: 70%;
+        /*background-color: rgb(151, 140, 142);*/
+        float: left;
+        text-align: center;
+        color:#EB5600 ;
+        margin-top: 2.5rem;
+    }
+    .descripcion h3{
+        font-size: 1.6rem;
+    }
+    
+    .registro-login{
+        width: 100%;
+        height: auto;
+        /*background-color: blueviolet;*/
+        display: flex;
+        justify-content: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+        position: relative;
+    }
+    .registro-login label{
+        color:rgb(189, 177, 177);
+        font-weight: lighter;
+        font-size: 1rem;
+    }
+    
+    .formulario{
+        padding-top: 0px;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    
+    
+    .link-clip{
+        height: 50%;
+        /*background-color: coral;*/
+        position:relative;
+        bottom:0;
+        right:0;
+        margin-top: 1rem;
+    }
+    
+    .link-clip a{
+        text-decoration: none;
+        color:#EB5600 ;
+        font-size: 0.7rem;
+    }
+    
+    .btnIngresar{
+        padding-bottom: 0.5rem ;
+        padding-top: 0.5rem ;
+        background-color:#EB5600 !important;
+        border: 1px solid #ffffff;  
+    }
+    .btnIngresar:hover{
+        background-color:#b64707!important;
+        border: 1px solid #ffffff;  
+    }
+    
+    .btnRegistrar{
+        padding-bottom: 0.5rem ;
+        padding-top: 0.5rem ;
+        background-color:#EB5600 !important; 
+        border: 1px solid #ffffff;  
+    }
+    .btnRegistrar:hover{
+        background-color:#b64707!important;
+        border: 1px solid #ffffff; 
+    }
+    
+    .info-adicional{
+        margin-top: 2rem;
+        width: 100%;
+        height: 20%;
+        /*background-color: rgb(15, 1, 29);*/
+        text-align: center;
+        color: #EB5600;
+        font-family: 'Dynalight', cursive;
+        font-size: 2.5rem;
+    }
+}
