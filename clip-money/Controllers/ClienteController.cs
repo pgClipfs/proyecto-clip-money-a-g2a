@@ -12,7 +12,7 @@ namespace clip_money.Controllers
     [RoutePrefix("api/Cliente")]
     public class ClienteController : ApiController
     {
-        [Authorize]
+        //[Authorize]
         // GET: api/Cliente
         public IEnumerable<Cliente> Get()
         {
@@ -20,7 +20,7 @@ namespace clip_money.Controllers
             return gCliente.obtenerClientes();
         }
 
-        [Authorize]
+        //[Authorize]
         // GET: api/Cliente/"número de id"
         public Cliente Get(int id)
         {
@@ -29,18 +29,18 @@ namespace clip_money.Controllers
         }
 
         // POST: api/Cliente
-        public void Post([FromBody] Cliente nuevo)
+        public HttpResponseMessage Post([FromBody] Cliente nuevo)
         {
             GestorCliente gCliente = new GestorCliente();
-            gCliente.nuevoCliente(nuevo);
+            return gCliente.nuevoCliente(nuevo);
         }
 
-        [Authorize]
+        //[Authorize]
         // PUT: api/Cliente/"número de id"
-        public void Put([FromBody] Cliente mod)
+        public HttpResponseMessage Put([FromBody] Cliente mod)
         {
             GestorCliente gCliente = new GestorCliente();
-            gCliente.modificarCliente(mod);
+            return gCliente.modificarCliente(mod);
         }
 
         [Authorize]

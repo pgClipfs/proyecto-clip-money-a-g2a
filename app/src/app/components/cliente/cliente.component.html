@@ -1,0 +1,95 @@
+<p>cliente works!</p>
+<div class="container-fluid">
+    <a [href]="angular"> Esto esta hecho en angular</a>
+    <br>
+    <button class="btn btn-info mt-3" (click)="nuevoCliente()">Nuevo Cliente</button>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Fecha Nacimiento</th>
+                        <th scope="col">Numero Dni</th>
+                        <th scope="col">Domicilio</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Nombre Usuario</th>
+                        <th scope="col">Password</th>
+                        <th>Gestion </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cliente of clientes" (click)=onSelect(cliente)>
+                        <td>{{cliente.Id}}</td>
+                        <td>{{cliente.Nombre}}</td>
+                        <td>{{cliente.Apelido}}</td>
+                        <td>{{cliente.Sexo}}</td>
+                        <td>{{cliente.FechaNacimiento}}</td>
+                        <td>{{cliente.NumDni}}</td>
+                        <td>{{cliente.Domicilio}}</td>
+                        <td>{{cliente.Telefono}}</td>
+                        <td>{{cliente.Email}}</td>
+                        <td>{{cliente.NombreUsuario}}</td>
+                        <td>{{cliente.Password}}</td>
+                        <td> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" [(ngModel)]="selectedCliente.Nombre" name="Nombre" class="form-control">
+
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" [(ngModel)]="selectedCliente.Apellido" name="Apellido" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Sexo">Sexo</label>
+                        <input type="text" [(ngModel)]="selectedCliente.Sexo" name="Sexo" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="FechaNacimiento">Fecha nacimiento</label>
+                        <input type="text" [(ngModel)]="selectedCliente.FechaNacimiento" name="FechaNacimiento"
+                            class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="NumDni">DNI</label>
+                        <input type="text" [(ngModel)]="selectedCliente.NumDni" name="NumDni" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Domicilio">Domicilio</label>
+                        <input type="text" [(ngModel)]="selectedCliente.Domicilio" name="Domicilio"
+                            class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Telefono">Telefono</label>
+                        <input type="text" [(ngModel)]="selectedCliente.Telefono" name="Telefono" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" [(ngModel)]="selectedCliente.Email" name="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre usuario">Nombre Usuario</label>
+                        <input type="text" [(ngModel)]="selectedCliente.NombreUsuario" name="NombreUsuario"
+                            class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Contraseña</label>
+                        <input type="password" [(ngModel)]="selectedCliente.Password" name="Password"
+                            class="form-control">
+                    </div>
+                    <button class="btn btn-primary" (click)="onSubmit(selectedCliente)">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
