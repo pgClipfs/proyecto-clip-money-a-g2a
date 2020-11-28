@@ -1,0 +1,68 @@
+body{
+  overflow: hidden;
+
+}
+#sidebar-container{
+  position: relative;
+  height: auto;
+  /*background-color: darkred;*/
+  width: auto;
+}
+
+.logo{
+  margin-top: 0px;
+  background-image: url("../../../assets/images/logo1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  width: 100%;
+  height: 10rem;
+}
+.menu{
+  background-color: white;
+  width: auto;
+  height: auto;
+  text-align: center;
+  border-right: 1px solid rgb(224, 218, 218);
+}
+
+#navbarNav{
+  text-align: center;
+}
+
+.navbar-nav{
+  display: block;
+  margin: 0px auto;
+  
+}
+
+.menu li{
+}
+ .menu a{
+  display:block;
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgb(224, 218, 218) ;
+  
+  
+}
+.menu .nav-item{
+  /*margin-right: 20px;*/
+}
+ .menu .nav-item:hover{
+  border-bottom: 1px solid #EB5600;
+}
+
+ .menu li a:hover{
+  color: #EB5600 !important;
+  
+}
+.menu .btn-cerrar-sesion{
+  margin-top: 2rem;
+}
+
+/*Clase para de boton activo en el nav*/
+.btn-activo{
+  color:#EB5600 !important;
+  border-bottom: 2px solid #EB5600 !important;
+}

@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dynalight&family=Seaweed+Script&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+}
+.contenedor{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    /*background-color: aqua;*/
+    
+}
+.menu{
+    float:left;
+    background-color: blueviolet;
+    width: 20%;
+    height: auto;
+}
+.contenido{
+    float:left;
+    width: 80%;
+   /*background-color: blue;*/
+}
+.navvar{
+    /*background-color: brown;*/
+    height: 13vh;
+    border-bottom: 1px solid rgb(224, 218, 218);
+    box-shadow: 2px -10px 20px ;
+}
+
+#navegacion{
+    /*background-color: rgb(247, 0, 255);*/
+    float: left;
+    width: 70%;
+    height: 100%;
+    color:black;
+    font-family: 'Dynalight', cursive;
+    font-size: 4rem;
+    text-align: center;
+}
+
+#nombreUsuario{
+    position: relative;
+    /*background-color: chartreuse;*/
+    float: left;
+    width: 20%;
+    height: 100%;
+    padding-bottom: 1rem;
+}
+#nombreUsuario #nombre{
+    position: absolute;
+  bottom: 0px;
+  right: 2px;
+  width: auto;
+}
+
+#nombreUsuario #nombre p{
+ font-size: 1.2rem;
+ font-family: Arial, Helvetica, sans-serif;
+}
+#fotoUsuario{
+    float: right;
+    background-image:url("../../../assets/images/foto-carnet.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    border-radius: 50%;
+    width:5rem;
+}
+
+.componentes{
+    padding-top: 2rem;
+    height: auto;
+}
+
+
+/*RESPONSIVE*/
+    /*resolucion para movil*/
+    @media(max-width: 575px){
+        .menu{
+            float: none;
+            width: auto;
+            height: auto;   
+        }
+        .contenido{
+            margin-top: 0px;
+            float: none;
+            width: auto;
+            height: auto;
+        }
+        #navegacion{
+         display: none;
+          
+        }
+        #nombreUsuario{
+            width: 40%;
+             
+        }
+    }
+
+/*resolucion para TABLETS*/
+@media(min-width: 575px) and (max-width: 768px){
+    .menu{
+        width: 40%;
+      
+    }
+    .contenido{
+        float:left;
+        width: 60%;
+       /*background-color: blue;*/
+    }
+
+    #navegacion{
+        display: none;
+      
+    }
+
+    #nombreUsuario{
+        width: 70%;
+         
+    }
+
+    }
+/*RESOLUCION NOTEBOOKS*/
+@media(min-width: 768px) and (max-width: 991px){
+    .menu{
+        width: 40%;
+      
+    }
+    .contenido{
+        float:left;
+        width: 60%;
+       /*background-color: blue;*/
+    }
+
+    #navegacion{
+       width: 40% ; 
+       font-size: 3rem;
+      
+    }
+
+    #nombreUsuario{
+        width: 40%;
+         
+    }
+        
+}
