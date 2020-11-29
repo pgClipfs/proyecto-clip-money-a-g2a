@@ -66,3 +66,23 @@ body{
   color:#EB5600 !important;
   border-bottom: 2px solid #EB5600 !important;
 }
+
+/*animacion del menu*/
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 1px;
+  background-color: #EB5600;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+
+.underlineHover:hover:after{
+  width: 100%;
+}

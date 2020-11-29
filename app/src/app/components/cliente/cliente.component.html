@@ -1,46 +1,49 @@
-<p>cliente works!</p>
-<div class="container-fluid">
-    <div class="row">
-        <div class="container">
-            <div class="col">
+<body>
+    <div class="wrapper fadeInDown">
+
+        <div id="formContent">
+            
+            <div class="fadeIn first">
+                <img src="../../../assets/images/logo1.png" id="icon" alt="User Icon" />
+            </div>
+           
                 <form>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" [(ngModel)]="selectedCliente.Nombre" name="Nombre" class="form-control">
-    
+                        <input type="text" [(ngModel)]="selectedCliente.Nombre" name="Nombre" class="form-control fadeIn" required>
+                
                         <div class="form-group">
                             <label for="apellido">Apellido</label>
-                            <input type="text" [(ngModel)]="selectedCliente.Apellido" name="Apellido" class="form-control">
+                            <input type="text" [(ngModel)]="selectedCliente.Apellido" name="Apellido" class="form-control fadeIn">
                         </div>
-    
+                
                         <div class="form-group">
                             <label for="FechaNacimiento">Fecha nacimiento</label>
-                            <input type="text" [(ngModel)]="selectedCliente.FechaNacimiento" name="FechaNacimiento"
-                                class="form-control">
+                            <input type="text" [(ngModel)]="selectedCliente.FechaNacimiento" name="FechaNacimiento "
+                                class="form-control fadeIn">
                         </div>
                         <div class="form-group">
                             <label for="NumDni">DNI</label>
-                            <input type="text" [(ngModel)]="selectedCliente.NumDni" name="NumDni" class="form-control">
+                            <input type="text" [(ngModel)]="selectedCliente.NumDni" name="NumDni" class="form-control fadeIn">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" [(ngModel)]="selectedCliente.Email" name="Email" class="form-control">
+                            <input type="email" [(ngModel)]="selectedCliente.Email" name="Email" class="form-control fadeIn">
                         </div>
                         <div class="form-group">
                             <label for="nombre usuario">Nombre Usuario</label>
                             <input type="text" [(ngModel)]="selectedCliente.NombreUsuario" name="NombreUsuario"
-                                class="form-control">
+                                class="form-control fadeIn">
                         </div>
                         <div class="form-group">
                             <label for="Password">Contraseña</label>
                             <input type="password" [(ngModel)]="selectedCliente.Password" name="Password"
-                                class="form-control">
+                                class="form-control fadeIn">
                         </div>
-                        <button class="btn btn-primary" (click)="onSubmit(selectedCliente)">Submit</button>
+                        <button class=" btn btn-primary btnRegistrarse" (click)="onSubmit(selectedCliente)">Registrarse</button>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
 
-</div>
+</body>

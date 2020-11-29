@@ -9,7 +9,8 @@ html {
     /* font-family: "Poppins", sans-serif; */
     font-family:  'Noto Sans JP', sans-serif;
     height: 100vh;
-    background-color: #EB5600;
+    /*background-color: #EB5600;*/
+    background-image: url("../../../assets/images/fondo2.jpg");
   }
   
   a {
