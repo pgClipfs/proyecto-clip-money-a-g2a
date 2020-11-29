@@ -12,8 +12,8 @@
   
       <!-- Login Form -->
       <form (ngSubmit)="onSubmit()">
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario" [(ngModel)]="usuario.nombreUsuario">
-        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" [(ngModel)]="usuario.password">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario" [(ngModel)]="usuario.nombreUsuario">
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password" [(ngModel)]="usuario.password">
         <input type="submit" class="fadeIn fourth" value="INGRESAR">
       
         <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="isLoginFailed">

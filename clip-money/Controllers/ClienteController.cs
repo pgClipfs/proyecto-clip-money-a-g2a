@@ -5,11 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using clip_money.Models;
+using System.Web.Http.Cors;
 
 namespace clip_money.Controllers
 {
     //[Authorize]
     [RoutePrefix("api/Cliente")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ClienteController : ApiController
     {
         //[Authorize]
