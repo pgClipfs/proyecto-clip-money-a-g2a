@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { IndexComponent } from './components/index/index.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -21,6 +22,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
     NavbarComponent,
     IndexComponent,
     InicioComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

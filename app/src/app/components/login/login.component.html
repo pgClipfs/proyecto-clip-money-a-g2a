@@ -1,0 +1,42 @@
+<body>
+    
+<div class="wrapper fadeInDown">
+
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../assets/images/logo1.png" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form (ngSubmit)="onSubmit()">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario" [(ngModel)]="usuario.nombreUsuario">
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" [(ngModel)]="usuario.password">
+        <input type="submit" class="fadeIn fourth" value="INGRESAR">
+      
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="isLoginFailed">
+            {{errorMessage}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    
+        </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <div class="row">
+            <div class="col">
+                <a class="underlineHover" href="#">Olvide mi contraseña</a>
+            </div>
+            <div class="col">
+                <a class="underlineHover" routerLink="/cliente">Crear una cuenta</a>
+            </div>
+        </div>
+      </div>
+  
+    </div>
+</div>
+</body>

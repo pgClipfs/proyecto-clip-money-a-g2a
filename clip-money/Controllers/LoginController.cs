@@ -6,11 +6,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace clip_money.Controllers
 {
     [AllowAnonymous]
     [RoutePrefix("api/login")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
         [HttpGet]
