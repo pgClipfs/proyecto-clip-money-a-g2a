@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Cliente } from 'src/app/cliente.model';
+import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from '../../services/cliente.service';
 
 
@@ -32,8 +32,9 @@ export class ClienteComponent implements OnInit {
       })
     
     
-
+      console.log(cliente);
     this.selectedCliente = new Cliente();
+    console.log(cliente);
   }
   public onSelect(item: Cliente) {
     this.selectedCliente = item;

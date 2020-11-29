@@ -30,7 +30,7 @@ namespace clip_money.Models
 
         }
 
-        public Cliente(int id, string nombre, string apellido, string sexo, string fechaNacimiento, TipoDni idTipoDni, string numDni/*, byte fotoFrenteDni, byte fotoDorsoDni*/, Localidad idLocalidad, string domicilio, string telefono, string email, SituacionCrediticia idSituacionCrediticia, string nombreUsuario, string password)
+        public Cliente(int id, string nombre, string apellido, TipoDni idTipoDni, string fechaNacimiento, string numDni/*, byte fotoFrenteDni, byte fotoDorsoDni*/, Localidad idLocalidad, string email, string nombreUsuario, string password)
         {
             this.id = id;
             this.nombre = nombre;

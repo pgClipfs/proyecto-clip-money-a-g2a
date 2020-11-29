@@ -1,0 +1,46 @@
+.cuentas{
+    width: auto;
+    height: 10rem;
+    /*background-color: blueviolet;*/
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 5px 5px 10px ;
+    
+
+    
+}
+
+.cuentas #cuentas-titulo{
+    width: 100%;
+    height: auto;
+    background-color: #EB5600;
+    font-size: 1.4rem;
+    padding-left: 2rem;
+    border-radius: 5px 5px 0px 0px;
+    font-weight: bold;
+    color: white;
+}
+
+.cuentas #nrocuenta{
+    padding-left: 1rem;
+    float:left;
+    /*background-color: brown;*/
+    width: 60%;
+}
+.cuentas #nrocuenta #tit-cuenta{
+    font-weight: bold;
+}
+.cuentas #cuentas-contenido{
+    /*background-color: chartreuse;*/
+    width: 40%;
+    float: left;
+}
+
+.cuentas #cuentas-contenido #nombre{
+   text-align: center;
+}
+.cuentas #cuentas-contenido #saldo{
+    text-align: center;
+    font-weight: bold;
+}
