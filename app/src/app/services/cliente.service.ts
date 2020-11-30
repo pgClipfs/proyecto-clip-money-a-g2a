@@ -23,6 +23,8 @@ export class ClienteService {
    onCreateCliente(cliente:Cliente):Observable<any>{
     let header = new HttpHeaders().set('Content-Type', 'application/json');
     // let token = va el token aca
+    console.log("entra al metodo oncreatecliente");
+    console.log(cliente);
      return this.http.post<Cliente>(this.url ,cliente, {headers:header});
 
   }

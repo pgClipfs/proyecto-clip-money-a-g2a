@@ -11,11 +11,12 @@ import { ClienteService } from '../../services/cliente.service';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
-  angular = "https://angular.io/"
   public clientes: Cliente[];
   selectedCliente: Cliente = new Cliente();
+  errorMessage = '';
+  isCreateFailed = false;
 
-  constructor(private clienteService: ClienteService,private tokenStorage: TokenStorageService,private router: Router) { }
+  constructor(private clienteService: ClienteService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
     this.clienteService.getClientes().subscribe(resp => {
@@ -31,11 +32,12 @@ export class ClienteComponent implements OnInit {
   }
 
   public onSubmit(cliente: Cliente) {
-  
+      
       this.clienteService.onCreateCliente(cliente).subscribe(resp => {
         this.clientes.push(resp);
+        this.router.navigate(['/login']);
       })
-    
+      
     
       console.log(cliente);
     this.selectedCliente = new Cliente();

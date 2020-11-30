@@ -1,3 +1,4 @@
+
 <body>
     <div class="wrapper fadeInDown">
 
@@ -19,7 +20,7 @@
                 
                         <div class="form-group">
                             <label for="FechaNacimiento">Fecha nacimiento</label>
-                            <input type="text" [(ngModel)]="selectedCliente.FechaNacimiento" name="FechaNacimiento "
+                            <input type="date" [(ngModel)]="selectedCliente.FechaNacimiento" name="FechaNacimiento "
                                 class="form-control fadeIn">
                         </div>
                         <div class="form-group">
@@ -40,7 +41,10 @@
                             <input type="password" [(ngModel)]="selectedCliente.Password" name="Password"
                                 class="form-control fadeIn">
                         </div>
-                        <button class=" btn btn-primary btnRegistrarse" (click)="onSubmit(selectedCliente)">Registrarse</button>
+                    
+                            <button class=" btn btn-primary btnRegistrarse" (click)="onSubmit(selectedCliente)">Registrarse</button>
+                        
+
                     </div>
                 </form>
         </div>
