@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent,canActivate:[GuardService]},
   {path: 'cliente', component: ClienteComponent},
-  {path: '**', component: HomeComponent}
+  {path: '**', component: IndexComponent}
 ];
 
 @NgModule({
