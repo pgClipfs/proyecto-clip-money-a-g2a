@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Login } from '../models/login';
+import { Login } from '../models/login.model';
 import { TokenStorageService } from './token-storage.service';
 
 const AUTH_API = 'https://localhost:44386/api/login/';

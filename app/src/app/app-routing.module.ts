@@ -5,6 +5,8 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { HomeComponent } from './components/home/home.component';
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
+import { RecoveryMailComponent } from './components/recoverymail/recoverymail.component';
+import { RecoverypasswordComponent } from './components/recoverypassword/recoverypassword.component';
 import { GuardService } from './services/guard.service';
 
 const routes: Routes = [
@@ -13,6 +15,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent,canActivate:[GuardService]},
   {path: 'cliente', component: ClienteComponent},
+  {path: 'recoverymail', component: RecoveryMailComponent},
+  {path: 'recoverypassword', component: RecoverypasswordComponent},
   {path: '**', component: IndexComponent}
 ];
 

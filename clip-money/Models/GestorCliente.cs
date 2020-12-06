@@ -95,24 +95,35 @@ namespace clip_money.Models
             return cli;
         }*/
 
-        public HttpResponseMessage nuevoCliente(Cliente nuevo)
+        public int nuevoCliente(Cliente nuevo)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+            int message = 0;
 
 
+            //HttpResponseMessage responseError = new HttpResponseMessage();
+            //responseError.StatusCode = HttpStatusCode.BadRequest;
+            //responseError.Content = new StringContent("Ya existe un cliente con el mismo número de DNI, email o nombre de usuario");
 
-            HttpResponseMessage responseError = new HttpResponseMessage();
-            responseError.StatusCode = HttpStatusCode.BadRequest;
-            responseError.Content = new StringContent("Ya existe un cliente con el mismo número de DNI, email o nombre de usuario");
-
-            HttpResponseMessage responseNuevo = new HttpResponseMessage();
-            responseNuevo.StatusCode = HttpStatusCode.Created;
-            responseNuevo.Content = new StringContent("¡El cliente se agregó con éxito!");
+            //HttpResponseMessage responseNuevo = new HttpResponseMessage();
+            //responseNuevo.StatusCode = HttpStatusCode.Created;
+            //responseNuevo.Content = new StringContent("¡El cliente se agregó con éxito!");
             try
             {
-                if (existeCliente(nuevo.NumDni, nuevo.Email, nuevo.NombreUsuario) == true)
+                if (existeDni(nuevo.NumDni) == true)
                 {
-                    return responseError;
+                    message = 1;
+                    return message;
+                }
+                else if (existeEmail(nuevo.Email) == true)
+                {
+                    message = 2;
+                    return message;
+                }
+                else if (existeUsuario(nuevo.NombreUsuario) == true)
+                {
+                    message = 3;
+                    return message;
                 }
                 else
                 {
@@ -149,9 +160,53 @@ namespace clip_money.Models
 
                         comm.ExecuteNonQuery();
 
-
-                        return responseNuevo;
+                        return message;
                     }
+                
+
+
+                /*if (existeCliente(nuevo.NumDni, nuevo.Email, nuevo.NombreUsuario) == true)
+                {
+                    return message;
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(StrConn))
+                    {
+                        conn.Open();
+
+                        SqlCommand comm = conn.CreateCommand();
+
+                        comm.CommandText = "nuevoCliente";
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        comm.Parameters.Add(new SqlParameter("@nombre", nuevo.Nombre));
+                        comm.Parameters.Add(new SqlParameter("@apellido", nuevo.Apellido));
+                        comm.Parameters.Add(new SqlParameter("@sexo", "Indefinido"));
+                        comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
+
+                        TipoDni idTipoDni = new TipoDni(1);
+
+                        comm.Parameters.Add(new SqlParameter("@id_tipo_dni", 1));
+
+                        comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
+                        //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
+                        //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
+
+                        Localidad idLocalidad = new Localidad(1);
+                        comm.Parameters.Add(new SqlParameter("@id_localidad", 1));
+
+                        comm.Parameters.Add(new SqlParameter("@domicilio", " Calle falsa 123"));
+                        comm.Parameters.Add(new SqlParameter("@telefono", 12345678));
+                        comm.Parameters.Add(new SqlParameter("@email", nuevo.Email));
+                        comm.Parameters.Add(new SqlParameter("@nombre_usuario", nuevo.NombreUsuario));
+                        comm.Parameters.Add(new SqlParameter("@password", nuevo.Password));
+
+                        comm.ExecuteNonQuery();
+
+                        
+                        return message;
+                    }*/
                 }
             }
             catch (Exception)
@@ -162,56 +217,7 @@ namespace clip_money.Models
 
 
         }
-        /*
-        try
-        {
-            if (existeCliente(nuevo.NumDni, nuevo.Email, nuevo.NombreUsuario) == true)
-            {
-                return responseError;
-            }
-            else
-            {
-                using (SqlConnection conn = new SqlConnection(StrConn))
-                {
-                    conn.Open();
 
-                    SqlCommand comm = conn.CreateCommand();
-
-                    comm.CommandText = "nuevoCliente";
-                    comm.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    comm.Parameters.Add(new SqlParameter("@nombre", nuevo.Nombre));
-                    comm.Parameters.Add(new SqlParameter("@apellido", nuevo.Apellido));
-                    comm.Parameters.Add(new SqlParameter("@sexo", nuevo.Sexo));
-                    comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
-
-                    TipoDni idTipoDni = new TipoDni(nuevo.IdTipoDni.id);
-                    comm.Parameters.Add(new SqlParameter("@id_tipo_dni", idTipoDni.id));
-
-                    comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
-                    //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
-                    //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
-
-                    Localidad idLocalidad = new Localidad(nuevo.IdLocalidad.id);
-                    comm.Parameters.Add(new SqlParameter("@id_localidad", idLocalidad.id));
-
-                    comm.Parameters.Add(new SqlParameter("@domicilio", nuevo.Domicilio));
-                    comm.Parameters.Add(new SqlParameter("@telefono", nuevo.Telefono));
-                    comm.Parameters.Add(new SqlParameter("@email", nuevo.Email));
-                    comm.Parameters.Add(new SqlParameter("@nombre_usuario", nuevo.NombreUsuario));
-                    comm.Parameters.Add(new SqlParameter("@password", nuevo.Password));
-
-                    comm.ExecuteNonQuery();
-
-                    return responseNuevo;
-                }
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-    }*/
 
         public bool existeCliente(string numDni, string email, string nombreUsuario)
         {
@@ -236,6 +242,110 @@ namespace clip_money.Models
                 else
                 {
                     return false;
+                }
+            }
+        }
+
+
+        //VALIDACION POR SEPARADO PARA COMPROBAR SI EXISTE USUARIO, EMAIL, Y DNI
+        public bool existeUsuario ( string nombreUsuario)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeUsuario", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@nombreUsuario", nombreUsuario));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeEmail(string email)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeEmail", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@email", email));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeDni(string numDni)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeDni", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@numDni", numDni));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //----------------------------------------------------------------------------------------------
+
+
+        public string obtenerUsuario(string email)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("obtenerUsuario", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@email", email));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    string nom_usuario;
+                    nom_usuario = dr.GetString(0).Trim();
+                    
+                    return nom_usuario;
+                }
+                else
+                {
+                    return "DefaultUser";
                 }
             }
         }

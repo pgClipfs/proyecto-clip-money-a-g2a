@@ -154,6 +154,8 @@
     <Compile Include="Controllers\CuentaVirtualController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RecoverymailController.cs" />
+    <Compile Include="Controllers\RecoveryPasswordController.cs" />
     <Compile Include="Controllers\TokenGenerator.cs" />
     <Compile Include="Controllers\TokenValidationHandler.cs" />
     <Compile Include="Controllers\LocalidadController.cs" />
@@ -171,11 +173,14 @@
     <Compile Include="Models\GestorCliente.cs" />
     <Compile Include="Models\GestorCuentaVirtual.cs" />
     <Compile Include="Models\GestorLogin.cs" />
+    <Compile Include="Models\GestorValidarPassword.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\GestorDniSitCrediticia.cs" />
     <Compile Include="Models\GestorOperaciones.cs" />
     <Compile Include="Models\GestorPPL.cs" />
     <Compile Include="Models\Localidad.cs" />
+    <Compile Include="Models\EmailValidator.cs" />
+    <Compile Include="Models\NewPasswordValidator.cs" />
     <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\Pais.cs" />
     <Compile Include="Models\Provincia.cs" />

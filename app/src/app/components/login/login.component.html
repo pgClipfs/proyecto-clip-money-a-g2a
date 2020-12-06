@@ -11,10 +11,36 @@
       </div>
   
       <!-- Login Form -->
-      <form (ngSubmit)="onSubmit()">
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario" [(ngModel)]="usuario.nombreUsuario">
-        <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password" [(ngModel)]="usuario.password">
-        <input type="submit" class="fadeIn fourth" value="INGRESAR">
+      <form (ngSubmit)="onSubmit()" [formGroup] = "form">
+
+          <div class="form-group">
+            <input type="text" id="login" class="fadeIn second form-control" formControlName = "inputUsuario"
+             placeholder="Usuario" [(ngModel)]="usuario.nombreUsuario"
+             [ngClass]="{ 'is-invalid': (form.get('inputUsuario')?.touched || form.get('inputUsuario')?.dirty) && !form.get('inputUsuario')?.valid}">
+
+            <div class="invalid-feedback">
+              <span *ngIf = "form.get('inputUsuario').errors?.required">
+                Introduzca un Usuario
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+
+            <input type="password" id="password" class="fadeIn third"  placeholder="Password"
+             formControlName= "inputPassword" [(ngModel)]="usuario.password"
+             [ngClass]="{ 'is-invalid': (form.get('inputPassword')?.touched || form.get('inputPassword')?.dirty) && !form.get('inputPassword')?.valid}">
+
+            <div class="invalid-feedback">
+              <span *ngIf = "form.get('inputPassword').errors?.required">
+                Introduzca un Password
+              </span>
+            </div>
+          </div>
+        
+        
+        
+          <input type="submit" id ="btnIngresar" class="fadeIn fourth" value="INGRESAR" [disabled] ="form.invalid">
       
         <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="isLoginFailed">
             {{errorMessage}}
@@ -29,7 +55,7 @@
       <div id="formFooter">
         <div class="row">
             <div class="col">
-                <a class="underlineHover" href="#">Olvide mi contraseña</a>
+                <a class="underlineHover" routerLink="/recoverymail">Olvide mi contraseña</a>
             </div>
             <div class="col">
                 <a class="underlineHover" routerLink="/cliente">Crear una cuenta</a>

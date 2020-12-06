@@ -10,6 +10,7 @@ using System.Web.Http.Cors;
 namespace clip_money.Controllers
 {
     //[Authorize]
+    [AllowAnonymous]
     [RoutePrefix("api/Cliente")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ClienteController : ApiController
@@ -31,7 +32,8 @@ namespace clip_money.Controllers
           }
         */
         // POST: api/Cliente
-        public HttpResponseMessage Post([FromBody] Cliente nuevo)
+        [HttpPost]
+        public int Post([FromBody] Cliente nuevo)
         {
             GestorCliente gCliente = new GestorCliente();
             return gCliente.nuevoCliente(nuevo);

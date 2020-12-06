@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import jwtDecode, * as JWT from 'jwt-decode';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,19 @@ import jwtDecode, * as JWT from 'jwt-decode';
 })
 export class LoginComponent implements OnInit {
 
+//Modelo validaciones
+
+form = this.fb.group({
+  inputUsuario: ['', [Validators.required, Validators.minLength(1)]],
+  inputPassword: ['', [Validators.required,Validators.minLength(1)]] 
+})
+
   usuario: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,private router: Router) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
