@@ -247,7 +247,7 @@ namespace clip_money.Models
         }
 
 
-        //VALIDACION POR SEPARADO PARA COMPROVAR SI EXISTE USUARIO, EMAIL, Y DNI
+        //VALIDACION POR SEPARADO PARA COMPROBAR SI EXISTE USUARIO, EMAIL, Y DNI
         public bool existeUsuario ( string nombreUsuario)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
