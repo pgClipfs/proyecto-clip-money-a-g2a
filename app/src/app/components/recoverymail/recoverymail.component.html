@@ -1,0 +1,43 @@
+
+<body>
+    
+    <div class="wrapper fadeInDown">
+    
+        <div id="formContent">
+          <!-- Tabs Titles -->
+      
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img src="../../../assets/images/logo1.png" id="icon" alt="User Icon" />
+          </div>
+      
+          <!-- Login Form -->
+          <form (ngSubmit)="onSubmit()" [formGroup] = "form">
+            <div><p>Enviaremos un codigo de recuperación a tu email</p><br>
+              <div><p>Por favor ingresa tu Email</p></div>
+            </div>
+            
+            <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email" formControlName= "emailValue"
+             [(ngModel)]="selectedEmail.email" [ngClass]="{ 'is-invalid': (form.get('emailValue')?.touched || form.get('emailValue')?.dirty) && !form.get('emailValue')?.valid}">
+             
+             <div class="invalid-feedback">
+              Ingresa un formato correcto, ejemplo@ejemplo.com 
+             </div>
+
+             
+            <input type="submit" id= "btnEnviar" class="fadeIn fourth" value="Enviar" [disabled] = "form.invalid">
+            
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="noExisteEmail">
+              {{errorMessage}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            </form>
+            <button id= "btnRegresar" title="Regresar" class=" btn btn-primary"(click)="regresarclick()"></button>
+         
+      
+        </div>
+    </div>
+    </body>

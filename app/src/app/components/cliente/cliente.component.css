@@ -128,11 +128,48 @@ html {
     padding-bottom: 0.5rem ;
     padding-top: 0.5rem ;
     background-color:#EB5600 !important;
-    border: 1px solid #ffffff;  
+    border: 1px solid #ffffff; 
+    float: inherit;
+    border: none;
+    color: white;
+    padding: 15px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 20px 20px 20px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
 }
 .btnRegistrarse:hover{
   background-color:#b64707!important;
   border: 1px solid #ffffff;  
+}
+#btnRegresar{
+  background-image: url("../../../assets/images/btnRegresar.png") !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2.6rem;
+  height: 2.4rem;
+  float: inherit;
+  background-color:#EB5600 !important;
+  border: 1px solid #ffffff;
+  padding-bottom: 0.5rem ;
+  padding-top: 0.5rem ;
+  padding-left: 1rem ;
+}
+#btnRegresar:hover{
+  background-color:#b64707 !important;
+  border: 1px solid #ffffff;
 }
 
 input[type=text] {

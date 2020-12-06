@@ -296,13 +296,23 @@ html {
     width:30%;
   }
 
-   #btnIngresar:hover{
-    background-color:#f36e21;
-    color: white;
-    font-size: 13px;
-  }
-
-  #btnIngresar:disabled{
+  #btnEnviar:disabled{
     background-color:#a19e9c;
   }
-  
+  #btnRegresar{
+    background-image: url("../../../assets/images/btnRegresar.png") !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 2.6rem;
+    height: 2.4rem;
+    float: initial;
+    background-color:#EB5600 !important;
+    border: 1px solid #ffffff;
+    padding-bottom: 0.5rem ;
+    padding-top: 0.5rem ;
+    padding-left: 1rem ;
+  }
+  #btnRegresar:hover{
+    background-color:#b64707 !important;
+    border: 1px solid #ffffff;
+  }
