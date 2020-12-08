@@ -12,12 +12,12 @@ namespace Clip_money.Models
         }
 
         //Constructor
-        public Pais(byte id, string nombre)
+        public Pais(int id, string nombre)
         {
             this.id = id;
             this.nombre = nombre;
         }
-        public byte id { get; set; }
+        public int id { get; set; }
         public string nombre { get; set; }
        // public virtual ICollection<Provincia> provincia { get; set; }
 

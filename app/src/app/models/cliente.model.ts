@@ -5,10 +5,12 @@ export class Cliente {
     Apellido: string;
     Sexo: string;
     FechaNacimiento: Date;
+    IdTipoDni: number;
     NumDni: string;
     Domicilio: string;
     Telefono: string;
     Email: string;
+    IdLocalidad: number;
     NombreUsuario: string;
     Password: string;
 

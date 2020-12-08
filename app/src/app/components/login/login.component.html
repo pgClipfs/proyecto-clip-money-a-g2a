@@ -44,7 +44,7 @@
       
         <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="isLoginFailed">
             {{errorMessage}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click) = "resetAlert()">
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -55,7 +55,7 @@
       <div id="formFooter">
         <div class="row">
             <div class="col">
-                <a class="underlineHover" routerLink="/recoverymail">Olvide mi contraseña</a>
+                <a class="underlineHover" (click) = "onRutePassword()">Olvide mi contraseña</a>
             </div>
             <div class="col">
                 <a class="underlineHover" routerLink="/cliente">Crear una cuenta</a>

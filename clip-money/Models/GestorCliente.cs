@@ -97,6 +97,9 @@ namespace clip_money.Models
 
         public int nuevoCliente(Cliente nuevo)
         {
+
+            GestorValidarPassword gvPassword = new GestorValidarPassword();
+
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
             int message = 0;
 
@@ -108,6 +111,8 @@ namespace clip_money.Models
             //HttpResponseMessage responseNuevo = new HttpResponseMessage();
             //responseNuevo.StatusCode = HttpStatusCode.Created;
             //responseNuevo.Content = new StringContent("¡El cliente se agregó con éxito!");
+           
+            //Verifico primero que el mail dni o usuario no exista
             try
             {
                 if (existeDni(nuevo.NumDni) == true)
@@ -125,6 +130,7 @@ namespace clip_money.Models
                     message = 3;
                     return message;
                 }
+                //Si no existe, agrego el cliente
                 else
                 {
                     using (SqlConnection conn = new SqlConnection(StrConn))
@@ -133,30 +139,33 @@ namespace clip_money.Models
 
                         SqlCommand comm = conn.CreateCommand();
 
+                        //Encriptacion de la contraseña
+                        string encriptedpassword = gvPassword.GetSha256(nuevo.Password);
+                        
                         comm.CommandText = "nuevoCliente";
                         comm.CommandType = System.Data.CommandType.StoredProcedure;
 
                         comm.Parameters.Add(new SqlParameter("@nombre", nuevo.Nombre));
                         comm.Parameters.Add(new SqlParameter("@apellido", nuevo.Apellido));
-                        comm.Parameters.Add(new SqlParameter("@sexo", "Indefinido"));
+                        comm.Parameters.Add(new SqlParameter("@sexo", nuevo.Sexo));
                         comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
 
-                        TipoDni idTipoDni = new TipoDni(1);
+                        //TipoDni idTipoDni = new TipoDni(1);
 
-                        comm.Parameters.Add(new SqlParameter("@id_tipo_dni", 1));
+                        comm.Parameters.Add(new SqlParameter("@id_tipo_dni", nuevo.IdTipoDni));
 
                         comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
                         //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
                         //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
 
-                        Localidad idLocalidad = new Localidad(1);
-                        comm.Parameters.Add(new SqlParameter("@id_localidad", 1));
+                        //Localidad idLocalidad = new Localidad(1);
+                        comm.Parameters.Add(new SqlParameter("@id_localidad", nuevo.IdLocalidad));
 
-                        comm.Parameters.Add(new SqlParameter("@domicilio", " Calle falsa 123"));
-                        comm.Parameters.Add(new SqlParameter("@telefono", 12345678));
+                        comm.Parameters.Add(new SqlParameter("@domicilio", nuevo.Domicilio));
+                        comm.Parameters.Add(new SqlParameter("@telefono", nuevo.Telefono));
                         comm.Parameters.Add(new SqlParameter("@email", nuevo.Email));
                         comm.Parameters.Add(new SqlParameter("@nombre_usuario", nuevo.NombreUsuario));
-                        comm.Parameters.Add(new SqlParameter("@password", nuevo.Password));
+                        comm.Parameters.Add(new SqlParameter("@password", encriptedpassword));
 
                         comm.ExecuteNonQuery();
 
@@ -218,7 +227,7 @@ namespace clip_money.Models
 
         }
 
-
+        /*
         public bool existeCliente(string numDni, string email, string nombreUsuario)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -244,7 +253,7 @@ namespace clip_money.Models
                     return false;
                 }
             }
-        }
+        }*/
 
 
         //VALIDACION POR SEPARADO PARA COMPROBAR SI EXISTE USUARIO, EMAIL, Y DNI
@@ -323,6 +332,7 @@ namespace clip_money.Models
         //----------------------------------------------------------------------------------------------
 
 
+        //Metodo para obtener el usuario a traves del email
         public string obtenerUsuario(string email)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();

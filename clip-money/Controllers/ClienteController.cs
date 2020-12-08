@@ -11,7 +11,7 @@ namespace clip_money.Controllers
 {
     //[Authorize]
     [AllowAnonymous]
-    [RoutePrefix("api/Cliente")]
+    [RoutePrefix("api/cliente")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ClienteController : ApiController
     {

@@ -16,7 +16,9 @@ export class RecoveryMailComponent implements OnInit {
   public email: Recoverymail[];
   selectedEmail: Recoverymail = new Recoverymail();
   noExisteEmail = false;
+  enviandoEmail = false;
   errorMessage = '';
+  message = '';
 
  /*Validaciones del form*/ 
  emailpattern: any = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;  
@@ -31,15 +33,19 @@ export class RecoveryMailComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.enviandoEmail = true;
+    this.message = 'Enviando Email...';
+    
     this.recoveryMail.getEmail(this.selectedEmail).subscribe(
       data => {
         this.tokenStorage.saveEmail(data);
         this.noExisteEmail = false;
-        this.router.navigate(['/recoverypassword']);
+        this.router.navigate(['/recoverypassword']); 
       },
       err => {
         this.errorMessage = "El Email no pertenece a nuestra cartera de clientes";
         this.noExisteEmail = true;
+        this.enviandoEmail = false;
         this.onReset();
       }
     );

@@ -13,11 +13,11 @@ namespace clip_money.Models
         private string apellido;
         private string sexo;
         private string fechaNacimiento;
-        private TipoDni idTipoDni;
+        private int idTipoDni;
         private string numDni;
         //private byte fotoFrenteDni;
         //private byte fotoDorsoDni;
-        private Localidad idLocalidad;
+        private int idLocalidad;
         private string domicilio;
         private string telefono;
         private string email;
@@ -30,7 +30,7 @@ namespace clip_money.Models
 
         }
 
-        public Cliente(int id, string nombre, string apellido, TipoDni idTipoDni, string fechaNacimiento, string numDni/*, byte fotoFrenteDni, byte fotoDorsoDni*/, Localidad idLocalidad, string email, string nombreUsuario, string password)
+        public Cliente(int id, string nombre, string apellido, int idTipoDni, string fechaNacimiento, string numDni/*, byte fotoFrenteDni, byte fotoDorsoDni*/, int idLocalidad, string email, string nombreUsuario, string password)
         {
             this.id = id;
             this.nombre = nombre;
@@ -55,11 +55,11 @@ namespace clip_money.Models
         public string Apellido { get => apellido; set => apellido = value; }
         public string Sexo { get => sexo; set => sexo = value; }
         public string FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
-        public TipoDni IdTipoDni { get => idTipoDni; set => idTipoDni = value; }
+        public int IdTipoDni { get => idTipoDni; set => idTipoDni = value; }
         public string NumDni { get => numDni; set => numDni = value; }
         //public byte FotoFrenteDni { get => fotoFrenteDni; set => fotoFrenteDni = value; }
         //public byte FotoDorsoDni { get => fotoDorsoDni; set => fotoDorsoDni = value; }
-        public Localidad IdLocalidad { get => idLocalidad; set => idLocalidad = value; }
+        public int IdLocalidad { get => idLocalidad; set => idLocalidad = value; }
         public string Domicilio { get => domicilio; set => domicilio = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Email { get => email; set => email = value; }

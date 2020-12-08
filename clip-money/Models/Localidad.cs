@@ -17,16 +17,17 @@ namespace Clip_money.Models
         }
 
         //Constructor
-        public Localidad(int id, string nombre)
+        public Localidad(int id, string nombre, int idProvincia)
         {
             this.id = id;
             this.nombre = nombre;
+            this.id_provincia = idProvincia;
         }
         public int id { get; set; }
         public string nombre { get; set; }
         public int id_provincia { get; set; }
         //public virtual ICollection<cliente> cliente { get; set; }
-        public virtual Provincia provincia { get; set; }
+        //public virtual Provincia provincia { get; set; }
 		
 	
     }
