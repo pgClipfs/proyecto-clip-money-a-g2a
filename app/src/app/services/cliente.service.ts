@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Cliente } from '../models/cliente.model';
 import { identifierModuleUrl } from '@angular/compiler';
 
-const url= "https://localhost:44386/api/cliente/";
+const url = 'https://localhost:44386/api/cliente/';
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -18,7 +18,6 @@ export class ClienteService {
   list: Cliente[];
 
   constructor(private http: HttpClient) {
-    console.log('clientes service is running');
    }
 
 
@@ -27,8 +26,6 @@ export class ClienteService {
    }
 
    onCreateCliente(cliente: Cliente): Observable<any>{
-    console.log('entra al metodo oncreatecliente');
-    console.log(cliente);
     return this.http.post( url , cliente, httpOptions);
 
   }

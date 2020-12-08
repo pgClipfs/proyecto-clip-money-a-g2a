@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
+
 html {
     background-color: #56baed;
   }
@@ -7,7 +8,7 @@ html {
   body {
     /* font-family: "Poppins", sans-serif; */
     font-family:  'Noto Sans JP', sans-serif;
-    height: 100vh;
+    height: 100%;
     
     /*background-color: #EB5600;*/
     background-image: url("../../../assets/images/fondo2.jpg");
@@ -47,7 +48,7 @@ html {
     background: #fff;
     padding: 30px;
     width: 90%;
-    max-width: 450px;
+    max-width: auto;
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -121,14 +122,15 @@ html {
   }
 
   #icon {
-    width:40%;
+    width:20rem;
+    
   }
 
   .btnRegistrarse{
     padding-bottom: 0.5rem ;
     padding-top: 0.5rem ;
     background-color:#EB5600 !important;
-    border: 1px solid #ffffff; 
+    border: 1px solid #ffffff;
     float: inherit;
     border: none;
     color: white;
@@ -152,34 +154,38 @@ html {
 }
 .btnRegistrarse:hover{
   background-color:#b64707!important;
-  border: 1px solid #ffffff;  
+  /*border: 1px solid #ffffff;  */
 }
 #btnRegresar{
-  background-image: url("../../../assets/images/btnRegresar.png") !important;
+  background-image: url("../../../assets/images/regresar1.png") !important;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 2.6rem;
-  height: 2.4rem;
+  width: 3rem;
+  height: 3rem;
   float: inherit;
-  background-color:#EB5600 !important;
+  background-color:white !important;
   border: 1px solid #ffffff;
   padding-bottom: 0.5rem ;
-  padding-top: 0.5rem ;
-  padding-left: 1rem ;
+  /*padding-top: 0.5rem ;*/
+  box-shadow: none;
+ 
 }
+
 #btnRegresar:hover{
-  background-color:#b64707 !important;
+  background-color:white !important;
   border: 1px solid #ffffff;
+  background-image: url("../../../assets/images/regresar2.png") !important;
+  box-shadow: none;
 }
 
 input[type=text] {
-  background-color: #f0e9e9;
-  border: none;
+  background-color: white;
   color: #0d0d0d;
   text-align: center;
   text-decoration: none;
+  box-shadow: none;
   font-size: 16px;
-  border: 2px solid #f6f6f6;
+  border: 0.1px solid #cfc7c7;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -195,12 +201,13 @@ input[type=text]:focus {
 }
 
 input[type=email] {
-  background-color: #f0e9e9;
+  background-color: white;
   color: #0d0d0d;
   text-align: center;
   text-decoration: none;
+  box-shadow: none;
   font-size: 16px;
-  border: 2px solid #f6f6f6;
+  border: 0.1px solid #cfc7c7;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -216,12 +223,13 @@ input[type=email]:focus {
 }
 
 input[type=password] {
-  background-color:  #f0e9e9;
+  background-color:  white;
   color: #0d0d0d;
   text-align: center;
   text-decoration: none;
+  box-shadow: none;
   font-size: 16px;
-  border: 2px solid #f6f6f6;
+  border: 0.1px solid #cfc7c7;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -236,12 +244,13 @@ input[type=password]:focus {
   border-bottom: 2px solid #EB5600;
 }
 input[type=date] {
-  background-color: #f0e9e9;
+  background-color: white;
   color: #0d0d0d;
   text-align: center;
   text-decoration: none;
+  box-shadow: none;
   font-size: 16px;
-  border: 2px solid #f6f6f6;
+  border: 0.1px solid #cfc7c7;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -251,9 +260,27 @@ input[type=date] {
   border-radius: 5px 5px 5px 5px;
 }
 
+select{
+  text-align: center;
+  border: 0.1px solid #cfc7c7;
+}
+
 
 
 *:focus {
   outline: none !important;
   box-shadow: none;
 } 
+
+label{
+  text-align: left !important;
+  font-size: 0.8rem !important;
+  color:rgb(107, 92, 92) !important;
+  text-decoration: none !important;
+  border:none !important;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.borde{
+}

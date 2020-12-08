@@ -5,6 +5,8 @@ import {RecoverypasswordService} from '../../services/recoverypassword.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import jwtDecode, * as JWT from 'jwt-decode';
 import { FormControl, FormGroup, Validators , FormBuilder} from '@angular/forms';
+import { range } from 'rxjs';
+import swal from 'sweetalert2'; // IMPORTANTE HACER EL NPM INSTALL --SAVE SWEETALERT2 PARA LAS ALERTAS
 
 @Component({
   selector: 'app-recoverypassword',
@@ -13,9 +15,9 @@ import { FormControl, FormGroup, Validators , FormBuilder} from '@angular/forms'
 })
 export class RecoverypasswordComponent implements OnInit {
 
-  //Modelo de validaciones
-  //contraseña de 8 caracters min, 1 mayus 1 min
-passpattern: any = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}/;
+  // Modelo de validaciones
+  // contraseña de 8 caracters min, 1 mayus 1 min
+passpattern: any = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])([^\s]){8,16}$/;
 
 form = this.fb.group({
   inputToken: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(40)]],
@@ -30,7 +32,9 @@ form = this.fb.group({
   passwordsDistintas = false;
   errorMessage = '';
 
-  constructor(private recoverypassword: RecoverypasswordService, private tokenStorage: TokenStorageService, private router: Router, private fb: FormBuilder) { }
+
+constructor(private recoverypassword: RecoverypasswordService, private tokenStorage: TokenStorageService,
+  private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.nombreEmail = this.tokenStorage.getEmail();
@@ -42,7 +46,6 @@ form = this.fb.group({
     {
       this.router.navigate(['/login']);
     }
-    
   }
 
   onSubmit(): void {
@@ -52,27 +55,26 @@ form = this.fb.group({
 
     this.recoverypassword.modificarPassword(this.selectednewpassword).subscribe(
       data => {
-        this.tokenStorage.saveToken(data);
 
-        alert(data);
+        swal.fire('Enhorabuena', data, 'success');
         this.tokenExpirado = false;
-        
+        this.tokenStorage.logOut();
         this.router.navigate(['/login']);
       },
       err => {
-        this.errorMessage = "El token es invalido o ha expirado";
+        this.errorMessage = 'El token es invalido o ha expirado';
         this.tokenExpirado = true;
       }
     );
   }else{
     this.passwordsDistintas = true;
-    this.errorMessage = "Las Constraseñas no coinciden";
-    
+    this.errorMessage = 'Las Constraseñas no coinciden';
+
   }
 }
 
 public regresarclick() {
-  this.tokenStorage.logOut();
+  // this.tokenStorage.logOut();
   this.router.navigate(['/login']);
 }
 }

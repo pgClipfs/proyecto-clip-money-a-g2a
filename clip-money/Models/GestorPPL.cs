@@ -28,7 +28,7 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    byte id = dr.GetByte(0);
+                    int id = dr.GetInt32(0);
                     string nombre = dr.GetString(1).Trim();
 
                     Pais p = new Pais(id, nombre);
@@ -87,17 +87,17 @@ namespace clip_money.Models
                 comm.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
+              
                     while (dr.Read())
                     {
                         int id = dr.GetInt32(0);
                         string nombre = dr.GetString(1).Trim();
+                        int idPais = dr.GetInt32(2);
 
-                        Provincia p = new Provincia(id, nombre);
+                        Provincia p = new Provincia(id, nombre, idPais);
                         lista.Add(p);
                     }
-                }
+                
 
                 dr.Close();
             }
@@ -127,8 +127,9 @@ namespace clip_money.Models
                 {
                     int id = dr.GetInt32(0);
                     string nombre = dr.GetString(1).Trim();
+                    int idPais = dr.GetInt32(2);
 
-                    Provincia prov = new Provincia(id, nombre);
+                    Provincia prov = new Provincia(id, nombre,idPais);
                     lista.Add(prov);
                 }
 
@@ -154,26 +155,24 @@ namespace clip_money.Models
                 comm.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
+  
                     while (dr.Read())
                     {
                         int id = dr.GetInt32(0);
                         string nombre = dr.GetString(1).Trim();
+                        int idprovincia = dr.GetInt32(2);
 
-                        Localidad l = new Localidad(id, nombre);
+                        Localidad l = new Localidad(id, nombre, idprovincia);
                         lista.Add(l);
                     }
-                }
-
-                dr.Close();
+               
             }
 
             return lista;
         }
 
         //Metodo para listar todas las localidades de una provincia
-        public List<Localidad> obtenerLocalidad(int idprovincia)
+        public List<Localidad> obtenerLocalidad(int id_provincia)
         {
             
             List<Localidad> lista = new List<Localidad>();
@@ -186,15 +185,16 @@ namespace clip_money.Models
 
                 SqlCommand comm = new SqlCommand("pListarLocalidades", conn);
                 comm.CommandType = System.Data.CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@idprovincia", idprovincia));
+                comm.Parameters.Add(new SqlParameter("@idprovincia", id_provincia));
 
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
                     int id = dr.GetInt32(0);
                     string nombre = dr.GetString(1).Trim();
+                    int idprovincia = dr.GetInt32(2);
 
-                    Localidad l = new Localidad(id, nombre);
+                    Localidad l = new Localidad(id, nombre,idprovincia);
                     lista.Add(l);
                 }
 

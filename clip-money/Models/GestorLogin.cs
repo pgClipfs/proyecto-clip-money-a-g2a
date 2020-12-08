@@ -11,17 +11,22 @@ namespace clip_money.Models
     {
         public bool validarLogin(LoginRequest loginRequest)
         {
+
+            GestorValidarPassword gvPassword = new GestorValidarPassword();
+
             string strConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
             bool result = false;
 
             using (SqlConnection conn = new SqlConnection(strConn))
             {
+                string encriptedPassword = gvPassword.GetSha256(loginRequest.Password);
+                
                 conn.Open();
 
                 SqlCommand comm = new SqlCommand("obtenerLogin", conn);
                 comm.CommandType = System.Data.CommandType.StoredProcedure;
                 comm.Parameters.Add(new SqlParameter("@usuario", loginRequest.NombreUsuario));
-                comm.Parameters.Add(new SqlParameter("@password", loginRequest.Password));
+                comm.Parameters.Add(new SqlParameter("@password", encriptedPassword));
 
                 SqlDataReader reader = comm.ExecuteReader();
 

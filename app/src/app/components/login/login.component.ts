@@ -23,6 +23,7 @@ form = this.fb.group({
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  nombreEmail: string;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private fb: FormBuilder) { }
 
@@ -50,6 +51,22 @@ form = this.fb.group({
         this.isLoginFailed = true;
       }
     );
+  }
+
+  //Metodo para resetear las alertas
+  resetAlert(){
+    this.isLoginFailed = false;
+  }
+
+  //Metodo para verificar que no se pueda ingresar desde el navegador a /recoverypassword si no
+  //se ha enviado el mail 
+  onRutePassword(){
+    this.nombreEmail = this.tokenStorage.getEmail();
+    if (this.nombreEmail !== null){
+      this.router.navigate(['/recoverypassword']);
+    }else{
+      this.router.navigate(['/recoverymail']);
+    }
   }
 
 }
