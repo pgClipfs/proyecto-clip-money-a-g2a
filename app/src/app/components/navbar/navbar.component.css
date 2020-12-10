@@ -2,6 +2,10 @@ body{
   overflow: hidden;
 
 }
+
+li {
+  cursor: pointer;
+}
 #sidebar-container{
   position: relative;
   height: auto;
