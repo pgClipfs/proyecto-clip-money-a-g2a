@@ -39,11 +39,11 @@ namespace clip_money.Controllers
 
             GestorLogin gLogin = new GestorLogin();
 
-            bool isCredentialValid = gLogin.validarLogin(login);
+            int isCredentialValid = gLogin.validarLogin(login);
 
-            if (isCredentialValid)
+            if (isCredentialValid >= 1)
             {
-                var token = TokenGenerator.GenerateTokenJwt(login.NombreUsuario);
+                var token = TokenGenerator.GenerateTokenJwt(login.NombreUsuario,isCredentialValid);
                 return Ok(token);
             }
             else
