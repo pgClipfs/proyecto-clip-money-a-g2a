@@ -13,15 +13,15 @@ namespace clip_money.Models
         private string apellido;
         private string sexo;
         private string fechaNacimiento;
-        private int idTipoDni;
+        private byte idTipoDni;
         private string numDni;
-        //private byte fotoFrenteDni;
-        //private byte fotoDorsoDni;
+        //private string fotoFrenteDni;
+        //private string fotoDorsoDni;
         private int idLocalidad;
         private string domicilio;
         private string telefono;
         private string email;
-        private SituacionCrediticia idSituacionCrediticia;
+        private byte idSituacionCrediticia;
         private string nombreUsuario;
         private string password;
 
@@ -30,7 +30,7 @@ namespace clip_money.Models
 
         }
 
-        public Cliente(int id, string nombre, string apellido, int idTipoDni, string fechaNacimiento, string numDni/*, byte fotoFrenteDni, byte fotoDorsoDni*/, int idLocalidad, string email, string nombreUsuario, string password)
+        public Cliente(int id, string nombre, string apellido, string sexo, string fechaNacimiento, byte idTipoDni, string numDni/*, string fotoFrenteDni, string fotoDorsoDni*/, int idLocalidad, string domicilio, string telefono, string email, byte idSituacionCrediticia, string nombreUsuario, string password)
         {
             this.id = id;
             this.nombre = nombre;
@@ -55,21 +55,16 @@ namespace clip_money.Models
         public string Apellido { get => apellido; set => apellido = value; }
         public string Sexo { get => sexo; set => sexo = value; }
         public string FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
-        public int IdTipoDni { get => idTipoDni; set => idTipoDni = value; }
+        public byte IdTipoDni { get => idTipoDni; set => idTipoDni = value; }
         public string NumDni { get => numDni; set => numDni = value; }
-        //public byte FotoFrenteDni { get => fotoFrenteDni; set => fotoFrenteDni = value; }
-        //public byte FotoDorsoDni { get => fotoDorsoDni; set => fotoDorsoDni = value; }
+        //public string FotoFrenteDni { get => fotoFrenteDni; set => fotoFrenteDni = value; }
+        //public string FotoDorsoDni { get => fotoDorsoDni; set => fotoDorsoDni = value; }
         public int IdLocalidad { get => idLocalidad; set => idLocalidad = value; }
         public string Domicilio { get => domicilio; set => domicilio = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Email { get => email; set => email = value; }
-        public SituacionCrediticia IdSituacionCrediticia { get => idSituacionCrediticia; set => idSituacionCrediticia = value; }
+        public byte IdSituacionCrediticia { get => idSituacionCrediticia; set => idSituacionCrediticia = value; }
         public string NombreUsuario { get => nombreUsuario; set => nombreUsuario = value; }
         public string Password { get => password; set => password = value; }
-
-        public void obtenerEdad()
-        {
-            // Hacer procedimiento almacenado
-        }
     }
 }
