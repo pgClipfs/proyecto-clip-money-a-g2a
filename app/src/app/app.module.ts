@@ -14,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RecoveryMailComponent } from './components/recoverymail/recoverymail.component';
 import { RecoverypasswordComponent } from './components/recoverypassword/recoverypassword.component';
 import { RecoverymailService } from './services/recoverymail.service';
+import { ModificarComponent } from './components/cliente/modificar/modificar.component';
+import { ObtenerComponent } from './components/cliente/obtener/obtener.component';
 
 
 
@@ -28,6 +30,8 @@ import { RecoverymailService } from './services/recoverymail.service';
     LoginComponent,
     RecoveryMailComponent,
     RecoverypasswordComponent,
+    ModificarComponent,
+    ObtenerComponent,
   ],
   imports: [
     BrowserModule,

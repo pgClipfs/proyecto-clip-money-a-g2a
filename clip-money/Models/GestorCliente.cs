@@ -72,21 +72,21 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
-                    string nombre = dr.GetString(1);
-                    string apellido = dr.GetString(2);
-                    string sexo = dr.GetString(3);
-                    string fechaNacimiento = dr.GetDateTime(4).Date.ToString("dd-MM-yyyy");
-                    byte idTipoDni = dr.GetByte(5);
-                    string numDni = dr.GetString(6);
-                    //string fotoFrenteDni = dr.GetString(7).Trim();
-                    //string fotoDorsoDni = dr.GetString(8).Trim();
-                    int idLocalidad = dr.GetInt32(9);
-                    string domicilio = dr.GetString(10);
-                    string telefono = dr.GetString(11);
-                    string email = dr.GetString(12);
-                    byte idSituacionCrediticia = dr.GetByte(13);
-                    string nombreUsuario = dr.GetString(14);
-                    string password = dr.GetString(15);
+                    string nombre = dr.GetString(0);
+                    string apellido = dr.GetString(1);
+                    string sexo = dr.GetString(2);
+                    string fechaNacimiento = dr.GetDateTime(3).Date.ToString("dd-MM-yyyy");
+                    byte idTipoDni = dr.GetByte(4);
+                    string numDni = dr.GetString(5);
+                    //string fotoFrenteDni = dr.GetString(6).Trim();
+                    //string fotoDorsoDni = dr.GetString(7).Trim();
+                    int idLocalidad = dr.GetInt32(8);
+                    string domicilio = dr.GetString(9);
+                    string telefono = dr.GetString(10);
+                    string email = dr.GetString(11);
+                    byte idSituacionCrediticia = dr.GetByte(12);
+                    string nombreUsuario = dr.GetString(13);
+                    string password = dr.GetString(14);
 
                     cli = new Cliente(id, nombre, apellido, sexo, fechaNacimiento, idTipoDni, numDni/*, fotoFrenteDni, fotoDorsoDni*/, idLocalidad, domicilio, telefono, email, idSituacionCrediticia, nombreUsuario, password);
                 }
