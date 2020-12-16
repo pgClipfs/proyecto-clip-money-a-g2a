@@ -1,5 +1,7 @@
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-export class Cliente {
+
+export class Cliente
+{
     Id: number;
     Nombre: string;
     Apellido: string;
@@ -13,5 +15,4 @@ export class Cliente {
     IdLocalidad: number;
     NombreUsuario: string;
     Password: string;
-
 }

@@ -17,11 +17,11 @@ namespace clip_money.Controllers
     {
         //[Authorize]
         // GET: api/Cliente
-          public IEnumerable<Cliente> Get()
-          {
-              GestorCliente gCliente = new GestorCliente();
-              return gCliente.obtenerClientes();
-          }
+          //public IEnumerable<Cliente> Get()
+          //{
+          //    GestorCliente gCliente = new GestorCliente();
+          //    return gCliente.obtenerClientes();
+          //}
 
           //[Authorize]
           // GET: api/Cliente/"número de id"

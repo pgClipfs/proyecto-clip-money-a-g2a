@@ -1,0 +1,62 @@
+<body>
+    <div class="row">
+        <div class="col">
+            <div class="wrapper fadeInDown">
+
+                <div id="formContent">
+
+                    <div class="fadeIn first">
+                        <img src="../../../../assets/images/logo1.png" id="icon" alt="User Icon" />
+                    </div>
+
+                    <h2>
+                        Datos del Cliente → <u><b>{{nombreUsuario}}</b></u>
+                    </h2>
+
+                    <table class="table mt-3 table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Sexo</th>
+                                <th scope="col">Fecha de Nacimiento</th>
+                                <th scope="col">Tipo de DNI</th>
+                                <th scope="col">Número de DNI</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Teléfono</th>
+                                <!-- <th scope="col">País</th> -->
+                                <!-- <th scope="col">Provincia</th> -->
+                                <th scope="col">Localidad</th>
+                                <th scope="col">Domicilio</th>
+                                <th scope="col">Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cliente of clientes">
+                                <td>{{cliente.Nombre}}</td>
+                                <td>{{cliente.Apellido}}</td>
+                                <td>{{cliente.Sexo}}</td>
+                                <td>{{cliente.FechaNacimiento}}</td>
+                                <td>{{cliente.IdTipoDni}}</td>
+                                <td>{{cliente.NumDni}}</td>
+                                <td>{{cliente.Email}}</td>
+                                <td>{{cliente.Telefono}}</td>
+                                <td>{{cliente.IdLocalidad}}</td>
+                                <td>{{cliente.Domicilio}}</td>
+                                <td>{{cliente.NombreUsuario}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary btnModificar"(click)="modificarClick()">Modificar</button>
+                    </div>
+
+                    <button id= "btnRegresar" title="Regresar" class="btn btn-primary"(click)="regresarClick()"></button>
+
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</body>

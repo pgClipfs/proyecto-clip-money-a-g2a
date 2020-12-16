@@ -5,28 +5,46 @@ import { Cliente } from '../models/cliente.model';
 import { identifierModuleUrl } from '@angular/compiler';
 
 const url = 'https://localhost:44386/api/cliente/';
-const httpOptions = {
+
+const httpOptions =
+{
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+};
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ClienteService {
+@Injectable
+(
+    {
+        providedIn: 'root'
+    }
+)
 
-  list: Cliente[];
+export class ClienteService
+{
+    list: Cliente[];
 
-  constructor(private http: HttpClient) {
-   }
+    constructor(private http: HttpClient)
+    {
 
+    }
 
-   getClientes(): Observable<Cliente[]>{
-      return this.http.get<Cliente[]>(url, httpOptions);
-   }
+    getClientes(): Observable<Cliente[]>
+    {
+        return this.http.get<Cliente[]>(url, httpOptions);
+    }
 
-   onCreateCliente(cliente: Cliente): Observable<any>{
-    return this.http.post( url , cliente, httpOptions);
+    onCreateCliente(cliente: Cliente): Observable<any>
+    {
+        return this.http.post(url , cliente, httpOptions);
+    }
 
-  }
+    onUpdateCliente(cliente: Cliente): Observable<any>
+    {
+        return this.http.put(url, cliente, httpOptions);
+    }
+
+    onGetCliente(cliente: Cliente): Observable<any>
+    {
+        return this.http.get(url, httpOptions);
+    }
 }
