@@ -1,16 +1,233 @@
-<div class="container-fluid">
-    <div class="cuentas">
-        <div id="cuentas-titulo">
-            <p>Cuentas</p>
+<div class="container-fluid contenedor-general" *ngIf ="!isAcountValid">
+    <div class="conteiner-fluid contenedor-secundario">
+        <div class="container-fluid advertencia">
+            <div class=" row">
+                <div class=" col-12 titulo-advertencia">
+                    
+                </div>
+                <div class=" col-12 col-sm-9 col-md-9 col-lg-9 advertencia-contenido">
+                    <h4>Su cuenta se encuentra inactiva</h4>
+                    <p>Por favor complete los datos restantes para activarla</p>
+                </div>
+                <div class=" col-12 col-sm-3 col-md-3 col-lg-3 icono">
+                    <div id="icono-img"></div>
+                </div>  
+            </div>
         </div>
-        <div id="nrocuenta">
-            <p id="tit-cuenta">Cuenta en Pesos</p>
-            <p>965 8890767789</p>
+        <div class = "container-fluid general-fotos">
+            <form (ngSubmit)="onSubmit()" [formGroup] = "form">
+                <div class="row">
+
+                    <div class=" col-12 col-sm-12 col-md-12 dni-mensaje">
+                        <p>Para finalizar la activacion de la cuenta necesitamos verificar su identidad</p>
+                        <p>A continuacion agregue una Selfie, foto  Frente y foto Dorso de su DNI</p>
+                    </div>
+                    <div class=" col-12 col-sm-12 col-md-4 selfie">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12"><p>Selfie</p></div> 
+                            <div class= "col-12 col-sm-12 col-md-3 col-lg-12">
+                                <div class="selfie-foto">
+                                    <img [src]="selfie" alt="">
+                                </div>
+                            </div>
+                            <div class ="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class ="contenedor-btnDorso">
+                                    <input type="file" class="file" id="fileselfie" (change)= onSelectFile($event,0) formControlName = "inputSelfie" [(ngModel)]="valorInputSelfie" >   
+                                    <label for="fileselfie" class="labelDni">Subir Archivo</label>
+                                    
+                                </div>
+                            </div>    
+                        </div>    
+                    </div>
+                    <div class=" col-12 col-sm-12 col-md-4 frente-dni">
+
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 "><p>Frente Dni</p></div> 
+                            <div class= "col-12 col-sm-12 col-md-3 col-lg-12">
+                                <div  class="fotoFrente-dni">
+                                    <img [src]="frenteDni" alt="" >
+                                </div>
+                            </div>
+                            <div class ="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class ="contenedor-btnDorso">
+                                    <input type="file" class="file" id="filefrente" (change)= onSelectFile($event,1) formControlName = "inputfrenteDni"  [(ngModel)]="valorInputFrente">   
+                                    <label for="filefrente" class="labelDni">Subir Archivo</label>
+                                    
+                                </div>
+                            </div>   
+                        </div>    
+                    </div>
+                    <div class=" col-12 col-sm-12 col-md-4 dorso-dni">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12"><p>Dorso Dni</p></div> 
+                            <div class= "col-12 col-sm-12 col-md-3 col-lg-12">
+                                <div class="fotoDorso-dni">
+                                    <img [src]="dorsoDni" alt="">
+                                </div>
+                            </div>
+                            <div class ="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class ="contenedor-btnDorso">
+                                    <input type="file" class="file" id="filedorso" (change)= onSelectFile($event,2) formControlName = "inputdorsoDni" [(ngModel)]="valorInputDorso">   
+                                    <label for="filedorso" class="labelDni">Subir Archivo</label>
+                                    
+                                </div>
+                            </div>    
+                        </div>    
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 contenedor-btn">
+                        <button type ="submit" class ="btn btn-primary btnFinalizar" [disabled] ="form.invalid" >Guardar</button>
+                    </div>
+                </div>
+            </form>
 
         </div>
-        <div id="cuentas-contenido">
-            <div id="nombre"><p>Saldo Disponible</p></div>
-            <div id="saldo">$ 0.00</div>
-        </div>  
     </div>
 </div>
+
+   
+    <div class="container-fluid contenedor-general" *ngIf ="isAcountValid">
+        <div class="contenedor-secundario">
+           <div class="row">
+               <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                   <div class="row">
+                       <div class="col-12 col-sm-12 col-md-12">
+                            <div id="cuentas-titulo">
+                                <p>Tu Cuenta Principal</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-sm-12 col-md-12">
+                            
+                            <div class=" row cuentas">
+                               <div class="col-3 col-sm-3 col-md-3 col-lg-2" style="display: flex; align-items: center; text-align: center;">
+                                    <div class="icono-cuenta">
+                                        <p>CA$</p>
+                                    </div>
+                                </div>
+                                <div class="col-7 col-sm-7 col-md-7 col-lg-7" style="display: flex; align-items:center;">
+                                    <div class="nrocuenta">
+                                        <p id="tit-cuenta">${{saldo}}</p>
+                                        <p class="desc-cuentas">Caja de Ahorro {{nombreTipoCuenta}} &nbsp; <strong>{{nroCuenta}}</strong> </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-2 col-sm-2 col-md-2 col-lg-3" style="display: flex; align-items:center;">
+                                    <div class="cuenta-detalle">
+                                        <div id="nombre"><a>VER DETALLES</a></div>  
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-sm-12 col-md-12 col-md-12">
+                            <div class="">
+                                <div id="titulo-movimientos">
+                                    Ultimos Movimientos
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div class="row movimientos">
+                            
+                                <div class="col-12 col-sm-12 col-md-12 col-md-12">
+                                    <div id="contenido-movimientos">
+                                        <table class="table mt-3 table-borderless table-hover">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Hora</th>
+                                                <th scope="col">Descripcion</th>
+                                                <th scope="col">Monto</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let op of operaciones;">
+                                                    <td>{{op.Fecha}}</td>
+                                                    <td>{{op.Hora}}</td>
+                                                    <td>{{op.TipoOperacion['Nombre']}}</td>
+                                                    <td>$&nbsp;{{op.Monto}}</td>
+                                                </tr>
+                                            </tbody>
+                                          </table>
+
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4" >
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <div class="row">
+                                       
+                                        <div class="col-9 col-sm-9 col-md-9">
+                                            <div id="otrascuentas-titulo">
+                                                <p>Tus Otras Cuentas</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-3 col-sm-3 col-md-3">
+                                            <div id="cuentas-titulo-vermas">
+                                                <p><a>Ver Mas></a></p>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-sm-12 col-md-12" >
+                                    
+                                    <div class=" row otras-cuentas">
+                                        <div class="col-3 col-sm-3 col-md-3 col-lg-3" style="display: flex; align-items: center; text-align: center;">
+                                            <div class="icono-otrascuentas">
+                                                <p>U$D</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9" style="display: flex; align-items:center;">
+                                            <div class="otras-nrocuenta">
+                                                <p id="tit-otrascuenta">$0,00</p>
+                                                <p class="desc-cuentas">Caja de Ahorro dolares </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-md-12">
+                                    <div class="">
+                                        <div id="titulo-cotizaciondolar">
+                                            Cotizacion Dolar
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <div class="row cotizacion-dolar">
+                                    
+                                        <div class="col-12 col-sm-12 col-md-12 col-md-12">
+                                            <div id="contenido-cot-dolar">
+                                                <iframe width="100%" height="auto" src="https://www.dolarsi.com/func/moduloArriba-n.html" frameborder="0" scrolling="0" allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div> 
+
+                </div>
+            </div>
+        </div>
+    </div>
+   

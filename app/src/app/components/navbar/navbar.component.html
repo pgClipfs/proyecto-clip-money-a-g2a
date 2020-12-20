@@ -19,22 +19,21 @@
 </div>-->
 <div class="row" id="sidebar-container">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-    
+    <!--<div class="logo">
+    </div>-->
     <nav class="menu  navbar-expand-sm  navbar-light">
-      <div class="logo">
-      </div>
+     
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation" aria-controls="navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav text-center">
-          <li class="nav-item underlineHover"><a id="index-activo" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+          <li class="nav-item underlineHover"><a id="index-activo" class="nav-link" routerLink="/home/inicio"><i class="fas fa-home"></i> Inicio</a></li>
           <li class="nav-item underlineHover"><a class="nav-link "><i class="fas fa-folder"></i> Cuentas</a></li>
           <li class="nav-item underlineHover"><a class="nav-link "><i class="fas fa-credit-card"></i> Tarjetas</a></li>
           <li class="nav-item underlineHover"><a class="nav-link "><i class="fas fa-list"></i> Movimientos</a></li>
-          <li class="nav-item underlineHover"><a class="nav-link "><i class="fas fa-exchange-alt"></i> Transferencias</a></li>
-          <li class="nav-item underlineHover"><a class="nav-link "><i class="fas fa-hand-holding-usd"></i> Extracciones</a></li>
+          <li class="nav-item underlineHover"><a class="nav-link "><i class="fas fa-exchange-alt"></i> Operaciones</a></li>
           <li class="nav-item underlineHover"><a class="nav-link"><i class="fas fa-user"></i> Perfil</a></li>
           <li class="nav-item underlineHover"><a class="nav-link btn-cerrar-sesion" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>

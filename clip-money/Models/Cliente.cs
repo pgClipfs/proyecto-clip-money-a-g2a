@@ -15,8 +15,9 @@ namespace clip_money.Models
         private string fechaNacimiento;
         private int idTipoDni;
         private string numDni;
-        //private byte fotoFrenteDni;
-        //private byte fotoDorsoDni;
+        private string selfieCliente;
+        private string fotoFrenteDni;
+        private string fotoDorsoDni;
         private int idLocalidad;
         private string domicilio;
         private string telefono;
@@ -24,13 +25,14 @@ namespace clip_money.Models
         private SituacionCrediticia idSituacionCrediticia;
         private string nombreUsuario;
         private string password;
+        private int cuentaValida;
 
         public Cliente()
         {
 
         }
 
-        public Cliente(int id, string nombre, string apellido, int idTipoDni, string fechaNacimiento, string numDni/*, byte fotoFrenteDni, byte fotoDorsoDni*/, int idLocalidad, string email, string nombreUsuario, string password)
+        public Cliente(int id, string nombre, string apellido,string sexo, int idTipoDni, string numDni, string fotoFrenteDni, string fechaNacimiento, string fotoDorsoDni, int idLocalidad, string domicilio,string telefono, string email, string nombreUsuario, string password, int cuentaValida, string selfieCliente)
         {
             this.id = id;
             this.nombre = nombre;
@@ -39,8 +41,9 @@ namespace clip_money.Models
             this.fechaNacimiento = fechaNacimiento;
             this.idTipoDni = idTipoDni;
             this.numDni = numDni;
-            //this.fotoFrenteDni = fotoFrenteDni;
-            //this.fotoDorsoDni = fotoDorsoDni;
+            this.selfieCliente = selfieCliente;
+            this.fotoFrenteDni = fotoFrenteDni;
+            this.fotoDorsoDni = fotoDorsoDni;
             this.idLocalidad = idLocalidad;
             this.domicilio = domicilio;
             this.telefono = telefono;
@@ -48,6 +51,7 @@ namespace clip_money.Models
             this.idSituacionCrediticia = idSituacionCrediticia;
             this.nombreUsuario = nombreUsuario;
             this.password = password;
+            this.cuentaValida = cuentaValida;
         }
 
         public int Id { get => id; set => id = value; }
@@ -57,8 +61,9 @@ namespace clip_money.Models
         public string FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
         public int IdTipoDni { get => idTipoDni; set => idTipoDni = value; }
         public string NumDni { get => numDni; set => numDni = value; }
-        //public byte FotoFrenteDni { get => fotoFrenteDni; set => fotoFrenteDni = value; }
-        //public byte FotoDorsoDni { get => fotoDorsoDni; set => fotoDorsoDni = value; }
+        public string SelfieCliente { get => selfieCliente; set => selfieCliente = value; }
+        public string FotoFrenteDni { get => fotoFrenteDni; set => fotoFrenteDni = value; }
+        public string FotoDorsoDni { get => fotoDorsoDni; set => fotoDorsoDni = value; }
         public int IdLocalidad { get => idLocalidad; set => idLocalidad = value; }
         public string Domicilio { get => domicilio; set => domicilio = value; }
         public string Telefono { get => telefono; set => telefono = value; }
@@ -66,6 +71,7 @@ namespace clip_money.Models
         public SituacionCrediticia IdSituacionCrediticia { get => idSituacionCrediticia; set => idSituacionCrediticia = value; }
         public string NombreUsuario { get => nombreUsuario; set => nombreUsuario = value; }
         public string Password { get => password; set => password = value; }
+        public int CuentaValida { get => cuentaValida; set => cuentaValida = value; }
 
         public void obtenerEdad()
         {

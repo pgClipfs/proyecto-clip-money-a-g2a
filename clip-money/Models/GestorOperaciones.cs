@@ -27,19 +27,45 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    string fecha = dr.GetDateTime(0).Date.ToString("dd-MM-yyyy");
-                    string hora = dr.GetTimeSpan(1).ToString();
+                    string fecha = dr.GetString(0);
+                    string hora = dr.GetString(1);
                     string stringTipoOperacion = dr.GetString(2);
                     TipoOperacion tipoOperacion = new TipoOperacion(stringTipoOperacion);
                     decimal monto = dr.GetSqlMoney(3).ToDecimal();
 
-                    Operaciones p = new Operaciones(fecha,hora,tipoOperacion, Math.Round(monto, 2));
+                    Operaciones p = new Operaciones(fecha,hora,tipoOperacion, Math.Round(monto, 2),idCV);
                     lista.Add(p);
                 }
 
                 dr.Close();
             }
             return lista;
+        }
+
+        public void insertarOperacion(Operaciones nuevaop)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "insertarOperacion";
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@numOperacion", nuevaop.NumOperacion));
+                comm.Parameters.Add(new SqlParameter("@fecha", nuevaop.Fecha));
+                comm.Parameters.Add(new SqlParameter("@hora", nuevaop.Hora));
+                comm.Parameters.Add(new SqlParameter("@monto", nuevaop.Monto));
+                comm.Parameters.Add(new SqlParameter("@destino", nuevaop.Destino));
+                comm.Parameters.Add(new SqlParameter("@idTipoOperacion", nuevaop.TipoOperacion.Id));
+                comm.Parameters.Add(new SqlParameter("@idEstado", nuevaop.Estado.Id));
+                comm.Parameters.Add(new SqlParameter("@idCuentaVirtual", nuevaop.IdCuentaVirtual));
+               
+
+                comm.ExecuteNonQuery();
+            }
         }
     }
 }

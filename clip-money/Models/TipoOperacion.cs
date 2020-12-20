@@ -7,7 +7,7 @@ namespace clip_money.Models
 {
     public class TipoOperacion
     {
-        private int id;
+        private long id;
         private string nombre;
         private string descripcion;
 
@@ -21,7 +21,12 @@ namespace clip_money.Models
             this.Descripcion = descripcion;
         }
 
-        public int Id { get => id; set => id = value; }
+        public TipoOperacion(long id)
+        {
+            this.Id = id;
+        }
+
+        public long Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
     }

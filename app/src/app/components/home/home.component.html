@@ -5,23 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="contenedor">
-        <div class="menu">
-            <app-navbar></app-navbar>
-        </div>
-        <div class="contenido">
+    
+    <div class=" row contenedor">
+       <div class="col-12 col-sm-12 col-md-12 col-lg-12" >
+           
             <div class="navvar">
-                <div id="navegacion">Bienvenido</div>
-                    <div id="nombreUsuario">
-                        <div id="nombre">
-                        <p>{{nombreUsuario}}</p>
+
+                <div class="row" style="height: 100%;">
+
+                    <div class="col-4 col-sm-4 col-md-3 col-lg-2" >
+                        <div id="logo">
+                            <img src="../../../assets/images/logo1.png" alt="">
                         </div>
                     </div>
-                    <div id="fotoUsuario">
+                    <div class="col-1 col-sm-1 col-md-5 col-lg-6" >
+                        <div id="navegacion">
+                             <p>Bienvenido</p> 
+                        </div>
                     </div>
+                    <div class="col-7 col-sm-7 col-md-4 col-lg-4" >
+                           
+                                <div id="nombreUsuario">
+                                    <div id="nombre">
+                                    <p>{{nombreUsuario}}</p>
+                                    </div>
+                                </div>
+                                                     
+                                <div id="fotoUsuario">
+                                    <img  id="img-usuario" [src]="fotoUsuario" alt="">
+                                </div>
+                            
+                      
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="col-12 col-sm-3 col-md-2 ">
+            <div class="contenido">
+                <div class="menu">
+                    <app-navbar></app-navbar>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-9 col-md-10 ">
             <div class="componentes">
-                <app-inicio></app-inicio>
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>

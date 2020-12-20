@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace clip_money.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [RoutePrefix("api/operaciones")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OperacionesController : ApiController

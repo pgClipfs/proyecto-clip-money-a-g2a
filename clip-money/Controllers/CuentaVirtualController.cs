@@ -4,13 +4,17 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using clip_money.Models;
 
 namespace clip_money.Controllers
 {
-    [RoutePrefix("api/CuentaVirtual")]
+    [AllowAnonymous]
+    [RoutePrefix("api/cuentavirtual")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CuentaVirtualController : ApiController
     {
+        /*
         [Authorize]
         // GET: api/CuentaVirtual
         public IEnumerable<CuentaVirtual> Get()
@@ -18,7 +22,6 @@ namespace clip_money.Controllers
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
             return gCuentaVirtual.obtenerCuentasVirtuales();
         }
-
         [Authorize]
         // GET: api/CuentaVirtual/"número de id"
         public CuentaVirtual Get(int id)
@@ -26,8 +29,10 @@ namespace clip_money.Controllers
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
             return gCuentaVirtual.obtenerPorId(id);
         }
+        */
 
         // POST: api/CuentaVirtual
+        //[HttpPost]
         public void Post([FromBody] CuentaVirtual nueva)
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
@@ -35,7 +40,7 @@ namespace clip_money.Controllers
 
         }
 
-        [Authorize]
+        //[Authorize]
         // PUT: api/CuentaVirtual/"número de id"
         public void Put([FromBody] CuentaVirtual mod)
         {
@@ -44,7 +49,7 @@ namespace clip_money.Controllers
 
         }
 
-        [Authorize]
+        //[Authorize]
         // DELETE: api/CuentaVirtual/"número de id"
         public void Delete(int id)
         {
@@ -52,5 +57,17 @@ namespace clip_money.Controllers
             gCuentaVirtual.eliminarCuentaVirtual(id);
 
         }
+
+        //[Authorize]
+        //GET: api/CuentaVirtual/cliente?="id del cliente"
+        [HttpGet]
+        [Route("cliente")]
+        public IEnumerable<CuentaVirtual> Get(int idCliente)
+        {
+            GestorCliente gCliente = new GestorCliente();
+            return gCliente.obtenerCuentasDeCliente(idCliente);
+        }
+
     }
+
 }

@@ -72,13 +72,13 @@ form = this.fb.group({
 
   ngOnInit(): void {
     //obtenemos la lista de clientes
-    this.clienteService.getClientes().subscribe(resp => {
+    /*this.clienteService.getCliente().subscribe(resp => {
       this.clientes = resp;
-    });
+    });*/
     
-    /*if (this.tokenStorage.getToken()) {
+    if (this.tokenStorage.getToken()) {
       this.router.navigate(['/home']);
-    }*/
+    }
     //obenemos la lista de tipos de dni
     this.tipodniService.getTipoDni().subscribe(
       data => {

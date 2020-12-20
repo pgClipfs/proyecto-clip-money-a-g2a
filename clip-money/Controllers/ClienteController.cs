@@ -21,16 +21,17 @@ namespace clip_money.Controllers
           {
               GestorCliente gCliente = new GestorCliente();
               return gCliente.obtenerClientes();
-          }
+          }*/
 
           //[Authorize]
           // GET: api/Cliente/"número de id"
+          [HttpGet]
           public Cliente Get(int id)
-          {
+         {
               GestorCliente gCliente = new GestorCliente();
-              return gCliente.obtenerPorId(id);
+              return gCliente.obtenerCliente(id);
           }
-        */
+        
         // POST: api/Cliente
         [HttpPost]
         public int Post([FromBody] Cliente nuevo)

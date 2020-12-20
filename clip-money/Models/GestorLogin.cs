@@ -9,18 +9,18 @@ namespace clip_money.Models
 {
     public class GestorLogin
     {
-        public bool validarLogin(LoginRequest loginRequest)
+        public int validarLogin(LoginRequest loginRequest)
         {
-
+            Cliente cli = null;
             GestorValidarPassword gvPassword = new GestorValidarPassword();
 
             string strConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-            bool result = false;
+            int result = -1;
 
             using (SqlConnection conn = new SqlConnection(strConn))
             {
                 string encriptedPassword = gvPassword.GetSha256(loginRequest.Password);
-                
+
                 conn.Open();
 
                 SqlCommand comm = new SqlCommand("obtenerLogin", conn);
@@ -30,10 +30,13 @@ namespace clip_money.Models
 
                 SqlDataReader reader = comm.ExecuteReader();
 
+
                 if (reader.HasRows)
                 {
-                    result = true;
+                    reader.Read();
+                    result = reader.GetInt32(0);
                 }
+
             }
             return result;
         }

@@ -11,51 +11,9 @@ using System.Net;
 namespace clip_money.Models
 {
     public class GestorCliente
-    {/*
-        public List<Cliente> obtenerClientes()
-        {
-            List<Cliente> lista = new List<Cliente>();
+    {
 
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            {
-                conn.Open();
-
-                SqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "obtenerClientes";
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-
-                SqlDataReader dr = comm.ExecuteReader();
-                while (dr.Read())
-                {
-                    int id = dr.GetInt32(0);
-                    string nombre = dr.GetString(1).Trim();
-                    string apellido = dr.GetString(2).Trim();
-                    string sexo = dr.GetString(3).Trim();
-                    string fechaNacimiento = dr.GetDateTime(4).Date.ToString("dd-MM-yyyy");
-                    TipoDni idTipoDni = new TipoDni((byte)id);
-                    string numDni = dr.GetString(6).Trim();
-                    //byte fotoFrenteDni = dr.GetByte(7);
-                    //byte fotoDorsoDni = dr.GetByte(8);
-                    Localidad idLocalidad = new Localidad(id);
-                    string domicilio = dr.GetString(10).Trim();
-                    string telefono = dr.GetString(11).Trim();
-                    string email = dr.GetString(12).Trim();
-                    SituacionCrediticia idSituacionCrediticia = new SituacionCrediticia();
-                    string nombreUsuario = dr.GetString(14).Trim();
-                    string password = dr.GetString(15).Trim();
-
-                    Cliente cli = new Cliente(id, nombre, apellido,  idTipoDni, numDni/*, fotoFrenteDni, fotoDorsoDni,email,  nombreUsuario, password);
-
-                    lista.Add(cli);
-                }
-                dr.Close();
-            }
-            return lista;
-        }
-
-        public Cliente obtenerPorId(int id)
+        public Cliente obtenerCliente(int id)
         {
             Cliente cli = null;
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -75,25 +33,26 @@ namespace clip_money.Models
                     string nombre = dr.GetString(1);
                     string apellido = dr.GetString(2);
                     string sexo = dr.GetString(3);
-                    string fechaNacimiento = dr.GetDateTime(4).Date.ToString("dd-MM-yyyy");
-                    TipoDni idTipoDni = new TipoDni((byte)id);
-                    string numDni = dr.GetString(6);
-                    //byte fotoFrenteDni = dr.GetByte(7);
-                    //byte fotoDorsoDni = dr.GetByte(8);
-                    Localidad idLocalidad = new Localidad(id);
+                    int idTipoDni = dr.GetInt32(4);
+                    string numDni = dr.GetString(5);
+                    string fotoFrenteDni = dr.GetString(6);
+                    string fechaNacimiento = dr.GetDateTime(7).Date.ToString("dd-MM-yyyy");
+                    string fotoDorsoDni = dr.GetString(8);
+                    int idLocalidad = dr.GetInt32(9);
                     string domicilio = dr.GetString(10);
                     string telefono = dr.GetString(11);
                     string email = dr.GetString(12);
-                    SituacionCrediticia idSituacionCrediticia = new SituacionCrediticia();
                     string nombreUsuario = dr.GetString(14);
                     string password = dr.GetString(15);
-
-                    cli = new Cliente(id, nombre, apellido, sexo, fechaNacimiento, idTipoDni, numDni/*, fotoFrenteDni, fotoDorsoDni, idLocalidad, domicilio, telefono, email, idSituacionCrediticia, nombreUsuario, password);
+                    int cuentaValida = dr.GetInt32(17);
+                    string selfie = dr.GetString(18);
+                    
+                    cli = new Cliente(id, nombre, apellido, sexo, idTipoDni, numDni, fotoFrenteDni, fechaNacimiento,  fotoDorsoDni, idLocalidad, domicilio, telefono, email, nombreUsuario, password, cuentaValida,selfie);
                 }
                 dr.Close();
             }
             return cli;
-        }*/
+        }
 
         public int nuevoCliente(Cliente nuevo)
         {
@@ -102,15 +61,6 @@ namespace clip_money.Models
 
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
             int message = 0;
-
-
-            //HttpResponseMessage responseError = new HttpResponseMessage();
-            //responseError.StatusCode = HttpStatusCode.BadRequest;
-            //responseError.Content = new StringContent("Ya existe un cliente con el mismo número de DNI, email o nombre de usuario");
-
-            //HttpResponseMessage responseNuevo = new HttpResponseMessage();
-            //responseNuevo.StatusCode = HttpStatusCode.Created;
-            //responseNuevo.Content = new StringContent("¡El cliente se agregó con éxito!");
            
             //Verifico primero que el mail dni o usuario no exista
             try
@@ -149,18 +99,11 @@ namespace clip_money.Models
                         comm.Parameters.Add(new SqlParameter("@apellido", nuevo.Apellido));
                         comm.Parameters.Add(new SqlParameter("@sexo", nuevo.Sexo));
                         comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
-
-                        //TipoDni idTipoDni = new TipoDni(1);
-
                         comm.Parameters.Add(new SqlParameter("@id_tipo_dni", nuevo.IdTipoDni));
-
                         comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
                         //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
                         //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
-
-                        //Localidad idLocalidad = new Localidad(1);
                         comm.Parameters.Add(new SqlParameter("@id_localidad", nuevo.IdLocalidad));
-
                         comm.Parameters.Add(new SqlParameter("@domicilio", nuevo.Domicilio));
                         comm.Parameters.Add(new SqlParameter("@telefono", nuevo.Telefono));
                         comm.Parameters.Add(new SqlParameter("@email", nuevo.Email));
@@ -172,50 +115,6 @@ namespace clip_money.Models
                         return message;
                     }
                 
-
-
-                /*if (existeCliente(nuevo.NumDni, nuevo.Email, nuevo.NombreUsuario) == true)
-                {
-                    return message;
-                }
-                else
-                {
-                    using (SqlConnection conn = new SqlConnection(StrConn))
-                    {
-                        conn.Open();
-
-                        SqlCommand comm = conn.CreateCommand();
-
-                        comm.CommandText = "nuevoCliente";
-                        comm.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        comm.Parameters.Add(new SqlParameter("@nombre", nuevo.Nombre));
-                        comm.Parameters.Add(new SqlParameter("@apellido", nuevo.Apellido));
-                        comm.Parameters.Add(new SqlParameter("@sexo", "Indefinido"));
-                        comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
-
-                        TipoDni idTipoDni = new TipoDni(1);
-
-                        comm.Parameters.Add(new SqlParameter("@id_tipo_dni", 1));
-
-                        comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
-                        //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
-                        //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
-
-                        Localidad idLocalidad = new Localidad(1);
-                        comm.Parameters.Add(new SqlParameter("@id_localidad", 1));
-
-                        comm.Parameters.Add(new SqlParameter("@domicilio", " Calle falsa 123"));
-                        comm.Parameters.Add(new SqlParameter("@telefono", 12345678));
-                        comm.Parameters.Add(new SqlParameter("@email", nuevo.Email));
-                        comm.Parameters.Add(new SqlParameter("@nombre_usuario", nuevo.NombreUsuario));
-                        comm.Parameters.Add(new SqlParameter("@password", nuevo.Password));
-
-                        comm.ExecuteNonQuery();
-
-                        
-                        return message;
-                    }*/
                 }
             }
             catch (Exception)
@@ -226,34 +125,6 @@ namespace clip_money.Models
 
 
         }
-
-        /*
-        public bool existeCliente(string numDni, string email, string nombreUsuario)
-        {
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            {
-                conn.Open();
-
-                SqlCommand comm = new SqlCommand("existeCliente", conn);
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-
-                comm.Parameters.Add(new SqlParameter("@numDni", numDni));
-                comm.Parameters.Add(new SqlParameter("@email", email));
-                comm.Parameters.Add(new SqlParameter("@nombreUsuario", nombreUsuario));
-
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }*/
 
 
         //VALIDACION POR SEPARADO PARA COMPROBAR SI EXISTE USUARIO, EMAIL, Y DNI
@@ -359,6 +230,83 @@ namespace clip_money.Models
                 }
             }
         }
+
+
+        /*METODO PARA INSERTAR LAS FOTOS DEL DNI EN EL CLIENTE Y ACTIVA LA CUENTA*/
+        public bool insertarFotosDni(Cliente fotoDni)
+        {
+            CuentaVirtual cv = null;
+            Operaciones op = null;
+            GestorCuentaVirtual Gcv = new GestorCuentaVirtual();
+            GestorOperaciones Gop = new GestorOperaciones();
+            string cvu;
+            string nroCuenta;
+            long idcuenta;
+            TipoCuentaVirtual tipoCuentaVirtual = null;
+            string nroOperacion;
+            string hora = DateTime.Now.ToString("hh:mm");
+            string fecha = DateTime.Today.ToString("dd-MM-yyyy");
+            TipoOperacion idtipoOperacion = null;
+            Estado estado = null;
+
+
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("insertarFotosDni", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@id", fotoDni.Id));
+                comm.Parameters.Add(new SqlParameter("@selfieCliente", fotoDni.SelfieCliente));
+                comm.Parameters.Add(new SqlParameter("@frenteDni", fotoDni.FotoFrenteDni));
+                comm.Parameters.Add(new SqlParameter("@dorsoDni", fotoDni.FotoDorsoDni));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.HasRows)
+                {
+
+                    //GENERAMOS LA CUENTA ALEATORIA
+                    nroCuenta = Gcv.generarCuentaAleatoria();
+                    cvu = Gcv.generarcvuAleatorio();
+
+                    while (Gcv.existeCuentaCvu(nroCuenta, cvu))
+                    {
+                        nroCuenta = Gcv.generarCuentaAleatoria();
+                        cvu = Gcv.generarcvuAleatorio();
+                    }
+
+                    tipoCuentaVirtual = new TipoCuentaVirtual(1);
+                    cv = new CuentaVirtual(0, "ALIAS-" + nroCuenta, cvu, nroCuenta, 0, fotoDni.Id, tipoCuentaVirtual, 1);
+
+                    Gcv.nuevaCuentaVirtual(cv);
+                    //-------------------------------------
+
+                    //GENERAMOS UNA OPERACION DE APERTURA A LA CUENTA CREADA
+                    idcuenta = Gcv.obtenerPorNroCuenta(nroCuenta);
+                    //generamos el numero de operacion aleatorio
+                    nroOperacion = Gcv.generarNroOperacionAleatorio();
+
+                    while(Gcv.existeNroOperacion(idcuenta,nroOperacion))
+                    {
+                      nroOperacion = Gcv.generarNroOperacionAleatorio();
+                    }
+
+                    idtipoOperacion = new TipoOperacion(5);
+                    estado = new Estado(3);
+                    op = new Operaciones(nroOperacion,fecha,hora, 0, "sin destino", idtipoOperacion, estado, idcuenta);
+
+                    Gop.insertarOperacion(op);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
         /*
         public void eliminarCliente(int id)
         {
@@ -438,5 +386,13 @@ namespace clip_money.Models
                 throw;
             }
         }*/
+
+        public List<CuentaVirtual> obtenerCuentasDeCliente(int idCliente)
+        {
+            GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
+            return gCuentaVirtual.obtenerPorIdCliente(idCliente);
+        }
+
+
     }
 }
