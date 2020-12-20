@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/cliente.model';
 import { identifierModuleUrl } from '@angular/compiler';
+import { TokenStorageService } from './token-storage.service';
 
 const url = 'https://localhost:44386/api/cliente/';
 
@@ -22,8 +23,9 @@ const httpOptions =
 export class ClienteService
 {
     list: Cliente[];
+    idCliente: number;
 
-    constructor(private http: HttpClient)
+    constructor(private http: HttpClient, private tokenService: TokenStorageService)
     {
 
     }
@@ -43,8 +45,9 @@ export class ClienteService
         return this.http.put(url, cliente, httpOptions);
     }
 
-    onGetCliente(cliente: Cliente): Observable<any>
+    getCliente(): Observable<any>
     {
-        return this.http.get(url, httpOptions);
+        this.idCliente = this.tokenService.getIdClient();
+        return this.http.get<any>(url + this.idCliente, httpOptions);
     }
 }
