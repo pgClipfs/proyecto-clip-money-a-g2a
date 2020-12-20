@@ -16,10 +16,10 @@ const routes: Routes =
   {path: '', component: IndexComponent},
   {path: 'index', component: IndexComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent,canActivate:[GuardService]},
+  {path: 'home', component: HomeComponent, canActivate:[GuardService]},
   {path: 'cliente', component: ClienteComponent},
-  {path: 'modificar', component: ModificarComponent},
-  {path: 'obtener', component: ObtenerComponent},
+  {path: 'modificar', component: ModificarComponent, canActivate:[GuardService]},
+  {path: 'obtener', component: ObtenerComponent, canActivate:[GuardService]},
   {path: 'recoverymail', component: RecoveryMailComponent},
   {path: 'recoverypassword', component: RecoverypasswordComponent},
   {path: '**', component: IndexComponent}
