@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+
+html
+{
+    background-color: #56baed;
+}
+  
+body
+{
+    font-family:  'Noto Sans JP', sans-serif;
+    height: 100%;
+    background-image: url("../../../../assets/images/fondo2.jpg");
+}
+
+a
+{
+    color: #92badd;
+    display:inline-block;
+    text-decoration: none;
+    font-weight: 400;
+}
+  
+h2
+{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display:inline-block;
+    margin: 40px 8px 10px 8px; 
+    color: #cccccc;
+}
+
+/* STRUCTURE */
+  
+.wrapper
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 10px;
+}
+
+#formContent
+{
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: auto;
+    position: relative;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+form
+{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fadeInDown
+{
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown
+{
+    0%
+    {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100%
+    {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+  
+@keyframes fadeInDown
+{
+    0%
+    {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100%
+    {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+/* Simple CSS3 Fade-in Animation */
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn
+{
+    opacity:0;
+    -webkit-animation:fadeIn ease-in 1;
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+  
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+  
+    -webkit-animation-duration:1s;
+    -moz-animation-duration:1s;
+    animation-duration:1s;
+}
+  
+.fadeIn.first
+{
+    -webkit-animation-delay: 0.4s;
+    -moz-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+
+#icon
+{
+    width:20rem;
+}
+
+.btnModificar
+{
+    padding-bottom: 0.5rem ;
+    padding-top: 0.5rem ;
+    background-color:#EB5600 !important;
+    border: 1px solid #ffffff;
+    float: inherit;
+    border: none;
+    color: white;
+    padding: 15px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 20px 20px 20px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.btnModificar:hover
+{
+    background-color:#b64707!important;
+}
+
+#btnRegresar
+{
+    background-image: url("../../../../assets/images/regresar1.png") !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+    float: inherit;
+    background-color:white !important;
+    border: 1px solid #ffffff;
+    padding-bottom: 0.5rem ;
+    box-shadow: none;
+}
+
+#btnRegresar:hover
+{
+    background-color:white !important;
+    border: 1px solid #ffffff;
+    background-image: url("../../../../assets/images/regresar2.png") !important;
+    box-shadow: none;
+}
+
+input[type=text]
+{
+    background-color: white;
+    color: #0d0d0d;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    font-size: 16px;
+    border: 0.1px solid #cfc7c7;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    outline: none !important;
+
+}
+input[type=text]:focus
+{
+    background-color: #fff;
+    border-bottom: 2px solid #EB5600;
+}
+
+input[type=email]
+{
+    background-color: white;
+    color: #0d0d0d;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    font-size: 16px;
+    border: 0.1px solid #cfc7c7;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+input[type=email]:focus
+{
+    background-color: #fff;
+    border-bottom: 2px solid #EB5600;
+}
+
+input[type=password]
+{
+    background-color:  white;
+    color: #0d0d0d;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    font-size: 16px;
+    border: 0.1px solid #cfc7c7;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+input[type=password]:focus
+{
+    background-color: #fff;
+    border-bottom: 2px solid #EB5600;
+}
+
+input[type=date]
+{
+    background-color: white;
+    color: #0d0d0d;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    font-size: 16px;
+    border: 0.1px solid #cfc7c7;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+select
+{
+    text-align: center;
+    border: 0.1px solid #cfc7c7;
+}
+
+*:focus
+{
+    outline: none !important;
+    box-shadow: none;
+} 
+
+label
+{
+    text-align: left !important;
+    font-size: 0.8rem !important;
+    color:rgb(107, 92, 92) !important;
+    text-decoration: none !important;
+    border:none !important;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+}

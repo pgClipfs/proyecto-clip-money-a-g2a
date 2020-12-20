@@ -22,7 +22,11 @@ export class ClienteService {
   constructor(private http: HttpClient, private tokenService: TokenStorageService) {
    }
 
-
+   getClientes(): Observable<Cliente[]>
+    {
+        return this.http.get<Cliente[]>(url, httpOptions);
+    }
+    
    getCliente(): Observable<any>{
      this.idCliente = this.tokenService.getIdClient();
       return this.http.get<any>(url + this.idCliente, httpOptions);
@@ -31,5 +35,15 @@ export class ClienteService {
    onCreateCliente(cliente: Cliente): Observable<any>{
     return this.http.post( url , cliente, httpOptions);
 
+  }
+
+  onUpdateCliente(cliente: Cliente): Observable<any>
+  {
+      return this.http.put(url, cliente, httpOptions);
+  }
+
+  onGetCliente(cliente: Cliente): Observable<any>
+  {
+      return this.http.get(url, httpOptions);
   }
 }
