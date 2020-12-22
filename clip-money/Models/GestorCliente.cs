@@ -230,55 +230,9 @@ namespace clip_money.Models
             }
         }
 
-        public bool existeDomicilio(string domicilio)
-        {
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+        //Validación que busca el email filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el email y el id conciden, se detecta un registro, entonces no permite la edición.
 
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            {
-                conn.Open();
-
-                SqlCommand comm = new SqlCommand("existeDomicilio", conn);
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@domicilio", domicilio));
-
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool existeTelefono(string telefono)
-        {
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            {
-                conn.Open();
-
-                SqlCommand comm = new SqlCommand("existeTelefono", conn);
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@telefono", telefono));
-
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool existeEmail_Alt(string email_alt)
+        public bool existeEmail_Alt(string email_Alt, int id)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
@@ -288,7 +242,35 @@ namespace clip_money.Models
 
                 SqlCommand comm = new SqlCommand("existeEmail_Alt", conn);
                 comm.CommandType = System.Data.CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@email", email_alt));
+                comm.Parameters.Add(new SqlParameter("@email_Alt", email_Alt));
+                comm.Parameters.Add(new SqlParameter("@id", id));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //Validación que busca el usuario filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el usuario y el id conciden, se detecta un registro, entonces no permite la edición.
+
+        public bool existeUsuario_Alt(string usuario_Alt, int id)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeUsuario_Alt", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@nombreUsuario_Alt", usuario_Alt));
+                comm.Parameters.Add(new SqlParameter("@id", id));
 
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
@@ -432,64 +414,21 @@ namespace clip_money.Models
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
             int message = 0;
 
-            //Verifico que el DNI, Email o Usuario no coincidan con algún cliente ya registrado en la BD
+            //Verifico que el Email o Usuario no coincida con algún cliente ya registrado en la BD
             try
             {
-                if (existeDni(mod.NumDni) == true)
-                {
-                    if (existeDomicilio(mod.Domicilio) == false || existeTelefono(mod.Telefono) || existeEmail_Alt(mod.Email))
-                    {
-                        using (SqlConnection conn = new SqlConnection(StrConn))
-                        {
-                            conn.Open();
-
-                            SqlCommand comm = conn.CreateCommand();
-
-                            //Encriptacion de la contraseña
-                            string encriptedpassword = gvPassword.GetSha256(mod.Password);
-
-                            comm.CommandText = "modificarCliente";
-                            comm.CommandType = System.Data.CommandType.StoredProcedure;
-
-                            comm.Parameters.Add(new SqlParameter("@id", mod.Id));
-                            comm.Parameters.Add(new SqlParameter("@nombre", mod.Nombre));
-                            comm.Parameters.Add(new SqlParameter("@apellido", mod.Apellido));
-                            comm.Parameters.Add(new SqlParameter("@sexo", mod.Sexo));
-                            comm.Parameters.Add(new SqlParameter("@fechaNacimiento", mod.FechaNacimiento));
-                            comm.Parameters.Add(new SqlParameter("@idTipoDni", mod.IdTipoDni));
-                            comm.Parameters.Add(new SqlParameter("@numDni", mod.NumDni));
-
-                            //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", mod.FotoFrenteDni));
-                            //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", mod.FotoDorsoDni));
-
-                            comm.Parameters.Add(new SqlParameter("@idLocalidad", mod.IdLocalidad));
-                            comm.Parameters.Add(new SqlParameter("@domicilio", mod.Domicilio));
-                            comm.Parameters.Add(new SqlParameter("@telefono", mod.Telefono));
-                            comm.Parameters.Add(new SqlParameter("@email", mod.Email));
-                            comm.Parameters.Add(new SqlParameter("@nombreUsuario", mod.NombreUsuario));
-                            comm.Parameters.Add(new SqlParameter("@password", encriptedpassword));
-
-                            comm.ExecuteNonQuery();
-
-                            return message;
-                        }
-                    }
-
-                    message = 1;
-                    return message;
-                }
-                else if (existeEmail(mod.Email) == true)
+                if (existeEmail_Alt(mod.Email, mod.Id) == true)
                 {
                     message = 2;
                     return message;
                 }
-                else if (existeUsuario(mod.NombreUsuario) == true)
+                else if (existeUsuario_Alt(mod.NombreUsuario, mod.Id) == true)
                 {
                     message = 3;
                     return message;
                 }
 
-                //Si ninguno de los 3 campos coinciden con los de otro cliente registrado en la BD, permito la modificación
+                //Si ninguno de los 2 campos coinciden con los de otro cliente registrado en la BD, permito la modificación
                 else
                 {
                     using (SqlConnection conn = new SqlConnection(StrConn))

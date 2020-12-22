@@ -47,12 +47,13 @@ namespace clip_money.Controllers
             return gCliente.modificarCliente(mod);
         }
 
-        [Authorize]
+       /* [Authorize]
         // DELETE: api/Cliente/"número de id"
         public void Delete(int id)
         {
             GestorCliente gCliente = new GestorCliente();
             gCliente.eliminarCliente(id);
         }
+       */
     }
 }
