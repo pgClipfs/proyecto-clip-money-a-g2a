@@ -30,7 +30,7 @@ namespace clip_money.Controllers
         public Cliente Get(int id)
           {
               GestorCliente gCliente = new GestorCliente();
-              return gCliente.obtenerCliente(id);
+              return gCliente.obtenerPorId(id);
           }
         // POST: api/Cliente
         [HttpPost]
@@ -56,15 +56,6 @@ namespace clip_money.Controllers
             gCliente.eliminarCliente(id);
         }
        */
-
-
-        //[Authorize]
-        // PUT: api/Cliente
-          public int Put([FromBody] Cliente mod)
-          {
-              GestorCliente gCliente = new GestorCliente();
-              return gCliente.modificarCliente(mod);
-          }
 
     }
 }
