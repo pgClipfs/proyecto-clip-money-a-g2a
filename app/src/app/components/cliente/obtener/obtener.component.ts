@@ -26,6 +26,7 @@ import { TipoDniService } from 'src/app/services/tipo-dni.service';
 export class ObtenerComponent implements OnInit
 {
   nombreUsuario : string;
+  idUsuario : number;
   
   //Modelo validación campos
   private patterSoloLetras: any = /^[a-zA-Z ]*$/;
@@ -79,15 +80,15 @@ export class ObtenerComponent implements OnInit
   ngOnInit(): void
   {
     this.nombreUsuario=this.tokenStorage.getUser();
+    this.idUsuario=this.tokenStorage.getIdClient();
 
-    //obtenemos la lista de clientes
-    this.clienteService.getClientes().subscribe
+    //obtenemos el cliente logueado (filtrado por id)
     (resp =>
       {
         this.clientes = resp;
       }
     );
-    
+  
     /*
     if (this.tokenStorage.getToken())
     {

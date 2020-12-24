@@ -12,8 +12,9 @@ namespace clip_money.Models
 {
     public class GestorCliente
     {
+   
+        public Cliente obtenerPorId(int id)
 
-        public Cliente obtenerCliente(int id)
         {
             Cliente cli = null;
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -30,6 +31,7 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
+
                     string nombre = dr.GetString(1);
                     string apellido = dr.GetString(2);
                     string sexo = dr.GetString(3);
@@ -48,6 +50,7 @@ namespace clip_money.Models
                     string selfie = dr.GetString(18);
                     
                     cli = new Cliente(id, nombre, apellido, sexo, idTipoDni, numDni, fotoFrenteDni, fechaNacimiento,  fotoDorsoDni, idLocalidad, domicilio, telefono, email, nombreUsuario, password, cuentaValida,selfie);
+                   
                 }
                 dr.Close();
             }
@@ -56,13 +59,14 @@ namespace clip_money.Models
 
         public int nuevoCliente(Cliente nuevo)
         {
-
             GestorValidarPassword gvPassword = new GestorValidarPassword();
 
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
             int message = 0;
-           
-            //Verifico primero que el mail dni o usuario no exista
+
+
+            //Verifico que el mail, dni o usuario no exista en la BD
+
             try
             {
                 if (existeDni(nuevo.NumDni) == true)
@@ -80,6 +84,7 @@ namespace clip_money.Models
                     message = 3;
                     return message;
                 }
+
                 //Si no existe, agrego el cliente
                 else
                 {
@@ -89,9 +94,9 @@ namespace clip_money.Models
 
                         SqlCommand comm = conn.CreateCommand();
 
-                        //Encriptacion de la contraseña
+                        //Encriptación de la contraseña
                         string encriptedpassword = gvPassword.GetSha256(nuevo.Password);
-                        
+
                         comm.CommandText = "nuevoCliente";
                         comm.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -101,8 +106,10 @@ namespace clip_money.Models
                         comm.Parameters.Add(new SqlParameter("@fecha_nacimiento", nuevo.FechaNacimiento));
                         comm.Parameters.Add(new SqlParameter("@id_tipo_dni", nuevo.IdTipoDni));
                         comm.Parameters.Add(new SqlParameter("@num_dni", nuevo.NumDni));
+
                         //comm.Parameters.Add(new SqlParameter("@foto_frente_dni", nuevo.FotoFrenteDni));
                         //comm.Parameters.Add(new SqlParameter("@foto_dorso_dni", nuevo.FotoDorsoDni));
+
                         comm.Parameters.Add(new SqlParameter("@id_localidad", nuevo.IdLocalidad));
                         comm.Parameters.Add(new SqlParameter("@domicilio", nuevo.Domicilio));
                         comm.Parameters.Add(new SqlParameter("@telefono", nuevo.Telefono));
@@ -114,7 +121,7 @@ namespace clip_money.Models
 
                         return message;
                     }
-                
+
                 }
             }
             catch (Exception)
@@ -122,13 +129,10 @@ namespace clip_money.Models
 
                 throw;
             }
-
-
         }
 
-
-        //VALIDACION POR SEPARADO PARA COMPROBAR SI EXISTE USUARIO, EMAIL, Y DNI
-        public bool existeUsuario ( string nombreUsuario)
+        //VALIDACIONES PARA COMPROBAR SI EXISTEN USUARIOS CON EL MISMO: Nombre de usuario o Email
+        public bool existeUsuario (string nombreUsuario)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
@@ -151,6 +155,7 @@ namespace clip_money.Models
                 }
             }
         }
+
 
         public bool existeEmail(string email)
         {
@@ -200,7 +205,7 @@ namespace clip_money.Models
             }
         }
 
-        //----------------------------------------------------------------------------------------------
+        //Validación que busca el email filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el email y el id conciden, se detecta un registro, entonces no permite la edición.
 
         //Validaciones para que se permitan editar campos puntuales (solo el teléfono, solo el email, solo el email y el teléfono, etc.). Son extras a las validaciones de nombreUsuario, email y numDni.
 
@@ -257,6 +262,32 @@ namespace clip_money.Models
             }
         }
 
+        public bool existeEmail_Alt(string email_Alt, int id)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeEmail_Alt", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@email_Alt", email_Alt));
+                comm.Parameters.Add(new SqlParameter("@id", id));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         //Validación que busca el usuario filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el usuario y el id conciden, se detecta un registro, entonces no permite la edición.
 
         public bool existeUsuario_Alt(string usuario_Alt, int id)
@@ -284,8 +315,7 @@ namespace clip_money.Models
             }
         }
 
-
-        //Metodo para obtener el usuario a traves del email
+        //Método para obtener el usuario a través del email
         public string obtenerUsuario(string email)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -312,6 +342,7 @@ namespace clip_money.Models
                 }
             }
         }
+
 
 
         /*METODO PARA INSERTAR LAS FOTOS DEL DNI EN EL CLIENTE Y ACTIVA LA CUENTA*/
@@ -472,6 +503,7 @@ namespace clip_money.Models
                 throw;
             }
         }
+
         public List<CuentaVirtual> obtenerCuentasDeCliente(int idCliente)
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();

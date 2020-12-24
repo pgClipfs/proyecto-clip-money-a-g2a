@@ -33,6 +33,8 @@ namespace clip_money.Models
         }
 
         public Cliente(int id, string nombre, string apellido,string sexo, int idTipoDni, string numDni, string fotoFrenteDni, string fechaNacimiento, string fotoDorsoDni, int idLocalidad, string domicilio,string telefono, string email, string nombreUsuario, string password, int cuentaValida, string selfieCliente)
+
+
         {
             this.id = id;
             this.nombre = nombre;
@@ -77,5 +79,6 @@ namespace clip_money.Models
         {
             // Hacer procedimiento almacenado
         }
+
     }
 }

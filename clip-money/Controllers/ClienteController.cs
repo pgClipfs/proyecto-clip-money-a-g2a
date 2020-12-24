@@ -17,21 +17,21 @@ namespace clip_money.Controllers
     {
         //[Authorize]
         // GET: api/Cliente
+
         /*  public IEnumerable<Cliente> Get()
           {
               GestorCliente gCliente = new GestorCliente();
               return gCliente.obtenerClientes();
           }*/
-
-          //[Authorize]
-          // GET: api/Cliente/"número de id"
-          [HttpGet]
-          public Cliente Get(int id)
-         {
+         
+        //[Authorize]
+        // GET: api/Cliente/"número de id"
+		[HttpGet]
+        public Cliente Get(int id)
+          {
               GestorCliente gCliente = new GestorCliente();
               return gCliente.obtenerCliente(id);
           }
-        
         // POST: api/Cliente
         [HttpPost]
         public int Post([FromBody] Cliente nuevo)
@@ -39,6 +39,7 @@ namespace clip_money.Controllers
             GestorCliente gCliente = new GestorCliente();
             return gCliente.nuevoCliente(nuevo);
         }
+
         //[Authorize]
         // PUT: api/Cliente
         public int Put([FromBody] Cliente mod)
@@ -55,5 +56,15 @@ namespace clip_money.Controllers
             gCliente.eliminarCliente(id);
         }
        */
+
+
+        //[Authorize]
+        // PUT: api/Cliente
+          public int Put([FromBody] Cliente mod)
+          {
+              GestorCliente gCliente = new GestorCliente();
+              return gCliente.modificarCliente(mod);
+          }
+
     }
 }
