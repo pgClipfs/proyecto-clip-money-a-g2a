@@ -33,6 +33,7 @@ export class InicioComponent implements OnInit {
   tipoCuenta: string;
   nombreTipoCuenta: string;
   operaciones: Operacion[];
+  email: string;
   //selectedOp: Operacion =new Operacion();
   
 form = this.fb.group({
@@ -50,7 +51,8 @@ form = this.fb.group({
 
     //Verificar si el cliente tiene la cuenta activa
     this.clienteService.getCliente().subscribe(
-      (data : Cliente) => {   
+      (data : Cliente) => {
+        this.email = data.Email;
         this.cuentaValida = data.CuentaValida;
         if (this.cuentaValida == 1){
           this.isAcountValid = true;
@@ -116,6 +118,7 @@ form = this.fb.group({
     this.fotosDni.selfieCliente = this.selfie
     this.fotosDni.fotoFrenteDni = this.frenteDni;
     this.fotosDni.fotoDorsoDni = this.dorsoDni;
+    this.fotosDni.email = this.email;
 
     this.dniService.onCreateFotosDni(this.fotosDni).subscribe(
       data => {

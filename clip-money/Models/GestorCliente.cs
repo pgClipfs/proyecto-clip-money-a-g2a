@@ -7,6 +7,7 @@ using System.Configuration;
 using Clip_money.Models;
 using System.Net.Http;
 using System.Net;
+using System.Net.Mail;
 
 namespace clip_money.Models
 {
@@ -388,6 +389,9 @@ namespace clip_money.Models
 
                     Gop.insertarOperacion(op);
 
+                    //ENVIAMOS EL MAIL DE CONFIRMACION
+                    enviarEmailCuenta(fotoDni.Email, nroCuenta, cvu);
+
                     return true;
                 }
                 else
@@ -484,6 +488,30 @@ namespace clip_money.Models
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
             return gCuentaVirtual.obtenerPorIdCliente(idCliente);
+        }
+
+        //METODO PARA ENVIAR EMAIL DE ACTIVACION DE LA CUENTA
+        public void enviarEmailCuenta(string emailDestino, string nrocuenta, string cvu)
+        {
+            string emailOrigen = "clip.money.cba@gmail.com";
+            string contraseña = "clipmoney2020";
+
+            MailMessage oMailMessage = new MailMessage(emailOrigen, emailDestino, "Activacion Cuenta",
+                "<p>Enhorabuena, has activado tu cuenta satisfactoriamente.<p><br>" +
+                "<p>Ya posees todos los beneficios de Clip Money. A disfrutar!<p><br>" +
+                "<p>Los siguentes datos son: <p><br>" +
+                "<p>Cuenta: <p>" + nrocuenta + "<br>" +
+                "<p> CVU: <p>" + cvu); ;
+
+            oMailMessage.IsBodyHtml = true;
+
+            SmtpClient osmtpClient = new SmtpClient("smtp.gmail.com");
+            osmtpClient.EnableSsl = true;
+            osmtpClient.UseDefaultCredentials = false;
+            osmtpClient.Port = 587;
+            osmtpClient.Credentials = new System.Net.NetworkCredential(emailOrigen, contraseña);
+
+            osmtpClient.Send(oMailMessage);
         }
 
 

@@ -3,4 +3,5 @@ export class Dni {
     fotoFrenteDni: string;
     fotoDorsoDni: string;
     id: number;
+    email: string;
 }
