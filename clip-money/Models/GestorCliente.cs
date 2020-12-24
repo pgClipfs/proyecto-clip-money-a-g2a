@@ -237,30 +237,6 @@ namespace clip_money.Models
 
         //Validación que busca el email filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el email y el id conciden, se detecta un registro, entonces no permite la edición.
 
-        public bool existeEmail_Alt(string email_Alt, int id)
-        {
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            {
-                conn.Open();
-
-                SqlCommand comm = new SqlCommand("existeEmail_Alt", conn);
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@email_Alt", email_Alt));
-                comm.Parameters.Add(new SqlParameter("@id", id));
-
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
 
         public bool existeEmail_Alt(string email_Alt, int id)
         {
