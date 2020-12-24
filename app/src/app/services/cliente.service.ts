@@ -7,6 +7,7 @@ import { TokenStorageService } from './token-storage.service';
 
 const url = 'https://localhost:44386/api/cliente/';
 
+
 const httpOptions =
 {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,25 +30,29 @@ export class ClienteService
     {
 
     }
-
-    getClientes(): Observable<Cliente[]>
+	getClientes(): Observable<Cliente[]>
     {
         return this.http.get<Cliente[]>(url, httpOptions);
     }
+    
+	getCliente(): Observable<any>{
+     this.idCliente = this.tokenService.getIdClient();
+      return this.http.get<any>(url + this.idCliente, httpOptions);
+	}
 
-    onCreateCliente(cliente: Cliente): Observable<any>
-    {
-        return this.http.post(url , cliente, httpOptions);
-    }
+	onCreateCliente(cliente: Cliente): Observable<any>{
+    return this.http.post( url , cliente, httpOptions);
 
-    onUpdateCliente(cliente: Cliente): Observable<any>
-    {
-        return this.http.put(url, cliente, httpOptions);
-    }
+	}
 
-    getCliente(): Observable<any>
-    {
-        this.idCliente = this.tokenService.getIdClient();
-        return this.http.get<any>(url + this.idCliente, httpOptions);
-    }
+	onUpdateCliente(cliente: Cliente): Observable<any>
+	{
+      return this.http.put(url, cliente, httpOptions);
+	}
+
+	onGetCliente(cliente: Cliente): Observable<any>
+	{
+      return this.http.get(url, httpOptions);
+	}
+ 
 }

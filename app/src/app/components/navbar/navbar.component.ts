@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/obtener']);
   }
 
+
   logout() : void
   {
     this.tokenStorage.logOut();

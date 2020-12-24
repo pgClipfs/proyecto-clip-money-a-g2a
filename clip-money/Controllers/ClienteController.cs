@@ -17,20 +17,21 @@ namespace clip_money.Controllers
     {
         //[Authorize]
         // GET: api/Cliente
-        public IEnumerable<Cliente> Get()
-        {
-            GestorCliente gCliente = new GestorCliente();
-            return gCliente.obtenerClientes();
-        }
 
+        /*  public IEnumerable<Cliente> Get()
+          {
+              GestorCliente gCliente = new GestorCliente();
+              return gCliente.obtenerClientes();
+          }*/
+         
         //[Authorize]
         // GET: api/Cliente/"número de id"
+		[HttpGet]
         public Cliente Get(int id)
           {
               GestorCliente gCliente = new GestorCliente();
-              return gCliente.obtenerPorId(id);
+              return gCliente.obtenerCliente(id);
           }
-
         // POST: api/Cliente
         [HttpPost]
         public int Post([FromBody] Cliente nuevo)
@@ -41,18 +42,29 @@ namespace clip_money.Controllers
 
         //[Authorize]
         // PUT: api/Cliente
+        public int Put([FromBody] Cliente mod)
+        {
+            GestorCliente gCliente = new GestorCliente();
+            return gCliente.modificarCliente(mod);
+        }
+
+       /* [Authorize]
+        // DELETE: api/Cliente/"número de id"
+        public void Delete(int id)
+        {
+            GestorCliente gCliente = new GestorCliente();
+            gCliente.eliminarCliente(id);
+        }
+       */
+
+
+        //[Authorize]
+        // PUT: api/Cliente
           public int Put([FromBody] Cliente mod)
           {
               GestorCliente gCliente = new GestorCliente();
               return gCliente.modificarCliente(mod);
           }
 
-          [Authorize]
-          // DELETE: api/Cliente/"número de id"
-          public void Delete(int id)
-          {
-              GestorCliente gCliente = new GestorCliente();
-              gCliente.eliminarCliente(id);
-          }
     }
 }

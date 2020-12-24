@@ -15,7 +15,7 @@ namespace clip_money.Models
         private Estado estado;
         private TipoOperacion tipoOperacion;
         private string destino;
-        private string origen;
+        private long idCuentaVirtual;
 
         public Operaciones()
         {
@@ -27,12 +27,26 @@ namespace clip_money.Models
             this.TipoOperacion = tipoOperacion;
         }
 
-        public Operaciones(string fecha,string hora,TipoOperacion tipoOperacion,decimal monto)
+        public Operaciones(string fecha,string hora,TipoOperacion tipoOperacion,decimal monto, long idCuentaVirtual)
         {
             this.fecha = fecha;
             this.hora = hora;
             this.tipoOperacion = tipoOperacion;
             this.monto = monto;
+            this.idCuentaVirtual = idCuentaVirtual;
+        }
+
+        public Operaciones( string numeroOpeacion, string fecha, string hora, decimal monto, string destino, TipoOperacion tipoOperacion, Estado estado, long idCuentaVirtual)
+        {
+            this.numOperacion = numeroOpeacion;
+            this.fecha = fecha;
+            this.hora = hora;
+            this.monto = monto;
+            this.destino = destino;
+            this.tipoOperacion = tipoOperacion;
+            this.estado = estado;
+            this.idCuentaVirtual = idCuentaVirtual;
+
         }
 
         public string NumOperacion { get => numOperacion; set => numOperacion = value; }
@@ -43,6 +57,6 @@ namespace clip_money.Models
         public TipoOperacion TipoOperacion { get => tipoOperacion; set => tipoOperacion = value; }
         public Estado Estado { get => estado; set => estado = value; }
         public string Destino { get => destino; set => destino = value; }
-        public string Origen { get => origen; set => origen = value; }
+        public long IdCuentaVirtual { get => idCuentaVirtual; set => idCuentaVirtual = value; }
     }
 }

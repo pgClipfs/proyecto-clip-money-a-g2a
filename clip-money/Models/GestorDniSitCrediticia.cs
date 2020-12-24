@@ -29,7 +29,7 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    byte id = dr.GetByte(0);
+                    int id = dr.GetInt32(0);
                     string nombre = dr.GetString(1).Trim();
 
                     TipoDni td = new TipoDni(id, nombre);

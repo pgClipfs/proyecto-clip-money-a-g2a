@@ -83,12 +83,18 @@ export class ObtenerComponent implements OnInit
     this.idUsuario=this.tokenStorage.getIdClient();
 
     //obtenemos el cliente logueado (filtrado por id)
-    this.clienteService.getCliente().subscribe
     (resp =>
       {
         this.clientes = resp;
       }
     );
+  
+    /*
+    if (this.tokenStorage.getToken())
+    {
+      this.router.navigate(['/home']);
+    }
+    */
 
     //obtenemos la lista de tipos de dni
     this.tipodniService.getTipoDni().subscribe
@@ -135,6 +141,50 @@ export class ObtenerComponent implements OnInit
   public regresarClick()
   {
     this.router.navigate(['/home']);
+  }
+
+  //Método al enviar el fomulario
+  public onSubmit(cliente: Cliente)
+  {
+    if (this.form.get('password').value === this.form.get('passwordRepeat').value)
+    {
+      this.passwordsDistintas = false;
+      
+      //Nos suscribimos al servicio y traemos el método del backend
+      this.clienteService.onUpdateCliente(cliente).subscribe
+      (
+        data =>
+        {
+          if (data === 1)
+          {
+            this.message = 'Ese DNI ya está registrado, ingresá otro';
+            this.isCreateFailed = true;
+          }
+          else if (data === 2)
+          {
+            this.message = 'Ese EMAIL ya está registrado, ingresá otro';
+            this.isCreateFailed = true;
+          }
+          else if (data === 3)
+          {
+            this.message = 'Ese USUARIO ya está registrado, ingresá otro';
+            this.isCreateFailed = true;
+          }
+          else if (data === 0)
+          {
+            swal.fire('Fantástico', '¡El cliente se editó con éxito!', 'success');
+            this.isCreateFailed = false;
+            this.router.navigate(['/home']);
+          }
+
+        }
+      );
+    }
+    else
+    {
+      this.passwordsDistintas = true;
+      this.message = "Las contraseñas no coinciden";
+    }
   }
 
   //Métodos para cargar los select filtrados por el id del select seleccionado(Pais-->Provincia-->Localidad)

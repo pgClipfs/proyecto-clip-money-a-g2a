@@ -12,50 +12,9 @@ namespace clip_money.Models
 {
     public class GestorCliente
     {
-        public List<Cliente> obtenerClientes()
-        {
-            List<Cliente> lista = new List<Cliente>();
-
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            {
-                conn.Open();
-
-                SqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "obtenerClientes";
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-
-                SqlDataReader dr = comm.ExecuteReader();
-                while (dr.Read())
-                {
-                    int id = dr.GetInt32(0);
-                    string nombre = dr.GetString(1).Trim();
-                    string apellido = dr.GetString(2).Trim();
-                    string sexo = dr.GetString(3).Trim();
-                    string fechaNacimiento = dr.GetDateTime(4).Date.ToString("dd-MM-yyyy");
-                    byte idTipoDni = dr.GetByte(5);
-                    string numDni = dr.GetString(6).Trim();
-                    //string fotoFrenteDni = dr.GetString(7).Trim();
-                    //string fotoDorsoDni = dr.GetString(8).Trim();
-                    int idLocalidad = dr.GetInt32(9);
-                    string domicilio = dr.GetString(10).Trim();
-                    string telefono = dr.GetString(11).Trim();
-                    string email = dr.GetString(12).Trim();
-                    byte idSituacionCrediticia = dr.GetByte(13);
-                    string nombreUsuario = dr.GetString(14).Trim();
-                    string password = dr.GetString(15).Trim();
-                    
-                    Cliente cli = new Cliente(id, nombre, apellido, sexo, fechaNacimiento, idTipoDni, numDni/*, fotoFrenteDni, fotoDorsoDni*/, idLocalidad, domicilio, telefono, email, idSituacionCrediticia, nombreUsuario, password);
-
-                    lista.Add(cli);
-                }
-                dr.Close();
-            }
-            return lista;
-        }
-
+   
         public Cliente obtenerPorId(int id)
+
         {
             Cliente cli = null;
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -72,23 +31,26 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
-                    string nombre = dr.GetString(0);
-                    string apellido = dr.GetString(1);
-                    string sexo = dr.GetString(2);
-                    string fechaNacimiento = dr.GetDateTime(3).Date.ToString("dd-MM-yyyy");
-                    byte idTipoDni = dr.GetByte(4);
-                    string numDni = dr.GetString(5);
-                    //string fotoFrenteDni = dr.GetString(6).Trim();
-                    //string fotoDorsoDni = dr.GetString(7).Trim();
-                    int idLocalidad = dr.GetInt32(8);
-                    string domicilio = dr.GetString(9);
-                    string telefono = dr.GetString(10);
-                    string email = dr.GetString(11);
-                    byte idSituacionCrediticia = dr.GetByte(12);
-                    string nombreUsuario = dr.GetString(13);
-                    string password = dr.GetString(14);
 
-                    cli = new Cliente(id, nombre, apellido, sexo, fechaNacimiento, idTipoDni, numDni/*, fotoFrenteDni, fotoDorsoDni*/, idLocalidad, domicilio, telefono, email, idSituacionCrediticia, nombreUsuario, password);
+                    string nombre = dr.GetString(1);
+                    string apellido = dr.GetString(2);
+                    string sexo = dr.GetString(3);
+                    int idTipoDni = dr.GetInt32(4);
+                    string numDni = dr.GetString(5);
+                    string fotoFrenteDni = dr.GetString(6);
+                    string fechaNacimiento = dr.GetDateTime(7).Date.ToString("dd-MM-yyyy");
+                    string fotoDorsoDni = dr.GetString(8);
+                    int idLocalidad = dr.GetInt32(9);
+                    string domicilio = dr.GetString(10);
+                    string telefono = dr.GetString(11);
+                    string email = dr.GetString(12);
+                    string nombreUsuario = dr.GetString(14);
+                    string password = dr.GetString(15);
+                    int cuentaValida = dr.GetInt32(17);
+                    string selfie = dr.GetString(18);
+                    
+                    cli = new Cliente(id, nombre, apellido, sexo, idTipoDni, numDni, fotoFrenteDni, fechaNacimiento,  fotoDorsoDni, idLocalidad, domicilio, telefono, email, nombreUsuario, password, cuentaValida,selfie);
+                   
                 }
                 dr.Close();
             }
@@ -102,7 +64,9 @@ namespace clip_money.Models
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
             int message = 0;
 
+
             //Verifico que el mail, dni o usuario no exista en la BD
+
             try
             {
                 if (existeDni(nuevo.NumDni) == true)
@@ -157,6 +121,7 @@ namespace clip_money.Models
 
                         return message;
                     }
+
                 }
             }
             catch (Exception)
@@ -190,6 +155,7 @@ namespace clip_money.Models
                 }
             }
         }
+
 
         public bool existeEmail(string email)
         {
@@ -241,9 +207,65 @@ namespace clip_money.Models
 
         //Validación que busca el email filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el email y el id conciden, se detecta un registro, entonces no permite la edición.
 
+        //Validaciones para que se permitan editar campos puntuales (solo el teléfono, solo el email, solo el email y el teléfono, etc.). Son extras a las validaciones de nombreUsuario, email y numDni.
+
+        public bool existePPL(string pais, string provincia, string localidad)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existePPL", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@pais", pais));
+                comm.Parameters.Add(new SqlParameter("@provincia", provincia));
+                comm.Parameters.Add(new SqlParameter("@localidad", localidad));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //Validación que busca el email filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el email y el id conciden, se detecta un registro, entonces no permite la edición.
+
         public bool existeEmail_Alt(string email_Alt, int id)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeEmail_Alt", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@email_Alt", email_Alt));
+                comm.Parameters.Add(new SqlParameter("@id", id));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool existeEmail_Alt(string email_Alt, int id)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
 
             using (SqlConnection conn = new SqlConnection(StrConn))
             {
@@ -320,7 +342,85 @@ namespace clip_money.Models
                 }
             }
         }
-        
+
+
+
+        /*METODO PARA INSERTAR LAS FOTOS DEL DNI EN EL CLIENTE Y ACTIVA LA CUENTA*/
+        public bool insertarFotosDni(Cliente fotoDni)
+        {
+            CuentaVirtual cv = null;
+            Operaciones op = null;
+            GestorCuentaVirtual Gcv = new GestorCuentaVirtual();
+            GestorOperaciones Gop = new GestorOperaciones();
+            string cvu;
+            string nroCuenta;
+            long idcuenta;
+            TipoCuentaVirtual tipoCuentaVirtual = null;
+            string nroOperacion;
+            string hora = DateTime.Now.ToString("hh:mm");
+            string fecha = DateTime.Today.ToString("dd-MM-yyyy");
+            TipoOperacion idtipoOperacion = null;
+            Estado estado = null;
+
+
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("insertarFotosDni", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@id", fotoDni.Id));
+                comm.Parameters.Add(new SqlParameter("@selfieCliente", fotoDni.SelfieCliente));
+                comm.Parameters.Add(new SqlParameter("@frenteDni", fotoDni.FotoFrenteDni));
+                comm.Parameters.Add(new SqlParameter("@dorsoDni", fotoDni.FotoDorsoDni));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.HasRows)
+                {
+
+                    //GENERAMOS LA CUENTA ALEATORIA
+                    nroCuenta = Gcv.generarCuentaAleatoria();
+                    cvu = Gcv.generarcvuAleatorio();
+
+                    while (Gcv.existeCuentaCvu(nroCuenta, cvu))
+                    {
+                        nroCuenta = Gcv.generarCuentaAleatoria();
+                        cvu = Gcv.generarcvuAleatorio();
+                    }
+
+                    tipoCuentaVirtual = new TipoCuentaVirtual(1);
+                    cv = new CuentaVirtual(0, "ALIAS-" + nroCuenta, cvu, nroCuenta, 0, fotoDni.Id, tipoCuentaVirtual, 1);
+
+                    Gcv.nuevaCuentaVirtual(cv);
+                    //-------------------------------------
+
+                    //GENERAMOS UNA OPERACION DE APERTURA A LA CUENTA CREADA
+                    idcuenta = Gcv.obtenerPorNroCuenta(nroCuenta);
+                    //generamos el numero de operacion aleatorio
+                    nroOperacion = Gcv.generarNroOperacionAleatorio();
+
+                    while(Gcv.existeNroOperacion(idcuenta,nroOperacion))
+                    {
+                      nroOperacion = Gcv.generarNroOperacionAleatorio();
+                    }
+
+                    idtipoOperacion = new TipoOperacion(5);
+                    estado = new Estado(3);
+                    op = new Operaciones(nroOperacion,fecha,hora, 0, "sin destino", idtipoOperacion, estado, idcuenta);
+
+                    Gop.insertarOperacion(op);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public void eliminarCliente(int id)
         {
             //string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -403,6 +503,13 @@ namespace clip_money.Models
                 throw;
             }
         }
+
+        public List<CuentaVirtual> obtenerCuentasDeCliente(int idCliente)
+        {
+            GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
+            return gCuentaVirtual.obtenerPorIdCliente(idCliente);
+        }
+
 
     }
 }

@@ -39,8 +39,9 @@ form = this.fb.group({
       data => {
         this.tokenStorage.saveToken(data);
         
-        // var decoded = jwtDecode(data);      
-        // this.tokenStorage.saveUser(decoded['unique_name']);
+        var decoded = jwtDecode(data);      
+        //this.tokenStorage.saveUser(decoded['unique_name']);
+        console.log(decoded);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

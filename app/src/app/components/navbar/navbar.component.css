@@ -23,11 +23,11 @@ li {
   height: 10rem;
 }
 .menu{
-  background-color: white;
+  background-color:white;
   width: auto;
   height: auto;
   text-align: center;
-  border-right: 1px solid rgb(224, 218, 218);
+  /*border-right: 1px solid rgb(224, 218, 218);*/
 }
 
 #navbarNav{
@@ -44,7 +44,7 @@ li {
 }
  .menu a{
   display:block;
-  font-size: 1.5rem;
+  font-size: 3.5vh;
   text-align: center;
   border-bottom: 1px solid rgb(224, 218, 218) ;
   

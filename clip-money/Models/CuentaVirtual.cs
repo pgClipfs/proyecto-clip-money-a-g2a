@@ -12,16 +12,22 @@ namespace clip_money.Models
         private string cvu;
         private string nroCuenta;
         private decimal montoDescubierto;
-        private Cliente idCliente;
+        private int idCliente;
         private TipoCuentaVirtual idTipoCuenta;
-        private Estado idEstado;
+        private int idEstado;
+        private decimal saldo; //Agregue este campo para cuando se obtengan las cuentas del cliente con su saldo porder guardar
+        //el saldo calculado desde la DB en este atributo. El saldo de las cuentas se calcula, no esta guardado en ningun atributo.
 
         public CuentaVirtual()
         {
 
         }
+        public CuentaVirtual(long id)
+        {
+            this.id = id;
+        }
 
-        public CuentaVirtual(long id, string alias, string cvu, string nroCuenta, decimal montoDescubierto, Cliente idCliente, TipoCuentaVirtual idTipoCuenta, Estado idEstado)
+        public CuentaVirtual(long id, string alias, string cvu, string nroCuenta, decimal montoDescubierto, int idCliente, TipoCuentaVirtual idTipoCuenta, int idEstado)
         {
             this.id = id;
             this.alias = alias;
@@ -32,31 +38,23 @@ namespace clip_money.Models
             this.idTipoCuenta = idTipoCuenta;
             this.idEstado = idEstado;
         }
+
+        public CuentaVirtual(long id, string nroCuenta, TipoCuentaVirtual tipoCuenta, decimal saldo)
+        {
+            this.id = id;
+            this.nroCuenta = nroCuenta;
+            this.idTipoCuenta = tipoCuenta;
+            this.saldo = saldo;
+        }
         public long Id { get => id; set => id = value; }
         public string Alias { get => alias; set => alias = value; }
         public string Cvu { get => cvu; set => cvu = value; }
         public string NroCuenta { get => nroCuenta; set => nroCuenta = value; }
         public decimal MontoDescubierto { get => montoDescubierto; set => montoDescubierto = value; }
-        public Cliente IdCliente { get => idCliente; set => idCliente = value; }
+        public int IdCliente { get => idCliente; set => idCliente = value; }
         public TipoCuentaVirtual IdTipoCuenta { get => idTipoCuenta; set => idTipoCuenta = value; }
-        public Estado IdEstado { get => idEstado; set => idEstado = value; }
+        public int IdEstado { get => idEstado; set => idEstado = value; }
+        public decimal Saldo { get => saldo; set => saldo = value; }
 
-        // Se genera un alias de forma aleatoria.
-        public void aliasAzar()
-        {
-            // Hacer procedimiento almacenado
-        }
-
-        // Se genera un cvu de forma aleatoria.
-        public void cvuAzar()
-        {
-            // Hacer procedimiento almacenado
-        }
-
-        // Se genera un número de cuenta de forma aleatoria.
-        public void nroCuentaAzar()
-        {
-            // Hacer procedimiento almacenado
-        }
     }
 }

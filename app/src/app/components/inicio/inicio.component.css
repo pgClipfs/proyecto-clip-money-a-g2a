@@ -1,46 +1,608 @@
-.cuentas{
-    width: auto;
-    height: 10rem;
+/*CONTENEDOR GENERAL*/
+    .contenedor-general{
+        width: 100%;
+        height: auto;
+    }
+    .contenedor-secundario{
+        margin: 0 2rem;
+    }
+
+/*CSS ADVERTENCIA*/
+.advertencia, .general-fotos{
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
     /*background-color: blueviolet;*/
     font-size: 1.2rem;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px 5px 0px 0px;
     box-shadow: 5px 5px 10px ;
-    
+    padding-bottom: 1rem;
 
     
 }
 
-.cuentas #cuentas-titulo{
+.advertencia .titulo-advertencia{
     width: 100%;
-    height: auto;
-    background-color: #EB5600;
+    height: 1rem;
+    background-color: #FACB08;
     font-size: 1.4rem;
     padding-left: 2rem;
+    margin-bottom: 0.5rem;
     border-radius: 5px 5px 0px 0px;
     font-weight: bold;
     color: white;
 }
 
-.cuentas #nrocuenta{
+
+.advertencia .icono{
     padding-left: 1rem;
     float:left;
     /*background-color: brown;*/
-    width: 60%;
-}
-.cuentas #nrocuenta #tit-cuenta{
-    font-weight: bold;
-}
-.cuentas #cuentas-contenido{
-    /*background-color: chartreuse;*/
     width: 40%;
-    float: left;
 }
 
-.cuentas #cuentas-contenido #nombre{
-   text-align: center;
+.advertencia .advertencia-contenido{
+    /*background-color: chartreuse;*/
+    width: 60%;
+    float: left;
 }
-.cuentas #cuentas-contenido #saldo{
+.advertencia-contenido{
+    text-align: center;
+}
+.icono #icono-img{
+    text-align: center;
+    float: right;
+    background-image: url("../../../assets/images/stop.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 60%;
+    height: 100%;
+ }
+
+ /*CSS DNI*/
+ .general-fotos{
+     width: 100%;
+     text-align: center;
+ }
+ 
+ .general-fotos p{
+     font-weight: bold;
+ }
+
+ 
+
+ .dni-mensaje{
+     font-weight: bold;
+ }
+ .contenedor-btn{
+     margin-top: 2rem;
+    text-align: center;
+    /*background-color: #FACB08;*/
+ }
+
+
+ .selfie{
+    padding-top: 1rem;
+    text-align: center;
+    display: inline-block;
+}
+.selfie .selfie-foto{
+    /*margin-left: 6.5rem;*/
+    margin-bottom: 1rem;
+    width: 10rem;
+    height: 10rem;
+    text-align: center;
+    display: inline-block;
+    border: grey 1px dashed;
+}
+ 
+ .frente-dni{
+     padding-top: 1rem;
+     text-align: center;
+ }
+
+ .frente-dni .fotoFrente-dni{
+     /*margin-left: 6.5rem;*/
+     margin-bottom: 1rem;
+     
+     width: 10rem;
+     height: 10rem;
+     text-align: center;
+     display: inline-block;
+     border: grey 1px dashed;
+ }
+  
+ .dorso-dni{
+    padding-top: 1rem;
+    text-align: center;
+}
+
+ .dorso-dni .fotoDorso-dni{
+    margin-bottom: 1rem;
+    width: 10rem;
+    height: 10rem;
+    text-align: center;
+    display: inline-block;
+    border: grey 1px dashed;
+}
+
+img{
+    width: auto;
+    height: auto;
+    max-width: 9.5rem;
+    max-height: 9.5rem;
+}
+
+
+ .file{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.contenedor-btnDorso{
+    position: relative;
+    display: inline-block;
+
+}
+
+.labelDni{
+    cursor: pointer;
+    background-color:#2098D1;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
+}
+.btnFinalizar{
+    cursor: pointer;
+    background-color:#EB5600;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    /*margin: 5px 20px 40px 20px;*/
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+ }
+
+
+
+
+/*CSS CUENTAS*/
+.cuentas{
+    width: auto;
+    height: 10rem;
+    background-color: rgb(252, 252, 252);
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow:  1px;
+    border: 0.5px solid rgb(238, 235, 235);
+    
+}
+
+ #cuentas-titulo{
+    width: 100%;
+    height: 2rem;
+    font-size: 1.6rem;
+    color: rgb(173, 173, 173);
+    margin-bottom: 1rem;
+}
+ .icono-cuenta{
+    background-color: #EB5600;
+    color: white;
+    text-align: center;
+    float: right;
+    width: 100%;
+    height: 50%;
+    border-radius: 5px;
+}
+ .icono-cuenta p{
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 1.8rem;
+
+}
+
+
+.cuentas .nrocuenta{
+}
+.cuentas .nrocuenta #tit-cuenta{
+    font-weight: 2px;
+    font-size: 2rem;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1px;
+}
+
+.nrocuenta p{
+    display: flex; 
+    align-items:flex-end;
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+}
+.cuenta-detalle{
+
+}
+
+.cuenta-detalle #nombre{
+    display: flex;
+    align-items: flex-end;
+    padding-top: 3rem;
+    font-size: 1rem;
+}
+.cuenta-detalle #nombre a{
+  text-decoration: none;
+  color: #EB5600;
+  cursor: pointer;
+}
+.cuentas .cuentas-contenido #saldo{
     text-align: center;
     font-weight: bold;
+}
+
+.movimientos{
+    width: auto;
+    height: 10rem;
+    background-color: rgb(252, 252, 252);
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow:  1px;
+    border: 0.5px solid rgb(238, 235, 235);
+}
+
+#titulo-movimientos{
+    width: 100%;
+    height: 2rem;
+    font-size: 1.6rem;
+    color: rgb(173, 173, 173);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: right;
+}
+#contenido-movimientos{
+       
+}
+#contenido-movimientos th{
+    color:rgb(173, 173, 173);
+    font-style: normal !important;
+    font-weight: unset;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+#contenido-movimientos tr{
+    font-style: normal !important;
+    font-weight: unset;
+    font-family: Arial, Helvetica, sans-serif;
+    color:rgb(78, 74, 74);
+
+}
+
+
+#otrascuentas-titulo{
+    float:left;
+    width: 80%;
+    height: 2rem;
+    font-size: 1.4rem;
+    color: rgb(173, 173, 173);
+    margin-bottom: 1rem;
+}
+#cuentas-titulo-vermas{
+    display: flex;
+    align-items: flex-end;
+    float: right;
+    width: auto;
+}
+
+#cuentas-titulo-vermas p{
+    padding-top: 1rem;
+    margin-bottom: 0px;
+    font-size: 1rem;
+}
+#cuentas-titulo-vermas a{
+   text-decoration: none;
+   color: #EB5600;
+}
+
+.desc-cuentas{
+    color: rgb(173, 173, 173);
+}
+
+.otras-cuentas{
+    margin-left: 1rem;
+    width: 100%;
+    height: 10rem;
+    background-color: rgb(252, 252, 252);
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow:  1px;
+    border: 0.5px solid rgb(238, 235, 235);
+}
+.otras-nrocuenta{
+ 
+}
+.otras-cuentas p{
+    display: flex; 
+    align-items:flex-end;
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+}
+
+#tit-otrascuenta{
+    font-weight: 2px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1px;
+}
+.icono-otrascuentas{
+background-color: #EB5600;
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    border-radius: 5px;
+}
+.icono-otrascuentas p{
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 1.8rem;
+    padding-left: 0.5rem;
+}
+
+#titulo-cotizaciondolar{
+    
+    width: 100%;
+    height: 2rem;
+    font-size: 1.6rem;
+    color: rgb(173, 173, 173);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: right;
+
+}
+.cotizacion-dolar{
+    margin-left: 1rem;
+    width: 100%;
+    height: 10rem;
+    background-color: rgb(252, 252, 252);
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow:  1px;
+    border: 0.5px solid rgb(238, 235, 235);
+}
+
+
+
+/*RESPONSIVE*/
+/*resolucion para movil*/
+@media(max-width: 575px){
+    img{
+        width: auto;
+        height: auto;
+        max-width: 6.5rem;
+        max-height: 6.5rem;
+    }
+
+    .selfie .selfie-foto{
+        
+        width: 8rem;
+        height: 7rem;
+    }
+
+    .frente-dni .fotoFrente-dni{
+        width: 8rem;
+        height: 7rem;
+    }
+
+    .dorso-dni .fotoDorso-dni{
+        width: 8rem;
+        height: 7rem;      
+    }
+   
+    /*CSS PARTE CUENTAS*/
+    .cuentas .nrocuenta #tit-cuenta{
+        font-weight: 2px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 1px;
+    }
+    
+    .cuentas .icono-cuenta p{
+        font-size: 1.2rem;
+    }
+    .cuenta-detalle #nombre{
+        padding-top: 3rem;
+        font-size: 0.7rem;
+        text-align: center;
+    }
+    .nrocuenta p{
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+
+    /*CSS PARA OTRAS CUENTAS*/
+    .otras-nrocuenta #tit-otrascuenta{
+        font-weight: 2px;
+        font-size: 1.5rem;
+    }
+    
+    .icono-otrascuentas p{
+        color: white;
+        text-align: center;
+        font-size: 1.2rem;
+        padding-top: 1.8rem;
+        padding-left: 1.2rem;
+
+    }
+    .otras-nrocuenta p{
+        font-size: 0.8rem;
+    }
+.otras-cuentas{
+}
+   
+
+
+}
+
+/*resolucion para TABLETS*/
+@media(min-width: 575px) and (max-width: 768px){
+    
+    img{
+        width: auto;
+        height: auto;
+        max-width: 6.5rem;
+        max-height: 6.5rem;
+    }
+
+    .selfie .selfie-foto{
+        
+        width: 8rem;
+        height: 7rem;
+    }
+
+    .frente-dni .fotoFrente-dni{
+        width: 8rem;
+        height: 7rem;
+    }
+
+    .dorso-dni .fotoDorso-dni{
+        width: 8rem;
+        height: 7rem;  
+    }
+
+     /*CSS PARTE CUENTAS*/
+     .cuentas .icono-cuenta p{
+        font-size: 1.2rem;
+    }
+    .cuenta-detalle #nombre{
+        padding-top: 3rem;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    .nrocuenta p{
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+    /*CSS PARA OTRAS CUENTAS*/
+    .otras-nrocuenta #tit-otrascuenta{
+        font-weight: 2px;
+        font-size: 1.5rem;
+    }
+    
+    .icono-otrascuentas p{
+        padding-top: 1.8rem;
+        padding-left: 1.2rem;
+
+    }
+    .otras-nrocuenta p{
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+    #otras-cuentas-titulo p{
+        font-size: 0.5rem;
+    }
+}
+/*RESOLUCION NOTEBOOKS*/
+@media(min-width: 768px) and (max-width: 991px){
+    
+    img{
+        width: auto;
+        height: auto;
+        max-width: 6.5rem;
+        max-height: 6.5rem;
+    }
+
+    .selfie .selfie-foto{
+        
+        width: 8rem;
+        height: 7rem;
+    }
+
+    .frente-dni .fotoFrente-dni{
+        width: 8rem;
+        height: 7rem;
+    }
+
+    .dorso-dni .fotoDorso-dni{
+        width: 8rem;
+        height: 7rem;  
+    }
+     /*CSS PARTE CUENTAS*/
+     .cuentas .icono-cuenta p{
+        font-size: 1.2rem;
+    }
+    .cuenta-detalle #nombre{
+        padding-top: 3rem;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    .nrocuenta p{
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+    /*CSS PARA OTRAS CUENTAS*/
+    .otras-nrocuenta #tit-otrascuenta{
+        font-weight: 2px;
+        font-size: 1.5rem;
+    }
+    
+    .icono-otrascuentas p{
+        font-size: 1.2rem;
+        padding-top: 1.8rem;
+        padding-left: 2.7rem;
+
+    }
+    .otras-cuentas{
+        width: auto;
+        margin: 0;
+    }
+    .otras-nrocuenta p{
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+    
+    #otrascuentas-titulo{
+    }
+
+    #otrascuentas-titulo p{
+    }
+        
 }

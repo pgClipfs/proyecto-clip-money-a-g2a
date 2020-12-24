@@ -15,4 +15,7 @@ export class Cliente
     IdLocalidad: number;
     NombreUsuario: string;
     Password: string;
+    SelfieCliente: string;
+    CuentaValida : number;
+
 }

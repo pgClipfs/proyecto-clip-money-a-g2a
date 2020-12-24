@@ -6,6 +6,7 @@ import { ModificarComponent } from './components/cliente/modificar/modificar.com
 import { ObtenerComponent } from './components/cliente/obtener/obtener.component';
 import { HomeComponent } from './components/home/home.component';
 import { IndexComponent } from './components/index/index.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
 import { RecoveryMailComponent } from './components/recoverymail/recoverymail.component';
 import { RecoverypasswordComponent } from './components/recoverypassword/recoverypassword.component';
@@ -16,7 +17,11 @@ const routes: Routes =
   {path: '', component: IndexComponent},
   {path: 'index', component: IndexComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent, canActivate:[GuardService]},
+  {path: 'home', component: HomeComponent,canActivate:[GuardService],
+   children: [
+    {path: '', component: InicioComponent},
+    {path: 'inicio', component: InicioComponent}
+  ]},
   {path: 'cliente', component: ClienteComponent},
   {path: 'modificar', component: ModificarComponent, canActivate:[GuardService]},
   {path: 'obtener', component: ObtenerComponent, canActivate:[GuardService]},

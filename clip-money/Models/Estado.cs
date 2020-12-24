@@ -11,5 +11,19 @@ namespace clip_money.Models
         private string nombre;
         private string descripcion;
         private string ambito;
+
+        public Estado()
+        {
+
+        }
+        public Estado(int id)
+        {
+            this.Id = id;
+        }
+
+        public int Id { get => id; set => id = value; }
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Descripcion { get => descripcion; set => descripcion = value; }
+        public string Ambito { get => ambito; set => ambito = value; }
     }
 }

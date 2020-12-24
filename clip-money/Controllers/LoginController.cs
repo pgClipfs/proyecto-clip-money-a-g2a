@@ -43,6 +43,7 @@ namespace clip_money.Controllers
 
             if (isCredentialValid >= 1)
             {
+
                 var token = TokenGenerator.GenerateTokenJwt(login.NombreUsuario,isCredentialValid);
                 return Ok(token);
             }
