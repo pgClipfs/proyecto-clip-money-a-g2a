@@ -21,15 +21,18 @@ namespace clip_money.Controllers
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
             return gCuentaVirtual.obtenerCuentasVirtuales();
-        }
-        [Authorize]
+        }*/
+
+        //[Authorize]
+        [HttpGet]
+        [Route("detalle-cuenta")]
         // GET: api/CuentaVirtual/"número de id"
-        public CuentaVirtual Get(int id)
+        public CuentaVirtual GetCuentaDetallada(int id)
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
             return gCuentaVirtual.obtenerPorId(id);
         }
-        */
+        
 
         // POST: api/CuentaVirtual
         //[HttpPost]

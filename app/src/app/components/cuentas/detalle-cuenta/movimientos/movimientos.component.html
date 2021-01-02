@@ -1,0 +1,97 @@
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+<div class="barra-direcciones">
+    <div class="inicio"><a class="inicio-a" routerLink ="/home/inicio">Inicio <i class="fas fa-angle-right"></i></a></div>
+    <div class="cuentas"><a class="cuentas-a" routerLink ="/home/cuentas">Cuentas <i class="fas fa-angle-right"></i></a></div>
+    <div class="nrocuenta"><a class="nrocuenta-a" routerLink ="/home/cuentas/detalle-cuenta">CA $ {{nroCuenta}} <i class="fas fa-angle-right"></i></a></div>
+    <div class="movimientosbtn"><p class="movimientos-p">Movimientos</p></div>
+</div>
+<div class="contenedor-general">
+    <div class="row contenedor-secundario">
+        <div class="mov-titulo col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p>Movimientos</p>
+        </div>
+
+        <div class="filtros col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <form (ngSubmit)="onSubmit()" [formGroup] = "form">
+                <div class="row">
+                    <div class=" form-group fechadesde col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                        <label class="form-control" for="fechadesde">Desde</label>
+                        <input type="date" class="form-control fadeIn" formControlName = "fechadesde" [(ngModel)]="filtros.fechaDesde"
+                        [ngClass]="{ 'is-invalid': (form.get('fechadesde')?.touched || form.get('fechadesde')?.dirty) && !form.get('fechadesde')?.valid}">
+
+                        <div class="invalid-feedback">
+                            <span *ngIf = "form.get('fechadesde').errors?.required">
+                              Seleccione una fecha
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group fechahasta col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                        <label class="form-control" for="fechahasta">Hasta</label>
+                        <input type="date" class="form-control fadeIn" formControlName = "fechahasta" [(ngModel)]="filtros.fechaHasta"
+                        [ngClass]="{ 'is-invalid': (form.get('fechahasta')?.touched || form.get('fechahasta')?.dirty) && !form.get('fechahasta')?.valid}">
+
+                        <div class="invalid-feedback">
+                            <span *ngIf = "form.get('fechahasta').errors?.required">
+                              Seleccione una fecha
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group concepto col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                        <label class="form-control" for="fechadesde">Concepto</label>
+                        <select class= "form-control" formControlName = "concepto" [(ngModel)]="filtros.concepto" 
+                        [ngClass]="{ 'is-invalid': (form.get('concepto')?.touched || form.get('concepto')?.dirty) && !form.get('concepto')?.valid}">
+                          <option value = "0">Todo</option>
+                          <option value = "2">Ingreso Dinero</option>
+                          <option value = "1">Egreso Dinero</option>
+                        </select>
+                        
+                        <div class="invalid-feedback">
+                            <span *ngIf = "form.get('concepto').errors?.required">
+                              Seleccione un concepto
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group buscar col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <button class=" btn btn-primary btnBuscar">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="row movimientos">
+            
+                <div class="col-12 col-sm-12 col-md-12 col-md-12">
+                    <div id="contenido-movimientos">
+                        <table class="table mt-3 table-borderless table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Monto</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let op of operaciones;">
+                                    <td>{{op.Fecha}}</td>
+                                    <td>{{op.Hora}}</td>
+                                    <td>{{op.TipoOperacion['Nombre']}}</td>
+                                    <td>$&nbsp;{{op.Monto}}</td>
+                                </tr>
+                            </tbody>
+                          </table>
+
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" contenedor-general container-fluid">
+   
+</div>
