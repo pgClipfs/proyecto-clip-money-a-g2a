@@ -1,3 +1,5 @@
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
 <div class="container-fluid contenedor-general" *ngIf ="!isAcountValid">
     <div class="conteiner-fluid contenedor-secundario">
         <div class="container-fluid advertencia">
@@ -113,7 +115,7 @@
                                 
                                 <div class="col-2 col-sm-2 col-md-2 col-lg-3" style="display: flex; align-items:center;">
                                     <div class="cuenta-detalle">
-                                        <div id="nombre"><a>VER DETALLES</a></div>  
+                                        <div id="nombre"><a (click)="onDetallesCuenta()">VER DETALLES</a></div>  
                                     </div>  
                                 </div>
                             </div>
@@ -175,7 +177,7 @@
 
                                         <div class="col-3 col-sm-3 col-md-3">
                                             <div id="cuentas-titulo-vermas">
-                                                <p><a>Ver Mas></a></p>
+                                                <a routerLink = "/home/cuentas">Ver Mas <i class="fas fa-angle-right"></i></a>
                                             </div>
                                         </div>
                                     

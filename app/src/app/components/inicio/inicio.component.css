@@ -275,7 +275,7 @@ img{
 
 .movimientos{
     width: auto;
-    height: 10rem;
+    height: auto;
     background-color: rgb(252, 252, 252);
     font-size: 1.2rem;
     font-family: Arial, Helvetica, sans-serif;
@@ -327,14 +327,11 @@ img{
     width: auto;
 }
 
-#cuentas-titulo-vermas p{
+#cuentas-titulo-vermas a{
     padding-top: 1rem;
     margin-bottom: 0px;
     font-size: 1rem;
-}
-#cuentas-titulo-vermas a{
-   text-decoration: none;
-   color: #EB5600;
+    color: #EB5600;
 }
 
 .desc-cuentas{
