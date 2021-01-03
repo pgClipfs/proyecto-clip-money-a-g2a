@@ -170,7 +170,9 @@
     </Compile>
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\CuentaVirtual.cs" />
+    <Compile Include="Models\Deposito.cs" />
     <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\Extraccion.cs" />
     <Compile Include="Models\GestorCliente.cs" />
     <Compile Include="Models\GestorCuentaVirtual.cs" />
     <Compile Include="Models\GestorLogin.cs" />

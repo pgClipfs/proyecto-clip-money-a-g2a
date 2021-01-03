@@ -14,12 +14,30 @@ namespace clip_money.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OperacionesController : ApiController
     {
-        // GET: api/Persona
+        // GET: api/operaciones
         [Route("top_diez")]
         public IEnumerable<Operaciones> Get(long idCV)
         {
             GestorOperaciones gOperaciones = new GestorOperaciones();
             return gOperaciones.obtenerTop10Operaciones(idCV);
+        }
+
+        //POST: api/operaciones/deposito
+        [Route("deposito")]
+        [HttpPost]
+        public int deposito([FromBody] Deposito deposito)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.deposito(deposito);
+        }
+
+        //POST: api/operaciones/deposito
+        [Route("extraccion")]
+        [HttpPost]
+        public int extraccion([FromBody] Extraccion extraccion)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.extraccion(extraccion);
         }
 
         // GET: api/Persona
