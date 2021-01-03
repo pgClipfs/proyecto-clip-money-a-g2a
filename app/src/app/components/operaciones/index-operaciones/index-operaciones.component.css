@@ -1,0 +1,91 @@
+h2{
+    color: #8B8E95;
+    font-size: 30px;
+}
+
+.texto-seleccion{
+    background-color: #FF6600;
+    color: white;
+}
+
+.contenedor-operaciones{
+    padding: 0 !important;
+    margin: 1rem;
+    background-color:#F7F7F7;
+    height: 15vh;
+    text-align: center;
+}
+
+.btn-ope{
+    background-color: white !important;
+    width: 100% !important;
+    height: 15vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: none !important;
+    /*border-radius: 10px 10px 10px 10px;*/
+    border-bottom: 1px solid #EB5600 !important;
+    border-top: 1px solid #EB5600 !important ;
+    border-left: 1px solid #EB5600 !important ;
+    border-right: 1px solid #EB5600 !important ;
+    color: #FF6600 !important;
+    font-size: 1.5rem !important;
+}
+.btn-ope:hover{
+    background-color: #FF6600 !important;
+    border-bottom: 1px solid white !important ;
+    border-top: 1px solid white !important ;
+    border-left: 1px solid white !important ;
+    border-right: 1px solid white !important ;
+    color: white !important;
+}
+
+.btn-ope:active{
+    background-color: #FF6600 !important;
+    border-bottom: 1px solid white !important ;
+    border-top: 1px solid white !important ;
+    border-left: 1px solid white !important ;
+    border-right: 1px solid white !important ;
+    color: white !important;
+}
+
+.texto-ingreso{
+    background-color: #FF6600;
+    color: white;
+}
+
+.texto-retiro{
+    background-color: #FF6600;
+    color: white;
+}
+
+label{
+    color: #8B8E95;
+}
+
+select{
+    color:rgb(32, 31, 31) !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none !important;
+    font-size: 2.6vh;
+}
+select:focus{
+ border-bottom-color: #FF6600 !important;
+}
+input{
+    color:rgb(32, 31, 31);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none !important;
+    font-size: 2.6vh;
+    font-weight: 500;
+}
+input:focus{
+    border-bottom-color: #FF6600 !important;
+   }
+   input::after{
+    border-bottom-color: #FF6600 !important;
+   }

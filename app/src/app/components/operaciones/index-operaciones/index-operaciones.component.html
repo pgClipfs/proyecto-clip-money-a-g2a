@@ -1,21 +1,21 @@
 <div class="container">
     <h2>Operaciones</h2>
 
-    <div class="card shadow">
-        <h6 class="card-header font-weight-bold" style="background-color: #EB5600;">Seleccione la operación que desea realizar</h6>
+    <div class="card shadow ">
+        <h6 class="texto-seleccion card-header font-weight-bold">Seleccione la operación que desea realizar</h6>
         <div class="card-body">
-            <div class="row" style="text-align: center;">
-                <div class="col">
-                    <button type="button" (click)="habilitarDeposito()" class="btn btn-light" style="background-color: #EB5600;"><i class="fas fa-dollar-sign"></i> Ingresar Dinero</button>
+            <div class="row">
+                <div class="contenedor-operaciones col">
+                    <button type="button" (click)="habilitarDeposito()" class="btn-ope btn btn-light" ><i class="fas fa-dollar-sign"></i> Ingresar Dinero</button>
                 </div>
-                <div class="col">
-                    <button type="button" (click)="habilitarExtraccion()" class="btn btn-light" style="background-color: #EB5600;"><i class="fas fa-hand-holding-usd"></i> Retirar Dinero</button>
+                <div class=" contenedor-operaciones col">
+                    <button type="button" (click)="habilitarExtraccion()" class="btn-ope btn btn-light" ><i class="fas fa-hand-holding-usd"></i> Retirar Dinero</button>
                 </div>
             </div>
             
             <!-- Seccion para el deposito de dinero en cuenta de usuario -->
             <div class="card shadow" style="margin-top: 25px;" *ngIf="seccionDeposito">
-                <h6 class="card-header font-weight-bold" style="background-color: #EB5600;">Ingreso de dinero a mi cuenta</h6>
+                <h6 class=" texto-ingreso card-header">Ingreso de dinero a mi cuenta</h6>
                 <div class="card-body">
                     <form  style="margin-inline: 25%;" (ngSubmit)="depositar()">
                         <div class="form-group">
@@ -55,7 +55,7 @@
             
             <!-- Seccion para retirar dinero de una cuenta de usuario -->
             <div class="card shadow" style="margin-top: 25px;" *ngIf="seccionExtraccion">
-                <h6 class="card-header font-weight-bold" style="background-color: #EB5600;">Retiro de dinero de mi cuenta</h6>
+                <h6 class=" texto-retiro card-header">Retiro de dinero de mi cuenta</h6>
 
                 <div class="card-body">
                     <form  style="margin-inline: 25%;" (ngSubmit)="extraer()">
