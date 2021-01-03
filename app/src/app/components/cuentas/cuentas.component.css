@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+}
+
+/*CSS PARTE CABEZERA*/
+.titulo-cuentas{
+    width: 100%;
+    height: 10vh;
+}
+.titulo-texto{
+    float: left;
+    width: 70%;
+    height: 100%;
+    padding-top: 4vh;
+}
+.titulo-texto p{
+    color: #8B8E95;
+    font-size: 30px;
+}
+
+.btn-nuevacuenta{
+    float: right;
+    width: 30%;
+    height: 100%;
+    text-align: right;
+    padding-top: 4vh;
+}
+.boton-nuevacuenta{
+    background-color: #FF6600 !important;
+    border-style: none;
+}
+
+/*CSS PARTE CUERPO DE LAS CUENTAS*/
+.cuerpo-cuenta1-pesos{
+    width: 50%;
+    height: 50vh;
+    text-align: center;
+}
+.cuerpo-cuenta2-pesos{
+    width: 50%;
+    height: 50vh;
+}
+
+.cuerpo-cuentas-dolares{
+    width: 100%;
+    height: 50vh;
+}
+
+.contenedor-cuentas{
+    padding-top: 3rem;
+    background-color:#F7F7F7;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+    border-bottom: 1px solid rgb(187, 185, 185);
+    border-top: 1px solid rgb(236, 233, 233);
+    border-left: 1px solid rgb(236, 233, 233);
+    border-right: 1px solid rgb(236, 233, 233);
+
+}
+
+.contenedor-link{
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+.contenedor-ca{
+    text-align: center;   
+}
+
+.icono-cuenta{
+    background-color: #FF6600;
+    color: white;
+    height: 14vh;
+    width: 14vh;
+    border-radius: 5px;
+    margin:0px auto;
+}
+.icono-cuenta p{
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 1.8rem;
+    text-align: center;
+
+}
+.tipocuenta p{
+    color: #8B8E95;
+}
+
+.cuentas .saldo{
+    font-weight: 2px;
+    font-size: 2rem;
+    margin-bottom: 1px;
+    text-align: center;
+}
+.cuentas .saldo p{
+    text-align: center;
+}
+
+.tipocuenta{
+    margin-top: 1rem;
+}
+.tipocuenta p{
+    font-size: 17px;
+    text-align: center;
+}
+
+.nrocuenta p{
+ color: #8B8E95;
+}

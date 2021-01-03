@@ -4,6 +4,9 @@ import { AppComponent } from './app.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { ModificarComponent } from './components/cliente/modificar/modificar.component';
 import { ObtenerComponent } from './components/cliente/obtener/obtener.component';
+import { CuentasComponent } from './components/cuentas/cuentas.component';
+import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
+import { MovimientosComponent } from './components/cuentas/detalle-cuenta/movimientos/movimientos.component';
 import { HomeComponent } from './components/home/home.component';
 import { IndexComponent } from './components/index/index.component';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -23,6 +26,9 @@ const routes: Routes =
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},
     {path: 'operaciones',component:IndexOperacionesComponent}
+    {path: 'cuentas', component: CuentasComponent},
+    {path: 'cuentas/detalle-cuenta', component: DetalleCuentaComponent},
+    {path: 'cuentas/detalle-cuenta/movimientos', component: MovimientosComponent}
   ]},
   {path: 'cliente', component: ClienteComponent},
   {path: 'modificar', component: ModificarComponent, canActivate:[GuardService]},

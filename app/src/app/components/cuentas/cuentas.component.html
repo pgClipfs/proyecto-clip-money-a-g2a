@@ -1,0 +1,60 @@
+<div class="container fluid">
+    <div class="contenedor-general">
+        <div class="row">
+           
+            <div class="titulo-cuentas col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="titulo-texto"><p>Tus Cuentas</p></div>
+                <div class="btn-nuevacuenta"><button class="boton-nuevacuenta btn btn-primary">Nueva cuenta</button></div>
+            </div>
+            
+            <div class="cuerpo-cuenta1-pesos col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                <div class="contenedor-cuentas col-12 col-sm-12 col-md-12">
+                            
+                    <div class=" row cuentas">
+                        <a  class="contenedor-link" routerLink = "../cuentas/detalle-cuenta">
+                                <div class=" contenedor-ca col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="icono-cuenta">
+                                        <p>CA$</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="tipocuenta">
+                                        <p>Caja Ahorro  &nbsp; {{nombreTipoCuenta}} </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="saldo">
+                                        <p>${{saldo}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="nrocuenta">
+                                        <p>N° &nbsp; {{nroCuenta}}</p>
+                                    </div>
+                                </div>
+                        </a>
+                      
+                                           
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="cuerpo-cuenta2-pesos col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                <div class="contenedor-cuentas col-12 col-sm-12 col-md-12">
+                            
+                </div>
+            </div>
+
+            <div class="cuerpo-cuentas-dolares col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                <div class="contenedor-cuentas col-12 col-sm-12 col-md-12">
+                            
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+
+</div>

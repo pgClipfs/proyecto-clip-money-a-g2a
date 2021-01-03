@@ -45,6 +45,8 @@ namespace clip_money.Models
             return lista;
         }
 
+
+
         public CuentaVirtual obtenerPorId(int id)
         {
             CuentaVirtual cv = null;
@@ -57,21 +59,23 @@ namespace clip_money.Models
                 SqlCommand comm = new SqlCommand("obtenerCuentaVirtual", conn);
                 comm.CommandType = System.Data.CommandType.StoredProcedure;
 
-                comm.Parameters.Add(new SqlParameter("@id", id));
+                comm.Parameters.Add(new SqlParameter("@idCliente", id));
 
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
+                    long idCuenta = dr.GetInt64(0);
                     string alias = dr.GetString(1);
                     string cvu = dr.GetString(2);
                     string nroCuenta = dr.GetString(3);
-                    decimal montoDescubierto = dr.GetInt32(4);
+                    decimal montoDescubierto = dr.GetSqlMoney(4).ToDecimal();
                     int idCliente = dr.GetInt32(5);
-                    int idTipoCuenta = dr.GetInt32(6);
-                    TipoCuentaVirtual tipocuenta = new TipoCuentaVirtual(idTipoCuenta);
-                    int idEstado = dr.GetInt32(7);
+                    string tipoCuenta = dr.GetString(6);
+                    TipoCuentaVirtual TipoCuenta = new TipoCuentaVirtual(tipoCuenta);
+                    int estado = dr.GetInt32(7);
+                    decimal saldo = dr.GetSqlMoney(8).ToDecimal();
 
-                    cv = new CuentaVirtual(id, alias, cvu, nroCuenta, montoDescubierto, idCliente, tipocuenta, idEstado);
+                    cv = new CuentaVirtual(idCuenta, alias, cvu, nroCuenta, montoDescubierto,idCliente, TipoCuenta, estado, saldo);
                 }
                 dr.Close();
             }

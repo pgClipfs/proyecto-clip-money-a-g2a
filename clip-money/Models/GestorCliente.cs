@@ -334,7 +334,7 @@ namespace clip_money.Models
             long idcuenta;
             TipoCuentaVirtual tipoCuentaVirtual = null;
             string nroOperacion;
-            string hora = DateTime.Now.ToString("hh:mm");
+            string hora = DateTime.Now.ToString("HH:mm");
             string fecha = DateTime.Today.ToString("dd-MM-yyyy");
             TipoOperacion idtipoOperacion = null;
             Estado estado = null;

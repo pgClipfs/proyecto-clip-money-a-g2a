@@ -46,6 +46,20 @@ namespace clip_money.Models
             this.idTipoCuenta = tipoCuenta;
             this.saldo = saldo;
         }
+
+        public CuentaVirtual(long id, string alias, string cvu, string nroCuenta, decimal montoDescubierto, int idCliente, TipoCuentaVirtual idTipoCuenta, int idEstado, decimal saldo)
+        {
+            this.id = id;
+            this.alias = alias;
+            this.cvu = cvu;
+            this.nroCuenta = nroCuenta;
+            this.montoDescubierto = montoDescubierto;
+            this.idCliente = idCliente;
+            this.idTipoCuenta = idTipoCuenta;
+            this.idEstado = idEstado;
+            this.saldo = saldo;
+        }
+
         public long Id { get => id; set => id = value; }
         public string Alias { get => alias; set => alias = value; }
         public string Cvu { get => cvu; set => cvu = value; }

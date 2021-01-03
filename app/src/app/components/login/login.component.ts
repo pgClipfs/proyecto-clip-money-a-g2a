@@ -41,7 +41,6 @@ form = this.fb.group({
         
         var decoded = jwtDecode(data);      
         //this.tokenStorage.saveUser(decoded['unique_name']);
-        console.log(decoded);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

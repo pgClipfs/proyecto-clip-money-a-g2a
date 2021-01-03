@@ -40,6 +40,13 @@ namespace clip_money.Controllers
             return gOperaciones.extraccion(extraccion);
         }
 
+        // GET: api/Persona
+        [Route("movimientos")]
+        public IEnumerable<Operaciones> GetOpetacionesTodas(long idCV,string fechadesde, string fechahasta, int concepto)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.obtenerOperacionesTodas(idCV, fechadesde,fechahasta, concepto);
+        }
 
     }
 }

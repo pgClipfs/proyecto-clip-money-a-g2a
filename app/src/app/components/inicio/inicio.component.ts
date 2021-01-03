@@ -79,6 +79,7 @@ form = this.fb.group({
           this.tipoCuenta = this.cuenta['IdTipoCuenta'];
           this.nombreTipoCuenta = this.tipoCuenta['Nombre'];
 
+
           //obtenemos las ultimas 10 operaciones de la cuenta
           this.opServices.getTop10Op(this.idCuenta).subscribe(
             data =>{
@@ -184,6 +185,10 @@ form = this.fb.group({
 
  
   }
+
+ onDetallesCuenta(){
+  this.router.navigate(['home/cuentas/detalle-cuenta']);
+ }
 
   validar(id: any): boolean{
      return validarExtension(id);

@@ -7,6 +7,7 @@ import { Operacion } from '../models/operacion.model';
 import { TokenStorageService } from './token-storage.service';
 
 const url = 'https://localhost:44386/api/operaciones/top_diez?idCV=';
+const urltodasop = 'https://localhost:44386/api/operaciones/movimientos?idCV=';
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -30,5 +31,9 @@ export class OperacionesService {
 
   extraer(extraccion : Extraccion) : Observable<any>{
     return this.http.post<any>("https://localhost:44386/api/operaciones/extraccion",extraccion,httpOptions);
+  }
+
+  getTodasOp(idcuenta: number, fechadesde: string, fechahasta:string, concepto: number){
+    return this.http.get<any>(urltodasop + idcuenta +'&fechadesde='+fechadesde + '&fechahasta='+ fechahasta + '&concepto=' + concepto, httpOptions);
   }
 }

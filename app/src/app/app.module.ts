@@ -17,6 +17,9 @@ import { RecoverymailService } from './services/recoverymail.service';
 import { ModificarComponent } from './components/cliente/modificar/modificar.component';
 import { ObtenerComponent } from './components/cliente/obtener/obtener.component';
 import { IndexOperacionesComponent } from './components/operaciones/index-operaciones/index-operaciones.component';
+import { CuentasComponent } from './components/cuentas/cuentas.component';
+import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
+import { MovimientosComponent } from './components/cuentas/detalle-cuenta/movimientos/movimientos.component';
 
 
 
@@ -34,6 +37,9 @@ import { IndexOperacionesComponent } from './components/operaciones/index-operac
     ModificarComponent,
     ObtenerComponent,
     IndexOperacionesComponent,
+    CuentasComponent,
+    DetalleCuentaComponent,
+    MovimientosComponent,
   ],
   imports: [
     BrowserModule,
