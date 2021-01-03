@@ -25,7 +25,7 @@ const routes: Routes =
    children: [
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},
-    {path: 'operaciones',component:IndexOperacionesComponent}
+    {path: 'operaciones',component:IndexOperacionesComponent},
     {path: 'cuentas', component: CuentasComponent},
     {path: 'cuentas/detalle-cuenta', component: DetalleCuentaComponent},
     {path: 'cuentas/detalle-cuenta/movimientos', component: MovimientosComponent}
