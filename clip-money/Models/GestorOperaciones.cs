@@ -67,5 +67,95 @@ namespace clip_money.Models
                 comm.ExecuteNonQuery();
             }
         }
+
+        public int deposito(Deposito deposito)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            int message = 0;
+
+            if(deposito.Monto > 0)
+            {
+                using (SqlConnection conn = new SqlConnection(StrConn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        SqlCommand comm = new SqlCommand("deposito", conn);
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        comm.Parameters.Add(new SqlParameter("@id_cuenta_virtual", deposito.Id_cuenta_virtual));
+                        comm.Parameters.Add(new SqlParameter("@monto", deposito.Monto));
+
+                        comm.ExecuteNonQuery();
+
+                        return message;
+
+                    }
+                    catch (Exception e)
+                    {
+                        message = 2; //No se ha podido registrar el deposito por alguna excepción
+                        return message;
+                    }
+
+                }
+            }
+            else
+            {
+                message = 1; //Indica que el monto que ingreso el usuario no es valido
+                return message;
+            }
+        }
+
+        public int extraccion(Extraccion extraccion)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            int message = 0;
+
+            if(extraccion.Monto > 0)
+            {
+                using (SqlConnection conn = new SqlConnection(StrConn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        SqlCommand comm = new SqlCommand("extraccion", conn);
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        comm.Parameters.Add(new SqlParameter("@id_cuenta_virtual", extraccion.Id_cuenta_virtual));
+                        comm.Parameters.Add(new SqlParameter("@monto", extraccion.Monto));
+
+                        SqlDataReader dr = comm.ExecuteReader();
+                        dr.Read();
+                        int resultado = dr.GetInt32(0);
+
+                        if(resultado == 1)
+                        {
+                            return message; //Es cero y significa que la extraccion se realizo exitosamente.
+                        }
+                        else
+                        {
+                            message = 3; //No posee fondos suficientes
+                            return message;
+                        }
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        message = 2; //No se ha podido registrar el deposito por alguna excepción
+                        return message;
+                    }
+                }
+            }
+            else
+            {
+                message = 1; //Indica que el monto que ingreso el usuario no es valido
+                return message;
+            }
+        }
     }
 }

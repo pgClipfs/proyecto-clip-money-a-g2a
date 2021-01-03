@@ -16,6 +16,7 @@ import { RecoverypasswordComponent } from './components/recoverypassword/recover
 import { RecoverymailService } from './services/recoverymail.service';
 import { ModificarComponent } from './components/cliente/modificar/modificar.component';
 import { ObtenerComponent } from './components/cliente/obtener/obtener.component';
+import { IndexOperacionesComponent } from './components/operaciones/index-operaciones/index-operaciones.component';
 
 
 
@@ -32,6 +33,7 @@ import { ObtenerComponent } from './components/cliente/obtener/obtener.component
     RecoverypasswordComponent,
     ModificarComponent,
     ObtenerComponent,
+    IndexOperacionesComponent,
   ],
   imports: [
     BrowserModule,

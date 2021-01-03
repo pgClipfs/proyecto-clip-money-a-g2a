@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Deposito } from '../models/deposito.model';
+import { Extraccion } from '../models/extraccion.model';
 import { Operacion } from '../models/operacion.model';
 import { TokenStorageService } from './token-storage.service';
 
@@ -20,5 +22,13 @@ export class OperacionesService {
 
   getTop10Op(idcuenta: number): Observable<any>{
      return this.http.get<any>(url + idcuenta, httpOptions);
+  }
+
+  depositar(deposito : Deposito) : Observable<any>{
+    return this.http.post<any>("https://localhost:44386/api/operaciones/deposito",deposito,httpOptions);
+  }
+
+  extraer(extraccion : Extraccion) : Observable<any>{
+    return this.http.post<any>("https://localhost:44386/api/operaciones/extraccion",extraccion,httpOptions);
   }
 }

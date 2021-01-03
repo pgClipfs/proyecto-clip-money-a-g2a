@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { IndexComponent } from './components/index/index.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
+import { IndexOperacionesComponent } from './components/operaciones/index-operaciones/index-operaciones.component';
 import { RecoveryMailComponent } from './components/recoverymail/recoverymail.component';
 import { RecoverypasswordComponent } from './components/recoverypassword/recoverypassword.component';
 import { GuardService } from './services/guard.service';
@@ -20,14 +21,15 @@ const routes: Routes =
   {path: 'home', component: HomeComponent,canActivate:[GuardService],
    children: [
     {path: '', component: InicioComponent},
-    {path: 'inicio', component: InicioComponent}
+    {path: 'inicio', component: InicioComponent},
+    {path: 'operaciones',component:IndexOperacionesComponent}
   ]},
   {path: 'cliente', component: ClienteComponent},
   {path: 'modificar', component: ModificarComponent, canActivate:[GuardService]},
   {path: 'obtener', component: ObtenerComponent, canActivate:[GuardService]},
   {path: 'recoverymail', component: RecoveryMailComponent},
   {path: 'recoverypassword', component: RecoverypasswordComponent},
-  {path: '**', component: IndexComponent}
+  {path: '**', component: IndexComponent},
 ];
 
 @NgModule({
