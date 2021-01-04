@@ -9,6 +9,8 @@ body
 {
     font-family:  'Noto Sans JP', sans-serif;
     height: 100%;
+    width: 100%;
+    min-height: 100%;
     background-image: url("../../../../assets/images/fondo2.jpg");
 }
 
