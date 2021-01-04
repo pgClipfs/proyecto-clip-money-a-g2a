@@ -129,6 +129,8 @@ form
 #icon
 {
     width:20rem;
+    margin-top: 15px;
+    border-radius: 50%;
 }
 
 .btnModificar
@@ -184,4 +186,3 @@ form
     background-image: url("../../../../assets/images/regresar2.png") !important;
     box-shadow: none;
 }
-

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
-
 html
 {
     background-color: #56baed;
@@ -140,6 +139,9 @@ form
 #icon
 {
     width:20rem;
+    margin-top: 15px;
+    border-radius: 50%;
+    cursor: help;
 }
 
 .btnModificar
@@ -309,4 +311,3 @@ label
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
 }
-

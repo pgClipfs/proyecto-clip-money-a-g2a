@@ -129,6 +129,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bundles\assets\images\banner.png" />
+    <Content Include="Bundles\assets\images\fondo2.jpg" />
+    <Content Include="Bundles\assets\images\foto-block.jpg" />
+    <Content Include="Bundles\assets\images\foto-carnet.jpg" />
+    <Content Include="Bundles\assets\images\logo1.png" />
+    <Content Include="Bundles\assets\images\regresar1.png" />
+    <Content Include="Bundles\assets\images\regresar2.png" />
+    <Content Include="Bundles\assets\images\stop.png" />
+    <Content Include="Bundles\assets\images\SubirFoto.png" />
+    <Content Include="Bundles\assets\js\scripts.js" />
+    <Content Include="Bundles\banner.png" />
+    <Content Include="Bundles\favicon.ico" />
+    <Content Include="Bundles\fondo2.jpg" />
+    <Content Include="Bundles\index.html" />
+    <Content Include="Bundles\logo1.png" />
+    <Content Include="Bundles\main.js" />
+    <Content Include="Bundles\main.js.map" />
+    <Content Include="Bundles\polyfills.js" />
+    <Content Include="Bundles\polyfills.js.map" />
+    <Content Include="Bundles\regresar1.png" />
+    <Content Include="Bundles\regresar2.png" />
+    <Content Include="Bundles\runtime.js" />
+    <Content Include="Bundles\runtime.js.map" />
+    <Content Include="Bundles\scripts.js" />
+    <Content Include="Bundles\scripts.js.map" />
+    <Content Include="Bundles\stop.png" />
+    <Content Include="Bundles\styles.js" />
+    <Content Include="Bundles\styles.js.map" />
+    <Content Include="Bundles\vendor.js" />
+    <Content Include="Bundles\vendor.js.map" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

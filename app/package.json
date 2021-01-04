@@ -22,7 +22,7 @@
     "jwt-decode": "^3.1.2",
     "rxjs": "~6.6.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^10.12.5",
+    "sweetalert2": "^10.12.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

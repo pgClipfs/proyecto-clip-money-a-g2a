@@ -50,7 +50,7 @@ namespace clip_money.Models
                     int cuentaValida = dr.GetInt32(17);
                     string selfie = dr.GetString(18);
                     
-                    cli = new Cliente(id, nombre, apellido, sexo, idTipoDni, numDni, fotoFrenteDni, fechaNacimiento,  fotoDorsoDni, idLocalidad, domicilio, telefono, email, nombreUsuario, password, cuentaValida,selfie);
+                    cli = new Cliente(id, nombre, apellido, sexo, idTipoDni, numDni, fotoFrenteDni, fechaNacimiento,  fotoDorsoDni, idLocalidad, domicilio, telefono, email, nombreUsuario, password, cuentaValida, selfie);
                    
                 }
                 dr.Close();
@@ -132,7 +132,7 @@ namespace clip_money.Models
             }
         }
 
-        //VALIDACIONES PARA COMPROBAR SI EXISTEN USUARIOS CON EL MISMO: Nombre de usuario o Email
+        //VALIDACIONES PARA COMPROBAR SI EXISTEN USUARIOS CON EL MISMO: Nombre de usuario, Email o Número de DNI
         public bool existeUsuario (string nombreUsuario)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -156,7 +156,6 @@ namespace clip_money.Models
                 }
             }
         }
-
 
         public bool existeEmail(string email)
         {
@@ -206,38 +205,7 @@ namespace clip_money.Models
             }
         }
 
-        //Validación que busca el email filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el email y el id conciden, se detecta un registro, entonces no permite la edición.
-
-        //Validaciones para que se permitan editar campos puntuales (solo el teléfono, solo el email, solo el email y el teléfono, etc.). Son extras a las validaciones de nombreUsuario, email y numDni.
-
-        public bool existePPL(string pais, string provincia, string localidad)
-        {
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            {
-                conn.Open();
-
-                SqlCommand comm = new SqlCommand("existePPL", conn);
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@pais", pais));
-                comm.Parameters.Add(new SqlParameter("@provincia", provincia));
-                comm.Parameters.Add(new SqlParameter("@localidad", localidad));
-
-                SqlDataReader dr = comm.ExecuteReader();
-                if (dr.Read())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        //Validación que busca el email filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el email y el id conciden, se detecta un registro, entonces no permite la edición.
-
+        //Validación que busca el email filtrando por id. Si el email y el id coinciden, se permite editarlo ya que se excluye (no se muestra este registro) ese campo de la búsqueda. Si el email coincide pero el id no, se detecta un registro, entonces no se permite la edición.
 
         public bool existeEmail_Alt(string email_Alt, int id)
         {
@@ -265,7 +233,7 @@ namespace clip_money.Models
             }
         }
 
-        //Validación que busca el usuario filtrando por id. Si el mismo coincide, pero el id no, se permite editarlo ya que se excluye (no se muestra registro) ese campo de la búsqueda. Si el usuario y el id conciden, se detecta un registro, entonces no permite la edición.
+        //Validación que busca el usuario filtrando por id. Si el usuario y el id coinciden, se permite editarlo ya que se excluye (no se muestra este registro) ese campo de la búsqueda. Si el usuario coincide pero el id no, se detecta un registro, entonces no se permite la edición.
 
         public bool existeUsuario_Alt(string usuario_Alt, int id)
         {
@@ -320,9 +288,7 @@ namespace clip_money.Models
             }
         }
 
-
-
-        /*METODO PARA INSERTAR LAS FOTOS DEL DNI EN EL CLIENTE Y ACTIVA LA CUENTA*/
+        /*MÉTODO PARA INSERTAR LAS FOTOS DEL DNI EN EL CLIENTE Y ACTIVAR LA CUENTA*/
         public bool insertarFotosDni(Cliente fotoDni)
         {
             CuentaVirtual cv = null;
@@ -484,6 +450,57 @@ namespace clip_money.Models
             }
         }
 
+        public int modificarCliente_Alt(Cliente mod)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+            int message = 0;
+
+            //Verifico que el Email o Usuario no coincida con algún cliente ya registrado en la BD
+            try
+            {
+                if (existeEmail_Alt(mod.Email, mod.Id) == true)
+                {
+                    message = 2;
+                    return message;
+                }
+                else if (existeUsuario_Alt(mod.NombreUsuario, mod.Id) == true)
+                {
+                    message = 3;
+                    return message;
+                }
+
+                //Si ninguno de los 2 campos coinciden con los de otro cliente registrado en la BD, permito la modificación
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(StrConn))
+                    {
+                        conn.Open();
+
+                        SqlCommand comm = conn.CreateCommand();
+
+                        comm.CommandText = "modificarCliente_Alt";
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        comm.Parameters.Add(new SqlParameter("@id", mod.Id));
+                        comm.Parameters.Add(new SqlParameter("@fechaNacimiento", mod.FechaNacimiento));
+                        comm.Parameters.Add(new SqlParameter("@idLocalidad", mod.IdLocalidad));
+                        comm.Parameters.Add(new SqlParameter("@domicilio", mod.Domicilio));
+                        comm.Parameters.Add(new SqlParameter("@telefono", mod.Telefono));
+                        comm.Parameters.Add(new SqlParameter("@email", mod.Email));
+                        comm.Parameters.Add(new SqlParameter("@nombreUsuario", mod.NombreUsuario));
+
+                        comm.ExecuteNonQuery();
+
+                        return message;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<CuentaVirtual> obtenerCuentasDeCliente(int idCliente)
         {
             GestorCuentaVirtual gCuentaVirtual = new GestorCuentaVirtual();
@@ -513,7 +530,6 @@ namespace clip_money.Models
 
             osmtpClient.Send(oMailMessage);
         }
-
 
     }
 }

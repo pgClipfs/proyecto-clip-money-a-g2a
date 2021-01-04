@@ -6,7 +6,7 @@ export class Cliente
     Nombre: string;
     Apellido: string;
     Sexo: string;
-    FechaNacimiento: Date;
+    FechaNacimiento: string;
     IdTipoDni: number;
     NumDni: string;
     Domicilio: string;
