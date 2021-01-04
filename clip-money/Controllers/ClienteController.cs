@@ -45,7 +45,7 @@ namespace clip_money.Controllers
         public int Put([FromBody] Cliente mod)
         {
             GestorCliente gCliente = new GestorCliente();
-            return gCliente.modificarCliente(mod);
+            return gCliente.modificarCliente_Alt(mod);
         }
 
        /* [Authorize]

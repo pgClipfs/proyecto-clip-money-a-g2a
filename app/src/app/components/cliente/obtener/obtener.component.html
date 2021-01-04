@@ -6,14 +6,14 @@
                 <div id="formContent">
 
                     <div class="fadeIn first">
-                        <img src="../../../../assets/images/logo1.png" id="icon" alt="User Icon" />
+                        <img [src]="fotoUsuario" id="icon" alt="User Icon" />
                     </div>
 
                     <h2>
                         Datos del Cliente → <u><b>{{nombreUsuario}}</b></u>
                     </h2>
 
-                    <table class="table mt-3 table-bordered table-hover">
+                    <table class="table mt-3 table-bordered table-hover table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
@@ -28,22 +28,22 @@
                                 <!-- <th scope="col">Provincia</th> -->
                                 <th scope="col">Localidad</th>
                                 <th scope="col">Domicilio</th>
-                                <th scope="col">Usuario</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let cliente of clientes">
-                                <td>{{cliente.Nombre}}</td>
-                                <td>{{cliente.Apellido}}</td>
-                                <td>{{cliente.Sexo}}</td>
-                                <td>{{cliente.FechaNacimiento}}</td>
-                                <td>{{cliente.IdTipoDni}}</td>
-                                <td>{{cliente.NumDni}}</td>
-                                <td>{{cliente.Email}}</td>
-                                <td>{{cliente.Telefono}}</td>
-                                <td>{{cliente.IdLocalidad}}</td>
-                                <td>{{cliente.Domicilio}}</td>
-                                <td>{{cliente.NombreUsuario}}</td>
+                            <tr>
+                                <td>{{nombre}}</td>
+                                <td>{{apellido}}</td>
+                                <td>{{sexo}}</td>
+                                <td>{{fechaNacimiento}}</td>
+                                <td>{{idTipoDni}}</td>
+                                <td>{{numDni}}</td>
+                                <td>{{email}}</td>
+                                <td>{{telefono}}</td>
+                                <!-- <td>{{telefono}}</td> -->
+                                <!-- <td>{{telefono}}</td> -->
+                                <td>{{idLocalidad}}</td>
+                                <td>{{domicilio}}</td>
                             </tr>
                         </tbody>
                     </table>

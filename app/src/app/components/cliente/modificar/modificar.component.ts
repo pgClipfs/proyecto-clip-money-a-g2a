@@ -13,6 +13,7 @@ import { Provincias } from 'src/app/models/provincias.model';
 import { Localidades } from 'src/app/models/localidades.model';
 import { Tipodni } from 'src/app/models/tipodni.model';
 import { TipoDniService } from 'src/app/services/tipo-dni.service';
+import { Dni } from 'src/app/models/dni.model';
 
 @Component
 (
@@ -25,6 +26,22 @@ import { TipoDniService } from 'src/app/services/tipo-dni.service';
 
 export class ModificarComponent implements OnInit
 {
+  nombreUsuario : string;
+  idCliente : number;
+  nombre : string;
+  apellido : string;
+  sexo : string;
+  fechaNacimiento : string;
+  idTipoDni : number;
+  numDni : string;
+  email : string;
+  telefono : string;
+  idLocalidad : number;
+  domicilio : string;
+  password : string;
+  selfie : string;
+  fotoUsuario : string;
+  
   //Modelo validación campos
   private patterSoloLetras: any = /^[a-zA-Z ]*$/;
   private patternUsuario: any = /^(?=.*[a-zA-Z]{1,})(?=.*[\d]{0,})[a-zA-Z0-9]{5,}$/;
@@ -37,12 +54,7 @@ export class ModificarComponent implements OnInit
   form = this.fb.group
   (
     {
-      nombre: ['', [Validators.required, Validators.minLength(2), Validators.pattern(this.patterSoloLetras)]],
-      apellido: ['', [Validators.required, Validators.minLength(2), Validators.pattern(this.patterSoloLetras)]],
-      sexo: ['', [Validators.required]],
       fechaNac: ['', [Validators.required]],
-      tipodni: ['', [Validators.required]],
-      numDni: ['', [Validators.required, Validators.minLength(7), Validators.pattern(this.patternSoloNum)]],
       email: ['', [Validators.required, Validators.minLength(1), Validators.pattern(this.emailpattern)]],
       telefono: ['', [Validators.required, Validators.minLength(7), Validators.pattern(this.patternTelefono)]],
       pais: ['', [Validators.required]],
@@ -50,8 +62,6 @@ export class ModificarComponent implements OnInit
       localidad: ['', [Validators.required]],
       domicilio: ['',  [Validators.required, Validators.minLength(5), Validators.pattern(this.patternDomicilio)]],
       usuario: ['',  [Validators.required, Validators.minLength(5), Validators.pattern(this.patternUsuario)]],
-      password: ['', [Validators.required, Validators.pattern(this.patternPassword), Validators.minLength(8)]],
-      passwordRepeat: ['', [Validators.required, Validators.pattern(this.patternPassword), Validators.minLength(8)]],
     }
   )
 
@@ -76,15 +86,37 @@ export class ModificarComponent implements OnInit
 
   ngOnInit(): void
   {
-    //obtenemos la lista de clientes
-    this.clienteService.getClientes().subscribe
-    (resp =>
+    this.idCliente=this.tokenStorage.getIdClient();
+
+    //Obtenemos todos los datos del cliente logueado
+    this.clienteService.getCliente().subscribe
+    (
+      (data : Cliente) =>
       {
-        this.clientes = resp;
+        this.selfie = data.SelfieCliente;
+        this.fotoUsuario = this.selfie;
+
+        this.selectedCliente.Id = data.Id;
+        this.nombre = data.Nombre;
+        this.apellido = data.Apellido;
+        this.sexo = data.Sexo;
+        this.fechaNacimiento = data.FechaNacimiento;
+        this.idTipoDni = data.IdTipoDni;
+        this.numDni = data.NumDni;
+        this.email = data.Email;
+        this.telefono = data.Telefono;
+        this.idLocalidad = data.IdLocalidad;
+        this.domicilio = data.Domicilio;
+        this.nombreUsuario = data.NombreUsuario;
+        this.password = data.Password;
+      },
+      err =>
+      {
+
       }
     );
 
-    //obtenemos la lista de tipos de dni
+    //Obtenemos la lista de tipos de dni
     this.tipodniService.getTipoDni().subscribe
     (
       data =>
@@ -93,7 +125,7 @@ export class ModificarComponent implements OnInit
       }
     );
 
-    //obtenemos la lista de los paises
+    //Obtenemos la lista de los paises
     this.paisesService.getPaises().subscribe
     (
       data =>
@@ -102,7 +134,7 @@ export class ModificarComponent implements OnInit
       }
     );
 
-    //obtenemos la lista de las provincias
+    //Obtenemos la lista de las provincias
     this.provService.getProvincias().subscribe
     (
       data =>
@@ -111,7 +143,7 @@ export class ModificarComponent implements OnInit
       }
     );
 
-    //obtenemos la lista de las localidades
+    //Obtenemos la lista de las localidades
     this.localService.getLocalidades().subscribe
     (
       data =>
@@ -130,32 +162,27 @@ export class ModificarComponent implements OnInit
   //Método al enviar el fomulario
   public onSubmit(cliente: Cliente)
   {
-    if (this.form.get('password').value === this.form.get('passwordRepeat').value)
-    {
-      this.passwordsDistintas = false;
-      
+    console.log(cliente)
       //Nos suscribimos al servicio y traemos el método del backend
       this.clienteService.onUpdateCliente(cliente).subscribe
       (
         data =>
         {
-          if (data === 1)
+          if (data === 2)
           {
-            this.message = 'Ese DNI ya está registrado, ingresá otro';
-            this.isCreateFailed = true;
-          }
-          else if (data === 2)
-          {
+            console.log(data)
             this.message = 'Ese EMAIL ya está registrado, ingresá otro';
             this.isCreateFailed = true;
           }
           else if (data === 3)
           {
+            console.log(data)
             this.message = 'Ese USUARIO ya está registrado, ingresá otro';
             this.isCreateFailed = true;
           }
           else if (data === 0)
           {
+            console.log(data)
             swal.fire('Fantástico', '¡El cliente se editó con éxito!', 'success');
             this.isCreateFailed = false;
             this.router.navigate(['/home']);
@@ -163,12 +190,11 @@ export class ModificarComponent implements OnInit
 
         }
       );
-    }
-    else
-    {
-      this.passwordsDistintas = true;
-      this.message = "Las contraseñas no coinciden";
-    }
+  }
+
+  modificarSelfie()
+  {
+    alert("¡En construcción!")
   }
 
   //Métodos para cargar los select filtrados por el id del select seleccionado(Pais-->Provincia-->Localidad)

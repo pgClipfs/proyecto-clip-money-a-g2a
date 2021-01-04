@@ -26,7 +26,19 @@ import { TipoDniService } from 'src/app/services/tipo-dni.service';
 export class ObtenerComponent implements OnInit
 {
   nombreUsuario : string;
-  idUsuario : number;
+  nombre : string;
+  apellido : string;
+  sexo : string;
+  fechaNacimiento : string;
+  idTipoDni : string;
+  numDni : string;
+  email : string;
+  telefono : string;
+  idLocalidad : number;
+  domicilio : string;
+  idCliente : number;
+  selfie: string;
+  fotoUsuario: string;
   
   //Modelo validación campos
   private patterSoloLetras: any = /^[a-zA-Z ]*$/;
@@ -80,12 +92,29 @@ export class ObtenerComponent implements OnInit
   ngOnInit(): void
   {
     this.nombreUsuario=this.tokenStorage.getUser();
-    this.idUsuario=this.tokenStorage.getIdClient();
+    this.idCliente=this.tokenStorage.getIdClient();
 
-    //obtenemos el cliente logueado (filtrado por id)
-    (resp =>
+    //Obtenemos todos los datos del cliente logueado
+    this.clienteService.getCliente().subscribe
+    (
+      (data : Cliente) =>
       {
-        this.clientes = resp;
+        this.selfie = data.SelfieCliente;
+        this.fotoUsuario = this.selfie;
+        this.nombre = data.Nombre;
+        this.apellido = data.Apellido;
+        this.sexo = data.Sexo;
+        this.fechaNacimiento = data.FechaNacimiento;
+        this.idTipoDni = data.IdTipoDni.toString();
+        this.numDni = data.NumDni;
+        this.email = data.Email;
+        this.telefono = data.Telefono;
+        this.idLocalidad = data.IdLocalidad;
+        this.domicilio = data.Domicilio;
+      },
+      err =>
+      {
+
       }
     );
   
@@ -146,45 +175,7 @@ export class ObtenerComponent implements OnInit
   //Método al enviar el fomulario
   public onSubmit(cliente: Cliente)
   {
-    if (this.form.get('password').value === this.form.get('passwordRepeat').value)
-    {
-      this.passwordsDistintas = false;
-      
-      //Nos suscribimos al servicio y traemos el método del backend
-      this.clienteService.onUpdateCliente(cliente).subscribe
-      (
-        data =>
-        {
-          if (data === 1)
-          {
-            this.message = 'Ese DNI ya está registrado, ingresá otro';
-            this.isCreateFailed = true;
-          }
-          else if (data === 2)
-          {
-            this.message = 'Ese EMAIL ya está registrado, ingresá otro';
-            this.isCreateFailed = true;
-          }
-          else if (data === 3)
-          {
-            this.message = 'Ese USUARIO ya está registrado, ingresá otro';
-            this.isCreateFailed = true;
-          }
-          else if (data === 0)
-          {
-            swal.fire('Fantástico', '¡El cliente se editó con éxito!', 'success');
-            this.isCreateFailed = false;
-            this.router.navigate(['/home']);
-          }
-
-        }
-      );
-    }
-    else
-    {
-      this.passwordsDistintas = true;
-      this.message = "Las contraseñas no coinciden";
-    }
+    
   }
 
   //Métodos para cargar los select filtrados por el id del select seleccionado(Pais-->Provincia-->Localidad)

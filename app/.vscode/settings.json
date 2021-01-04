@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+    "e2e": true,
+    ".vscode": true,
+    "node_modules": true,
+    "src\\app\\components\\cliente\\obtener\\obtener.component.spec.ts": true,
+    "src\\app\\components\\cliente\\modificar\\modificar.component.spec.ts": true
+  }
+}
