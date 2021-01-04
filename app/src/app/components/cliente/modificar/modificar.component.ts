@@ -194,7 +194,7 @@ export class ModificarComponent implements OnInit
 
   modificarSelfie()
   {
-    alert("¡En construcción!")
+    swal.fire('En Construccion','Pronto podras modificar de tu foto de perfil','info');
   }
 
   //Métodos para cargar los select filtrados por el id del select seleccionado(Pais-->Provincia-->Localidad)
