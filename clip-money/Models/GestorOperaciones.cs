@@ -187,9 +187,13 @@ namespace clip_money.Models
                         {
                             return message; //Es cero y significa que la transferencia se realizó exitosamente.
                         }
+                        else if(resultado == 3){
+                            message = 3; //No posee fondos suficientes
+                            return message;
+                        }                    
                         else
                         {
-                            message = 3; //No posee fondos suficientes
+                            message = 4; //Misma cuenta a trasnferir
                             return message;
                         }
                     }

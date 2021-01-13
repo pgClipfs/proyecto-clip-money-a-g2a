@@ -144,7 +144,12 @@ export class IndexOperacionesComponent implements OnInit {
       if(data === 3){
         this.isOperationFailed = true;
         this.isOperationOK = false;
-        this.mensaje = "No posee fondos suficientes para realizar la transferencia de dinero solicitado.";
+        this.mensaje = "No posee saldo suficiente para realizar la transferencia.";
+      }
+      if(data === 4){
+        this.isOperationFailed = true;
+        this.isOperationOK = false;
+        this.mensaje = "No se puede transferir saldo a su misma cuenta.";
       }
       if(data === 0){
         this.isOperationFailed = false;
