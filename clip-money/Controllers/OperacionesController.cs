@@ -40,6 +40,7 @@ namespace clip_money.Controllers
             return gOperaciones.extraccion(extraccion);
         }
 
+
         //POST: api/operaciones/giro
         [Route("giro")]
         [HttpPost]
@@ -47,14 +48,23 @@ namespace clip_money.Controllers
         {
             GestorOperaciones gOperaciones = new GestorOperaciones();
             return gOperaciones.giro(giro);
+		}
+        
+		//POST: api/operaciones/transferencia
+        [Route("transferencia")]
+        [HttpPost]
+        public int transferencia([FromBody] Transferencia transferencia)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.transferencia(transferencia);
         }
 
         // GET: api/Persona
         [Route("movimientos")]
-        public IEnumerable<Operaciones> GetOpetacionesTodas(long idCV,string fechadesde, string fechahasta, int concepto)
+        public IEnumerable<Operaciones> GetOpetacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto)
         {
             GestorOperaciones gOperaciones = new GestorOperaciones();
-            return gOperaciones.obtenerOperacionesTodas(idCV, fechadesde,fechahasta, concepto);
+            return gOperaciones.obtenerOperacionesTodas(idCV, fechadesde, fechahasta, concepto);
         }
 
     }

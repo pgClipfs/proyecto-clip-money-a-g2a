@@ -33,7 +33,7 @@ namespace clip_money.Models
                     TipoOperacion tipoOperacion = new TipoOperacion(stringTipoOperacion);
                     decimal monto = dr.GetSqlMoney(3).ToDecimal();
 
-                    Operaciones p = new Operaciones(fecha,hora,tipoOperacion, Math.Round(monto, 2),idCV);
+                    Operaciones p = new Operaciones(fecha, hora, tipoOperacion, Math.Round(monto, 2), idCV);
                     lista.Add(p);
                 }
 
@@ -62,7 +62,7 @@ namespace clip_money.Models
                 comm.Parameters.Add(new SqlParameter("@idTipoOperacion", nuevaop.TipoOperacion.Id));
                 comm.Parameters.Add(new SqlParameter("@idEstado", nuevaop.Estado.Id));
                 comm.Parameters.Add(new SqlParameter("@idCuentaVirtual", nuevaop.IdCuentaVirtual));
-               
+
 
                 comm.ExecuteNonQuery();
             }
@@ -74,7 +74,7 @@ namespace clip_money.Models
 
             int message = 0;
 
-            if(deposito.Monto > 0)
+            if (deposito.Monto > 0)
             {
                 using (SqlConnection conn = new SqlConnection(StrConn))
                 {
@@ -114,7 +114,7 @@ namespace clip_money.Models
 
             int message = 0;
 
-            if(extraccion.Monto > 0)
+            if (extraccion.Monto > 0)
             {
                 using (SqlConnection conn = new SqlConnection(StrConn))
                 {
@@ -132,7 +132,7 @@ namespace clip_money.Models
                         dr.Read();
                         int resultado = dr.GetInt32(0);
 
-                        if(resultado == 1)
+                        if (resultado == 1)
                         {
                             return message; //Es cero y significa que la extraccion se realizo exitosamente.
                         }
@@ -157,8 +157,61 @@ namespace clip_money.Models
                 return message;
             }
         }
+		
+		public int transferencia(Transferencia transferencia)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
-        public int giro(Giro giro)
+            int message = 0;
+
+            if (transferencia.Monto > 0)
+            {
+                using (SqlConnection conn = new SqlConnection(StrConn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        SqlCommand comm = new SqlCommand("transferencia", conn);
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        comm.Parameters.Add(new SqlParameter("@id_cuenta_virtual", transferencia.Id_cuenta_virtual));
+                        comm.Parameters.Add(new SqlParameter("@monto", transferencia.Monto));
+                        comm.Parameters.Add(new SqlParameter("@alias", transferencia.Alias));
+
+                        SqlDataReader dr = comm.ExecuteReader();
+                        dr.Read();
+                        int resultado = dr.GetInt32(0);
+
+                        if (resultado == 1)
+                        {
+                            return message; //Es cero y significa que la transferencia se realizó exitosamente.
+                        }
+                        else if(resultado == 3){
+                            message = 3; //No posee fondos suficientes
+                            return message;
+                        }                    
+                        else
+                        {
+                            message = 4; //Misma cuenta a trasnferir
+                            return message;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        message = 2; //No se ha podido registrar la transferencia por alguna excepción
+                        return message;
+                    }
+                }
+            }
+            else
+            {
+                message = 1; //Indica que el monto que ingreso el usuario no es válido
+                return message;
+            }
+        }
+		
+		public int giro(Giro giro)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
@@ -217,7 +270,8 @@ namespace clip_money.Models
                 return message;
             }
         }
-        public List<Operaciones> obtenerOperacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto )
+
+        public List<Operaciones> obtenerOperacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto)
         {
             List<Operaciones> lista = new List<Operaciones>();
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -277,9 +331,9 @@ namespace clip_money.Models
 
                 }
 
-             
 
-               
+
+
             }
             return lista;
         }
