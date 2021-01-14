@@ -40,7 +40,17 @@ namespace clip_money.Controllers
             return gOperaciones.extraccion(extraccion);
         }
 
-        //POST: api/operaciones/transferencia
+
+        //POST: api/operaciones/giro
+        [Route("giro")]
+        [HttpPost]
+        public int giro([FromBody] Giro giro)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.giro(giro);
+		}
+        
+		//POST: api/operaciones/transferencia
         [Route("transferencia")]
         [HttpPost]
         public int transferencia([FromBody] Transferencia transferencia)
