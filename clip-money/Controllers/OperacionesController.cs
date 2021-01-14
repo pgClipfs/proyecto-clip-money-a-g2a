@@ -40,6 +40,15 @@ namespace clip_money.Controllers
             return gOperaciones.extraccion(extraccion);
         }
 
+        //POST: api/operaciones/giro
+        [Route("giro")]
+        [HttpPost]
+        public int giro([FromBody] Giro giro)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.giro(giro);
+        }
+
         // GET: api/Persona
         [Route("movimientos")]
         public IEnumerable<Operaciones> GetOpetacionesTodas(long idCV,string fechadesde, string fechahasta, int concepto)

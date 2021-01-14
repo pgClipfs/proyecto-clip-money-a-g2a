@@ -177,6 +177,7 @@
     <Compile Include="Models\GestorCuentaVirtual.cs" />
     <Compile Include="Models\GestorLogin.cs" />
     <Compile Include="Models\GestorValidarPassword.cs" />
+    <Compile Include="Models\Giro.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\GestorDniSitCrediticia.cs" />
     <Compile Include="Models\GestorOperaciones.cs" />
