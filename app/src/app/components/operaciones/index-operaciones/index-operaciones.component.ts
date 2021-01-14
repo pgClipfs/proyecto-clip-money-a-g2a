@@ -16,6 +16,7 @@ export class IndexOperacionesComponent implements OnInit {
   seccionDeposito = false;
   seccionExtraccion = false;
   seccionTransferencia = false;
+  seccionBuscar = false;
   cuentasDelCliente : Cuenta[] = [];
   form: any = {};
   isOperationFailed = false;
@@ -50,6 +51,10 @@ export class IndexOperacionesComponent implements OnInit {
     this.isOperationFailed = false;
     this.isOperationOK = false;
     this.seccionTransferencia = true;
+  }
+
+  habilitarCuentas(){
+    this.seccionBuscar = true;
   }
 
   obtenerCuentasDeCliente() : void {

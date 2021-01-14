@@ -211,7 +211,34 @@ namespace clip_money.Models
             }
         }
 
-        public List<Operaciones> obtenerOperacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto)
+        public Cliente obtenerPorAlias(string alias)
+        {
+            Cliente cl = null;
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("exiteCuenta", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@alias", alias));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    string nombre = dr.GetString(0);
+                    string email = dr.GetString(1);
+
+                    cl = new Cliente(nombre, email);
+                }
+                dr.Close();
+            }
+            return cl;
+        }
+
+            public List<Operaciones> obtenerOperacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto)
         {
             List<Operaciones> lista = new List<Operaciones>();
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();

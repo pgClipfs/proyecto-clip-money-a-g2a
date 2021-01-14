@@ -32,6 +32,12 @@ namespace clip_money.Models
 
         }
 
+        public Cliente(string nombre, string email)
+        {
+            this.nombre = nombre;
+            this.email = email;
+        }
+
         public Cliente(int id, string nombre, string apellido,string sexo, int idTipoDni, string numDni, string fotoFrenteDni, string fechaNacimiento, string fotoDorsoDni, int idLocalidad, string domicilio,string telefono, string email, string nombreUsuario, string password, int cuentaValida, string selfieCliente)
 
 

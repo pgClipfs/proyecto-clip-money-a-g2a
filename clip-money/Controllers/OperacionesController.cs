@@ -57,5 +57,13 @@ namespace clip_money.Controllers
             return gOperaciones.obtenerOperacionesTodas(idCV, fechadesde, fechahasta, concepto);
         }
 
+        // GET: api/operaciones/alias
+        [Route("alias")]
+        [HttpGet]
+        public Cliente Get(string alias)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.obtenerPorAlias(alias);
+        }
     }
 }
