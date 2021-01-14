@@ -191,6 +191,7 @@
     <Compile Include="Models\TipoCuentaVirtual.cs" />
     <Compile Include="Models\TipoDni.cs" />
     <Compile Include="Models\TipoOperacion.cs" />
+    <Compile Include="Models\Transferencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
