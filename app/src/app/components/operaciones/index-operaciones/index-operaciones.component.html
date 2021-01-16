@@ -17,7 +17,7 @@
                   <button type="button" (click)="habilitarTransferencia()" class="btn-ope btn btn-light" ><i class="fas fa-dollar-sign"></i> Transferir Dinero</button>
               </div>
               <div class=" contenedor-operaciones col">
-                  <button type="button" class="btn-ope btn btn-light" ><i class="fas fa-hand-holding-usd"></i> Giro Dinero</button>
+                  <button type="button" (click)="habilitarGiro()" class="btn-ope btn btn-light" ><i class="fas fa-hand-holding-usd"></i> Giro Dinero</button>
               </div>
           </div>
 
@@ -36,22 +36,6 @@
                         <div class="form-group">
                             <label for="monto">Ingrese el monto que desea depositar:</label>
                             <input type="number" class="form-control" name="monto" [(ngModel)]="form.monto"  required autocomplete="off">
-                        </div>
-
-                        <div class="form-group">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="isOperationFailed">
-                                <strong><i class="fas fa-times"></i> ¡Error!</strong> {{mensaje}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="isOperationOK">
-                                <strong><i class="fas fa-check"></i> ¡Enhorabuena!</strong> {{mensaje}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
                         </div>
 
                         <div class="form-group" style="text-align: right;margin-top: 30px;">
@@ -77,22 +61,6 @@
                         <div class="form-group">
                             <label for="monto">Ingrese el monto que desea extraer:</label>
                             <input type="number" class="form-control" name="monto" [(ngModel)]="form.monto"  required autocomplete="off">
-                        </div>
-
-                        <div class="form-group">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="isOperationFailed">
-                                <strong><i class="fas fa-times"></i> ¡Error!</strong> {{mensaje}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="isOperationOK">
-                                <strong><i class="fas fa-check"></i> ¡Enhorabuena!</strong> {{mensaje}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
                         </div>
 
                         <div class="form-group" style="text-align: right;margin-top: 30px;">
@@ -147,6 +115,39 @@
                   </form>
               </div>
           </div>
+
+   <!-- Seccion para girar dinero de una cuenta -->
+   <div class="card shadow" style="margin-top: 25px;" *ngIf="seccionGiro">
+    <h6 class=" texto-retiro card-header">Realizar giro al descubierto</h6>
+
+    <div class="card-body">
+        <form  style="margin-inline: 25%;" (ngSubmit)="girar()">
+            <div class="form-group">
+                  <label for="cuenta_virtual">Seleccione su cuenta</label>
+                  <select class="form-control" [(ngModel)]="form.cuenta" name="cuenta" (change) = "changeSelectCuenta()">
+                      <option *ngFor="let cuenta of cuentasDelCliente" [ngValue]="cuenta">{{cuenta.IdTipoCuenta.Nombre}} {{cuenta.NroCuenta}} - Saldo: {{cuenta.Saldo}}</option>
+                  </select>
+              </div>
+
+            <div class="form-group">
+                <label for="alias" id="label-montoGiro" *ngIf ="isMontoGiroValid">Monto posible para el Giro: $ {{montoPosibleGiro}}</label>
+                <!-- <input type="text" class="form-control" name="alias" [(ngModel)]="form.alias"  required autocomplete="off"> -->
+            </div>
+
+            <div class="form-group" *ngIf="isMontoGiroOk">
+                <label for="monto">Ingrese el monto que desea girar:</label>
+                <input type="number" class="form-control" name="monto" [(ngModel)]="form.monto"  required autocomplete="off">
+            </div>
+
+            <div class="form-group" style="text-align: right;margin-top: 30px;">
+                <button type="submit" class="btn btn-outline-success btn-block"><i class="fas fa-check"></i> Confirmar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
         </div>
     </div>
 </div>

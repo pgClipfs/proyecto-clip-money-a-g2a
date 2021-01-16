@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Deposito } from '../models/deposito.model';
 import { Extraccion } from '../models/extraccion.model';
+import { Giro } from '../models/giro.model';
 import { Operacion } from '../models/operacion.model';
 import { Transferencia } from '../models/transferencia.model';
 import { TokenStorageService } from './token-storage.service';
@@ -37,6 +38,14 @@ export class OperacionesService {
   transferir(transferencia : Transferencia) : Observable<any>
   {
     return this.http.post<any>("https://localhost:44386/api/operaciones/transferencia",transferencia,httpOptions);
+  }
+
+  girar(giro: Giro){
+    return this.http.post<any>("https://localhost:44386/api/operaciones/giro",giro,httpOptions);
+  }
+
+  getMontoPosibleGiro(idCuenta: number): Observable<any>{
+    return this.http.get<any>("https://localhost:44386/api/operaciones/montoPosibleGiro?idCuenta=" + idCuenta, httpOptions);
   }
 
   getTodasOp(idcuenta: number, fechadesde: string, fechahasta:string, concepto: number){
