@@ -210,7 +210,36 @@ namespace clip_money.Models
                 return message;
             }
         }
+		
+        public Cliente obtenerPorAlias(string alias)
+        {
+            Cliente cl = null;
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("existeCuenta", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comm.Parameters.Add(new SqlParameter("@alias", alias));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    string apellido = dr.GetString(0).Trim();
+                    string nombre = dr.GetString(1).Trim();
+                    string email = dr.GetString(2).Trim();
+                    string num_dni = dr.GetString(3).Trim();
+
+                    cl = new Cliente(apellido, nombre, email, num_dni);
+                }
+                dr.Close();
+            }
+            return cl;
+        }
+		
         public int giro(Giro giro)
         {
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
@@ -373,9 +402,6 @@ namespace clip_money.Models
                     dr.Close();
 
                 }
-
-
-
 
             }
             return lista;

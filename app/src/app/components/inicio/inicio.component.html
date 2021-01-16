@@ -5,7 +5,7 @@
         <div class="container-fluid advertencia">
             <div class=" row">
                 <div class=" col-12 titulo-advertencia">
-                    
+
                 </div>
                 <div class=" col-12 col-sm-9 col-md-9 col-lg-9 advertencia-contenido">
                     <h4>Su cuenta se encuentra inactiva</h4>
@@ -13,7 +13,7 @@
                 </div>
                 <div class=" col-12 col-sm-3 col-md-3 col-lg-3 icono">
                     <div id="icono-img"></div>
-                </div>  
+                </div>
             </div>
         </div>
         <div class = "container-fluid general-fotos">
@@ -26,7 +26,7 @@
                     </div>
                     <div class=" col-12 col-sm-12 col-md-4 selfie">
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12"><p>Selfie</p></div> 
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12"><p>Selfie</p></div>
                             <div class= "col-12 col-sm-12 col-md-3 col-lg-12">
                                 <div class="selfie-foto">
                                     <img [src]="selfie" alt="">
@@ -34,17 +34,17 @@
                             </div>
                             <div class ="col-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class ="contenedor-btnDorso">
-                                    <input type="file" class="file" id="fileselfie" (change)= onSelectFile($event,0) formControlName = "inputSelfie" [(ngModel)]="valorInputSelfie" >   
+                                    <input type="file" class="file" id="fileselfie" (change)= onSelectFile($event,0) formControlName = "inputSelfie" [(ngModel)]="valorInputSelfie" >
                                     <label for="fileselfie" class="labelDni">Subir Archivo</label>
-                                    
+
                                 </div>
-                            </div>    
-                        </div>    
+                            </div>
+                        </div>
                     </div>
                     <div class=" col-12 col-sm-12 col-md-4 frente-dni">
 
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 "><p>Frente Dni</p></div> 
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 "><p>Frente Dni</p></div>
                             <div class= "col-12 col-sm-12 col-md-3 col-lg-12">
                                 <div  class="fotoFrente-dni">
                                     <img [src]="frenteDni" alt="" >
@@ -52,16 +52,16 @@
                             </div>
                             <div class ="col-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class ="contenedor-btnDorso">
-                                    <input type="file" class="file" id="filefrente" (change)= onSelectFile($event,1) formControlName = "inputfrenteDni"  [(ngModel)]="valorInputFrente">   
+                                    <input type="file" class="file" id="filefrente" (change)= onSelectFile($event,1) formControlName = "inputfrenteDni"  [(ngModel)]="valorInputFrente">
                                     <label for="filefrente" class="labelDni">Subir Archivo</label>
-                                    
+
                                 </div>
-                            </div>   
-                        </div>    
+                            </div>
+                        </div>
                     </div>
                     <div class=" col-12 col-sm-12 col-md-4 dorso-dni">
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12"><p>Dorso Dni</p></div> 
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12"><p>Dorso Dni</p></div>
                             <div class= "col-12 col-sm-12 col-md-3 col-lg-12">
                                 <div class="fotoDorso-dni">
                                     <img [src]="dorsoDni" alt="">
@@ -69,12 +69,12 @@
                             </div>
                             <div class ="col-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class ="contenedor-btnDorso">
-                                    <input type="file" class="file" id="filedorso" (change)= onSelectFile($event,2) formControlName = "inputdorsoDni" [(ngModel)]="valorInputDorso">   
+                                    <input type="file" class="file" id="filedorso" (change)= onSelectFile($event,2) formControlName = "inputdorsoDni" [(ngModel)]="valorInputDorso">
                                     <label for="filedorso" class="labelDni">Subir Archivo</label>
-                                    
+
                                 </div>
-                            </div>    
-                        </div>    
+                            </div>
+                        </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 contenedor-btn">
                         <button type ="submit" class ="btn btn-primary btnFinalizar" [disabled] ="form.invalid" >Guardar</button>
@@ -86,7 +86,7 @@
     </div>
 </div>
 
-   
+
     <div class="container-fluid contenedor-general" *ngIf ="isAcountValid">
         <div class="contenedor-secundario">
            <div class="row">
@@ -97,9 +97,9 @@
                                 <p>Tu Cuenta Principal</p>
                             </div>
                         </div>
-                        
+
                         <div class="col-12 col-sm-12 col-md-12">
-                            
+
                             <div class=" row cuentas">
                                <div class="col-3 col-sm-3 col-md-3 col-lg-2" style="display: flex; align-items: center; text-align: center;">
                                     <div class="icono-cuenta">
@@ -112,15 +112,15 @@
                                         <p class="desc-cuentas">Caja de Ahorro {{nombreTipoCuenta}} &nbsp; <strong>{{nroCuenta}}</strong> </p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-2 col-sm-2 col-md-2 col-lg-3" style="display: flex; align-items:center;">
                                     <div class="cuenta-detalle">
-                                        <div id="nombre"><a (click)="onDetallesCuenta()">VER DETALLES</a></div>  
-                                    </div>  
+                                        <div id="nombre"><a (click)="onDetallesCuenta()">VER DETALLES</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-12 col-sm-12 col-md-12 col-md-12">
                             <div class="">
                                 <div id="titulo-movimientos">
@@ -131,7 +131,7 @@
 
                         <div class="col-12 col-sm-12 col-md-12">
                             <div class="row movimientos">
-                            
+
                                 <div class="col-12 col-sm-12 col-md-12 col-md-12">
                                     <div id="contenido-movimientos">
                                         <table class="table mt-3 table-borderless table-hover table-fixed">
@@ -156,10 +156,10 @@
 
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-5" >
@@ -168,7 +168,7 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="row">
-                                       
+
                                         <div class="col-9 col-sm-9 col-md-9">
                                             <div id="otrascuentas-titulo">
                                                 <p>Tus Otras Cuentas</p>
@@ -180,12 +180,12 @@
                                                 <a routerLink = "/home/cuentas">Ver Mas <i class="fas fa-angle-right"></i></a>
                                             </div>
                                         </div>
-                                    
+
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-12 col-sm-12 col-md-12" >
-                                    
+
                                     <div class=" row otras-cuentas">
                                         <div class="col-3 col-sm-3 col-md-3 col-lg-3" style="display: flex; align-items: center; text-align: center;">
                                             <div class="icono-otrascuentas">
@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                         </div>
-                         
+
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-md-12">
@@ -212,24 +212,23 @@
                                         </div>
                                     </div>
                                 </div>
-        
+
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="row cotizacion-dolar">
-                                    
+
                                         <div class="col-12 col-sm-12 col-md-12 col-md-12">
                                             <div id="contenido-cot-dolar">
                                                 <iframe width="100%" height="auto" src="https://www.dolarsi.com/func/moduloArriba-n.html" frameborder="0" scrolling="0" allowfullscreen=""></iframe>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                     </div> 
+                     </div>
 
                 </div>
             </div>
         </div>
     </div>
-   

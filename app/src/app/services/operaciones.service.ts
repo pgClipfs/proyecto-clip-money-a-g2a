@@ -10,6 +10,7 @@ import { TokenStorageService } from './token-storage.service';
 
 const url = 'https://localhost:44386/api/operaciones/top_diez?idCV=';
 const urltodasop = 'https://localhost:44386/api/operaciones/movimientos?idCV=';
+const urlCuentaDestino = 'https://localhost:44386/api/operaciones/transferencia?alias=';
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -39,7 +40,10 @@ export class OperacionesService {
   {
     return this.http.post<any>("https://localhost:44386/api/operaciones/transferencia",transferencia,httpOptions);
   }
-
+  obtenerCuentaDestino(alias: string){
+    return this.http.get<any>(urlCuentaDestino + alias , httpOptions);
+  }
+  
   girar(giro: Giro){
     return this.http.post<any>("https://localhost:44386/api/operaciones/giro",giro,httpOptions);
   }
