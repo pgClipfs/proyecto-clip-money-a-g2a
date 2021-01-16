@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { observable } from 'rxjs';
+import { Cliente } from 'src/app/models/cliente.model';
 import { Cuenta } from 'src/app/models/cuenta.model';
 import { Deposito } from 'src/app/models/deposito.model';
 import { Extraccion } from 'src/app/models/extraccion.model';
@@ -16,12 +18,17 @@ export class IndexOperacionesComponent implements OnInit {
   seccionDeposito = false;
   seccionExtraccion = false;
   seccionTransferencia = false;
-  seccionBuscar = false;
+  seccionBuscar = true;
   cuentasDelCliente : Cuenta[] = [];
+  cuentaDestino : Cliente[] = [];
   form: any = {};
   isOperationFailed = false;
   isOperationOK = false;
   mensaje = "";
+  apellido = "";
+  nombre = "";
+  email = "";
+  dni = "";
 
   constructor(private cuentasService: CuentasService,private operacionesService:OperacionesService) { }
 
@@ -53,8 +60,21 @@ export class IndexOperacionesComponent implements OnInit {
     this.seccionTransferencia = true;
   }
 
-  habilitarCuentas(){
+  buscarCuentaDestino(){
     this.seccionBuscar = true;
+    this.operacionesService.obtenerCuentaDestino(this.form.alias).subscribe((data: Cliente) =>{
+      if(data != null){
+      this.apellido = data.Apellido;
+      this.nombre = data.Nombre;
+      this.email = data.Email;
+      this.dni = data.NumDni;
+      console.log(data);
+      console.log(this.email);}
+      else{
+        alert("no existe cuenta");
+      }
+    }
+    )
   }
 
   obtenerCuentasDeCliente() : void {

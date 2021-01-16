@@ -58,9 +58,8 @@ namespace clip_money.Controllers
         }
 
         // GET: api/operaciones/alias
-        [Route("alias")]
-        [HttpGet]
-        public Cliente Get(string alias)
+        [Route("transferencia")]
+        public Cliente GetAlias(string alias)
         {
             GestorOperaciones gOperaciones = new GestorOperaciones();
             return gOperaciones.obtenerPorAlias(alias);

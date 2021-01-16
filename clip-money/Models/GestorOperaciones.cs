@@ -187,10 +187,11 @@ namespace clip_money.Models
                         {
                             return message; //Es cero y significa que la transferencia se realizó exitosamente.
                         }
-                        else if(resultado == 3){
+                        else if (resultado == 3)
+                        {
                             message = 3; //No posee fondos suficientes
                             return message;
-                        }                    
+                        }
                         else
                         {
                             message = 4; //Misma cuenta a trasnferir
@@ -220,7 +221,7 @@ namespace clip_money.Models
             {
                 conn.Open();
 
-                SqlCommand comm = new SqlCommand("exiteCuenta", conn);
+                SqlCommand comm = new SqlCommand("existeCuenta", conn);
                 comm.CommandType = System.Data.CommandType.StoredProcedure;
 
                 comm.Parameters.Add(new SqlParameter("@alias", alias));
@@ -228,17 +229,19 @@ namespace clip_money.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
-                    string nombre = dr.GetString(0);
-                    string email = dr.GetString(1);
+                    string apellido = dr.GetString(0).Trim();
+                    string nombre = dr.GetString(1).Trim();
+                    string email = dr.GetString(2).Trim();
+                    string num_dni = dr.GetString(3).Trim();
 
-                    cl = new Cliente(nombre, email);
+                    cl = new Cliente(apellido, nombre, email, num_dni);
                 }
                 dr.Close();
             }
             return cl;
         }
 
-            public List<Operaciones> obtenerOperacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto)
+        public List<Operaciones> obtenerOperacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto)
         {
             List<Operaciones> lista = new List<Operaciones>();
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
