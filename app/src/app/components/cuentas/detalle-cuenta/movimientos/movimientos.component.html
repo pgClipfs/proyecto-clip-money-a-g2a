@@ -64,7 +64,7 @@
             <div class="row movimientos">
             
                 <div class="col-12 col-sm-12 col-md-12 col-md-12">
-                    <div id="contenido-movimientos">
+                    <div id="contenido-movimientos scrollable">
                         <table class="table mt-3 table-borderless table-hover">
                             <thead>
                               <tr>
@@ -75,7 +75,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let op of operaciones;">
+                                <tr *ngFor="let op of operaciones | paginate: { itemsPerPage: 5, currentPage: paginaActual }">
                                     <td>{{op.Fecha}}</td>
                                     <td>{{op.Hora}}</td>
                                     <td>{{op.TipoOperacion['Nombre']}}</td>
@@ -83,9 +83,14 @@
                                 </tr>
                             </tbody>
                           </table>
+                         
 
 
                     </div>
+                </div>
+                
+                <div class="col-12 col-sm-12 col-md-12 col-md-12">
+                    <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
                 </div>
                 
             </div>

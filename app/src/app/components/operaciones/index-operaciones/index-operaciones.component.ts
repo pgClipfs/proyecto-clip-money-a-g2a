@@ -86,7 +86,6 @@ export class IndexOperacionesComponent implements OnInit {
       deposito.monto = this.form.monto;
 
       this.operacionesService.depositar(deposito).subscribe(data => {
-          console.log(data);
           if(data === 1){
             this.mensaje = "El monto ingresado no es valido";
             swal.fire('Ups', this.mensaje, 'warning');

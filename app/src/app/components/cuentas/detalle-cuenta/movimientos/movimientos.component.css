@@ -148,9 +148,9 @@ select:focus{
 /*seccion tabla dinamica*/
 .movimientos{
     width: auto;
-    height: 10rem;
+    height: auto;
     background-color: rgb(252, 252, 252);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px 5px 0px 0px;
     box-shadow:  1px;
@@ -171,6 +171,11 @@ select:focus{
     font-family: Arial, Helvetica, sans-serif;
     color:rgb(78, 74, 74);
 
+}
+
+.pag-control{
+    justify-content: center !important;
+    background-color: #EB5600 !important;
 }
 
 
