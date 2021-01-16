@@ -1,10 +1,7 @@
 Para correr este proyecto
 
-Abrir visual studio code
-consola:  npm install
-ng build , ng serve
+Abrir visual studio code =
+   consola: npm install , npm install --save sweetalert2, ng build , ng serve.
 
- abrir visual studio
- build + ejecutar proyecto
-
+Abrir visual studio = build + ejecutar proyecto
 

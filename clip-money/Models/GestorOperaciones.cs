@@ -187,8 +187,7 @@ namespace clip_money.Models
                         {
                             return message; //Es cero y significa que la transferencia se realizó exitosamente.
                         }
-                        else if (resultado == 3)
-                        {
+                        else if (resultado == 3) {
                             message = 3; //No posee fondos suficientes
                             return message;
                         }
@@ -211,7 +210,7 @@ namespace clip_money.Models
                 return message;
             }
         }
-
+		
         public Cliente obtenerPorAlias(string alias)
         {
             Cliente cl = null;
@@ -240,6 +239,109 @@ namespace clip_money.Models
             }
             return cl;
         }
+		
+        public int giro(Giro giro)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            int message = 0;
+
+            if (giro.Monto > 0)
+            {
+                using (SqlConnection conn = new SqlConnection(StrConn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        SqlCommand comm = new SqlCommand("giro", conn);
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        comm.Parameters.Add(new SqlParameter("@id_cuenta_virtual", giro.Id_cuenta_virtual));
+                        comm.Parameters.Add(new SqlParameter("@monto", giro.Monto));
+
+                        SqlDataReader dr = comm.ExecuteReader();
+                        dr.Read();
+                        int resultado = dr.GetInt32(0);
+
+                        if (resultado == 2)
+                        {
+                            message = 2; //significa que la extraccion se realizo exitosamente.
+                            return message;
+                        }
+                        else if (resultado == 3)
+                        {
+                            message = 3; //No hay fondos suficientes
+                            return message;
+                        }
+                        else if (resultado == 0)
+                        {
+                            return message; //No lo modifico porque ya es cero cuando se define y segnifica Utilizar la opcion de retiro de dinero y no la de giro
+                        }
+                        else
+                        {
+                            message = 1; //El monto a girar el mayor al asignado
+                            return message;
+                        }
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        message = 4; //No se ha podido registrar el deposito por alguna excepción
+                        return message;
+                    }
+                }
+            }
+            else
+            {
+                message = 5; //Indica que el monto que ingreso el usuario no es valido
+                return message;
+            }
+        }
+
+        public decimal obtenerMontoGiroPosible(long idCuenta)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+            int message = 0;
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        SqlCommand comm = new SqlCommand("obtenerMontoPosibleGiro", conn);
+                        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        comm.Parameters.Add(new SqlParameter("@id_cuenta_virtual", idCuenta));
+
+                        SqlDataReader dr = comm.ExecuteReader();
+                        dr.Read();
+                        int resultado = dr.GetInt32(0);
+
+                        if (resultado == 0)
+                        {
+                            message = 0; //significa no tiene saldo para hacer un giro
+                            return message;
+                        }
+                        
+                        else
+                        {
+                            //Devolvemos el monto posible para el giro
+                            return resultado;
+                        }
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        message = 4; //No se ha podido obtener el monto para el giro
+                        return message;
+                    }
+                }
+        }
+
 
         public List<Operaciones> obtenerOperacionesTodas(long idCV, string fechadesde, string fechahasta, int concepto)
         {
@@ -300,9 +402,6 @@ namespace clip_money.Models
                     dr.Close();
 
                 }
-
-
-
 
             }
             return lista;

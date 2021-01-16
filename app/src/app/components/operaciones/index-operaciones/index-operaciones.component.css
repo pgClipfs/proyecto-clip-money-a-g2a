@@ -63,6 +63,7 @@ label{
     color: #8B8E95;
 }
 
+
 select{
     color:rgb(32, 31, 31) !important;
     border-top: none;
@@ -89,3 +90,8 @@ input:focus{
    input::after{
     border-bottom-color: #FF6600 !important;
    }
+
+#label-montoGiro{
+    font-size: 2 rem;
+    color: rgb(69, 194, 69);
+}

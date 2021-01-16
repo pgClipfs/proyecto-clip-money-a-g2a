@@ -40,6 +40,26 @@ namespace clip_money.Controllers
             return gOperaciones.extraccion(extraccion);
         }
 
+
+        //POST: api/operaciones/giro
+        [Route("giro")]
+        [HttpPost]
+        public int giro([FromBody] Giro giro)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.giro(giro);
+		}
+
+        //GET: api/operaciones/montoPosibleGiro
+        [Route("montoPosibleGiro")]
+        [HttpGet]
+        public decimal montoPosibleGiro( long idCuenta)
+        {
+            GestorOperaciones gOperaciones = new GestorOperaciones();
+            return gOperaciones.obtenerMontoGiroPosible(idCuenta);
+        }
+
+
         //POST: api/operaciones/transferencia
         [Route("transferencia")]
         [HttpPost]
