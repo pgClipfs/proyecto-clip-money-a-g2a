@@ -20,6 +20,7 @@ import { IndexOperacionesComponent } from './components/operaciones/index-operac
 import { CuentasComponent } from './components/cuentas/cuentas.component';
 import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
 import { MovimientosComponent } from './components/cuentas/detalle-cuenta/movimientos/movimientos.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -47,7 +48,8 @@ import { MovimientosComponent } from './components/cuentas/detalle-cuenta/movimi
     HttpClientModule,
     BrowserModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [ClienteService, RecoverymailService],
   bootstrap: [AppComponent]

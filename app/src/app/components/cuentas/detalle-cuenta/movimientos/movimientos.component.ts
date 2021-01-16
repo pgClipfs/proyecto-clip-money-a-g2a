@@ -26,6 +26,7 @@ export class MovimientosComponent implements OnInit {
   idCuenta: number;
   nroCuenta: string;
   cuentaDetallada: Cuentadetallada;
+  paginaActual: number = 1;
 
   filtros: any = {};
 

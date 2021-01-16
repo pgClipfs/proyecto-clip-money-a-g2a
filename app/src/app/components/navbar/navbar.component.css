@@ -45,10 +45,8 @@ li {
  .menu a{
   display:block;
   font-size: 3.5vh;
-  text-align: center;
-  border-bottom: 1px solid rgb(224, 218, 218) ;
-  
-  
+  text-align: left;
+  border-bottom: 1px solid rgb(224, 218, 218) ; 
 }
 .menu .nav-item{
   /*margin-right: 20px;*/
@@ -89,4 +87,18 @@ li {
 
 .underlineHover:hover:after{
   width: 100%;
+}
+
+/*responsive*/
+/*resolucion para movil*/
+@media(max-width: 575px){
+  .menu li{
+  }
+  .menu a{
+    padding-top: 1rem;
+    display:block;
+    font-size: 3.3vh;
+    text-align: center;
+    border-bottom: 1px solid rgb(224, 218, 218) ; 
+  }
 }
