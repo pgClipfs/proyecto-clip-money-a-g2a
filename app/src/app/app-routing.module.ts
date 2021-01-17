@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
+import { ModificarPasswordComponent } from './components/cliente/modificar-password/modificar-password.component';
 import { ModificarComponent } from './components/cliente/modificar/modificar.component';
 import { ObtenerComponent } from './components/cliente/obtener/obtener.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
@@ -28,11 +29,13 @@ const routes: Routes =
     {path: 'operaciones',component:IndexOperacionesComponent},
     {path: 'cuentas', component: CuentasComponent},
     {path: 'cuentas/detalle-cuenta', component: DetalleCuentaComponent},
-    {path: 'cuentas/detalle-cuenta/movimientos', component: MovimientosComponent}
+    {path: 'cuentas/detalle-cuenta/movimientos', component: MovimientosComponent},
+    {path: 'cliente/obtener', component: ObtenerComponent,canActivate:[GuardService]},
+    {path: 'cliente/modificar', component: ModificarComponent, canActivate:[GuardService]},
+    {path: 'cliente/modificarpassword', component: ModificarPasswordComponent, canActivate:[GuardService]}
+
   ]},
   {path: 'cliente', component: ClienteComponent},
-  {path: 'modificar', component: ModificarComponent, canActivate:[GuardService]},
-  {path: 'obtener', component: ObtenerComponent, canActivate:[GuardService]},
   {path: 'recoverymail', component: RecoveryMailComponent},
   {path: 'recoverypassword', component: RecoverypasswordComponent},
   {path: '**', component: IndexComponent},

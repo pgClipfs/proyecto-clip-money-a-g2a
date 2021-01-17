@@ -318,6 +318,7 @@ img{
     font-size: 1.4rem;
     color: rgb(173, 173, 173);
     margin-bottom: 1rem;
+    padding-left: 1rem;
 }
 #cuentas-titulo-vermas{
     display: flex;

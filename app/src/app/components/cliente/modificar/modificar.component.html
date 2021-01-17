@@ -1,23 +1,21 @@
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 <body>
     <div class="wrapper fadeInDown">
 
         <div id="formContent">
 
             <div class="fadeIn first">
-                <img [src]="fotoUsuario" id="icon" alt="User Icon" (click)="modificarSelfie()"/>
+                <img [src]="selectedCliente.SelfieCliente" id="icon" alt="User Icon"/>
+                <a (click)="modificarSelfie()"><i class="fas fa-user-edit icono-modificarimagen"></i></a>
+                <a class="btnModificarPass" routerLink = "/home/cliente/modificarpassword">Modificar Password</a>
             </div>
+
 
             <form (ngSubmit)="onSubmit(selectedCliente)" [formGroup] = "form">
                
               <div class="row">
                 <!--PRIMERA columna de campos-->
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 borde">
-
-                    <!-- <div class="form-group">
-                      <label class="form-control" for="idCliente">{{idCliente}}</label>
-                      <input type="text" class="form-control fadeIn" value="{{idCliente}}" title="Id" [ngModel]="idCliente" [(ngModel)]="selectedCliente.Id" formControlName= "idCliente" ([ngClass])="form.get('idCliente')">
-              
-                    </div> -->
 
                     <div class="form-group">
                         <label class="form-control" for="fechaNac">Fecha de Nacimiento</label>
@@ -34,7 +32,7 @@
 
                     <div class="form-group">
                       <label class="form-control" for="email">Email</label> 
-                      <input type="email" [ngModel]="email" [(ngModel)]="selectedCliente.Email" 
+                      <input type="email" [(ngModel)]="selectedCliente.Email" 
                       class="form-control fadeIn" formControlName = "email"   
                       [ngClass]="{ 'is-invalid': (form.get('email')?.touched || form.get('email')?.dirty) && !form.get('email')?.valid}">
                   
@@ -51,7 +49,7 @@
 
                     <div class="form-group">
                       <label class="form-control" for="telefono">Telefono</label>   
-                      <input type="text" [ngModel]="telefono" [(ngModel)]="selectedCliente.Telefono" 
+                      <input type="text" [(ngModel)]="selectedCliente.Telefono" 
                       class="form-control fadeIn" formControlName = "telefono"   
                       [ngClass]="{ 'is-invalid': (form.get('telefono')?.touched || form.get('telefono')?.dirty) && !form.get('telefono')?.valid}">
                   
@@ -68,7 +66,7 @@
 
                     <div class="form-group">
                         <label class="form-control" for="usuario">Nombre Usuario</label>
-                        <input type="text" [ngModel]="nombreUsuario" [(ngModel)]="selectedCliente.NombreUsuario"  
+                        <input type="text"  [(ngModel)]="selectedCliente.NombreUsuario"  
                         class="form-control fadeIn" formControlName = "usuario"
                         [ngClass]="{ 'is-invalid': (form.get('usuario')?.touched || form.get('usuario')?.dirty) && !form.get('usuario')?.valid}">
                   
@@ -90,7 +88,7 @@
 
                     <div class="form-group">
                       <label class="form-control" for="domicilio">Domicilio</label> 
-                      <input type="text" [ngModel]="domicilio" [(ngModel)]="selectedCliente.Domicilio" 
+                      <input type="text"  [(ngModel)]="selectedCliente.Domicilio" 
                       class="form-control fadeIn" formControlName = "domicilio"   
                       [ngClass]="{ 'is-invalid': (form.get('domicilio')?.touched || form.get('domicilio')?.dirty) && !form.get('domicilio')?.valid}">
                   
@@ -106,7 +104,7 @@
                      </div>
                      <div class="form-group">
                       <label class="form-control" for="pais">Pais</label>  
-                       <select class= "form-control fadeIn" [ngModel]="" [(ngModel)] = "selectedPais.id" formControlName= "pais" (change) = "onSelectPais($event.target.value)"
+                       <select class= "form-control fadeIn" [ngModel]="" [(ngModel)] = "idPais" formControlName= "pais" (change) = "onSelectPais($event.target.value)"
                        [ngClass]="{ 'is-invalid': (form.get('pais')?.touched || form.get('pais')?.dirty) && !form.get('pais')?.valid}" > 
                         <option *ngFor ="let pais of paises" value={{pais.id}}>{{pais.nombre}}</option>
                        </select>
@@ -121,9 +119,9 @@
 
                       <div class="form-group">
                         <label class="form-control" for="provinvia">Provincia</label>
-                        <select class= "form-control fadeIn" [ngModel]="" [(ngModel)] = "selectedProv.id" formControlName= "provincia" (change) = "onSelectProv($event.target.value)"
+                        <select class= "form-control fadeIn"  [(ngModel)] = "idProvincia" formControlName= "provincia" (change) = "onSelectProv($event.target.value)"
                         [ngClass]="{ 'is-invalid': (form.get('provincia')?.touched || form.get('provincia')?.dirty) && !form.get('provincia')?.valid}" >
-                          <option *ngFor="let provincia of provinciasAux" value={{provincia.id}}>{{provincia.nombre}}</option>
+                          <option *ngFor="let provincia of provincias" value={{provincia.id}}>{{provincia.nombre}}</option>
                         </select>
                        
                         <div class="invalid-feedback">
@@ -136,9 +134,9 @@
 
                       <div class="form-group">
                         <label class="form-control" for="localidad">Localidad</label> 
-                        <select class= "form-control" [ngModel]="" [(ngModel)] = "selectedCliente.IdLocalidad" formControlName= "localidad"
+                        <select class= "form-control"  formControlName= "localidad" [(ngModel)] = "idLocalidad"
                         [ngClass]="{ 'is-invalid': (form.get('localidad')?.touched || form.get('localidad')?.dirty) && !form.get('localidad')?.valid}" >
-                          <option *ngFor="let localidades of localidadesAux" value={{localidades.id}}>{{localidades.nombre}}</option>
+                        <option *ngFor="let localidades of localidades" value={{localidades.id}}>{{localidades.nombre}}</option>
                         </select>
                        
                         <div class="invalid-feedback">
@@ -164,7 +162,7 @@
                   
               </div>
             </form>
-            <button id= "btnRegresar" title="Regresar" class="btn btn-primary"(click)="regresarClick()"></button>
+            <button id= "btnRegresar" title="Regresar" class="btn btn-primary" routerLink = "/home/cliente/obtener"></button>
         </div>
         
     </div>

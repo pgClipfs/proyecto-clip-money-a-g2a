@@ -21,6 +21,7 @@ import { CuentasComponent } from './components/cuentas/cuentas.component';
 import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
 import { MovimientosComponent } from './components/cuentas/detalle-cuenta/movimientos/movimientos.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ModificarPasswordComponent } from './components/cliente/modificar-password/modificar-password.component';
 
 
 
@@ -41,6 +42,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CuentasComponent,
     DetalleCuentaComponent,
     MovimientosComponent,
+    ModificarPasswordComponent,
   ],
   imports: [
     BrowserModule,

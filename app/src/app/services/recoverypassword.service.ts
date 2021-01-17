@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recoverypassword } from '../models/recoverypassword.model';
+import { ModificarPassword } from '../models/modificar-password.model';
 import { Login } from '../models/login.model';
 import { TokenStorageService } from './token-storage.service';
 
@@ -23,5 +24,9 @@ export class RecoverypasswordService {
    public modificarPassword(np: Recoverypassword): Observable<any>{
 
     return this.http.post(url + 'newpassword', np, httpOptions);
+   }
+
+   public modificarPassdesdeApp(op: ModificarPassword): Observable<any>{
+    return this.http.post(url + 'modificarpassword', op, httpOptions);
    }
 }
