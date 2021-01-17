@@ -100,6 +100,50 @@ namespace clip_money.Models
             }
         }
 
+        public int modificarPassdesdeApp(PasswordModify pw)
+        {
+            int message = 1;
+            string encriptedNewPassword = GetSha256(pw.passwordNueva);
+            string encriptedActualPassword = GetSha256(pw.passwordActual);
+
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("modificarPassdesdeApp", conn);
+                comm.CommandType = System.Data.CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@idCliente", pw.idCliente));
+                comm.Parameters.Add(new SqlParameter("@newpassword", encriptedNewPassword));
+                comm.Parameters.Add(new SqlParameter("@actualpassword",encriptedActualPassword));
+
+                SqlDataReader dr = comm.ExecuteReader();
+                dr.Read();
+                int resultado = dr.GetInt32(0);
+
+                if (resultado == 1)
+                {
+                    return message; // se modifico correctamente
+                }
+                else if(resultado == 2)
+                {
+                    message = 2; //la contraseña actual ingresada no coincide con la que esta en la base
+                    return message;
+                }
+                else if (resultado == 3)
+                {
+                    message = 3; //la contraseña actual y la contraseña nueva son iguales
+                    return message;
+                }else
+                {
+                    message = 4; //Error inesperado
+                    return message;
+                }
+            }
+        }
+
+
 
         //Metodos HELPERS
         #region HELPERS

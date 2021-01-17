@@ -25,7 +25,7 @@
 }
 .navvar{
     position: relative;
-    height: 15vh;
+    height: 8vh;
     width: 100%;
     /*border-bottom: 1px solid rgb(224, 218, 218);*/
 }
@@ -42,7 +42,7 @@
   }
 
   #logo img{
-      width: 10rem;
+      width: 11rem;
       max-width: 15rem;
       margin-top: 0px;
 
@@ -145,7 +145,7 @@ img{
         padding-right: 1rem; 
     }
     .navvar{
-       /*display: none;*/
+        height: 13vh;
     }
 
     #fotoUsuario{

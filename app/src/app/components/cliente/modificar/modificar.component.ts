@@ -13,7 +13,8 @@ import { Provincias } from 'src/app/models/provincias.model';
 import { Localidades } from 'src/app/models/localidades.model';
 import { Tipodni } from 'src/app/models/tipodni.model';
 import { TipoDniService } from 'src/app/services/tipo-dni.service';
-import { Dni } from 'src/app/models/dni.model';
+
+
 
 @Component
 (
@@ -26,21 +27,9 @@ import { Dni } from 'src/app/models/dni.model';
 
 export class ModificarComponent implements OnInit
 {
-  nombreUsuario : string;
-  idCliente : number;
-  nombre : string;
-  apellido : string;
-  sexo : string;
-  fechaNacimiento : string;
-  idTipoDni : number;
-  numDni : string;
-  email : string;
-  telefono : string;
-  idLocalidad : number;
-  domicilio : string;
-  password : string;
-  selfie : string;
-  fotoUsuario : string;
+ idCliente: number;
+ fotoUsuario: any;
+ 
   
   //Modelo validación campos
   private patterSoloLetras: any = /^[a-zA-Z ]*$/;
@@ -78,6 +67,10 @@ export class ModificarComponent implements OnInit
   message = '';
   isCreateFailed = false;
   passwordsDistintas = false;
+  selectedLocalidad: number;
+  idLocalidad: number;
+  idProvincia: number;
+  idPais: number;
 
   constructor(private clienteService: ClienteService, private tipodniService: TipoDniService, private paisesService: PaisService, private provService: ProvinciasService, private localService: LocalidadesService, private tokenStorage: TokenStorageService, private router: Router, private fb: FormBuilder)
   {
@@ -93,65 +86,64 @@ export class ModificarComponent implements OnInit
     (
       (data : Cliente) =>
       {
-        this.selfie = data.SelfieCliente;
-        this.fotoUsuario = this.selfie;
 
+        this.selectedCliente.SelfieCliente = data.SelfieCliente;
         this.selectedCliente.Id = data.Id;
-        this.nombre = data.Nombre;
-        this.apellido = data.Apellido;
-        this.sexo = data.Sexo;
-        this.fechaNacimiento = data.FechaNacimiento;
-        this.idTipoDni = data.IdTipoDni;
-        this.numDni = data.NumDni;
-        this.email = data.Email;
-        this.telefono = data.Telefono;
-        this.idLocalidad = data.IdLocalidad;
-        this.domicilio = data.Domicilio;
-        this.nombreUsuario = data.NombreUsuario;
-        this.password = data.Password;
+        this.selectedCliente.Nombre = data.Nombre;
+        this.selectedCliente.Apellido = data.Apellido;
+        this.selectedCliente.Sexo = data.Sexo;
+        this.selectedCliente.FechaNacimiento = this.formatDate(data.FechaNacimiento);
+        this.selectedCliente.IdTipoDni= data.IdTipoDni;
+        this.selectedCliente.NumDni = data.NumDni;
+        this.selectedCliente.Email = data.Email;
+        this.selectedCliente.Telefono = data.Telefono;
+        this.selectedCliente.IdLocalidad= data.IdLocalidad;
+        this.selectedCliente.Domicilio = data.Domicilio;
+        this.selectedCliente.NombreUsuario = data.NombreUsuario;
+        this.selectedCliente.Password = data.Password;
+
+
+        //Obtenemos la lista de las localidades
+        this.localService.getLocalidades().subscribe
+        (
+          data =>
+          {
+            this.localidades = data;
+            this.localidadesAux = this.localidades;
+            this.idProvincia = this.localidades[this.idLocalidad]['id_provincia'];
+
+            //Obtenemos la lista de las provincias
+            this.provService.getProvincias().subscribe
+            (
+              data =>
+              {
+                this.provincias = data;
+                this.provinciasAux = this.provincias;
+                this.idPais = this.provincias[this.idProvincia]['id_pais'];
+
+                //Obtenemos la lista de los paises
+                this.paisesService.getPaises().subscribe
+                (
+                  data =>
+                  {
+                    this.paises = data;
+                    
+                  }
+                );                
+              }
+            );
+          }
+        );
+          //asignamos el idlocalidad a la variable para ahcer el efecto cascada y cargar localida -> prov -> pais
+          this.idLocalidad = this.selectedCliente.IdLocalidad;
       },
       err =>
       {
 
       }
     );
-
-    //Obtenemos la lista de tipos de dni
-    this.tipodniService.getTipoDni().subscribe
-    (
-      data =>
-      {
-        this.tipoDni = data;
-      }
-    );
-
-    //Obtenemos la lista de los paises
-    this.paisesService.getPaises().subscribe
-    (
-      data =>
-      {
-        this.paises = data;
-      }
-    );
-
-    //Obtenemos la lista de las provincias
-    this.provService.getProvincias().subscribe
-    (
-      data =>
-      {
-        this.provincias = data;
-      }
-    );
-
-    //Obtenemos la lista de las localidades
-    this.localService.getLocalidades().subscribe
-    (
-      data =>
-      {
-        this.localidades = data;
-      }
-    );
-
+ 
+    
   }
 
   public regresarClick()
@@ -162,7 +154,8 @@ export class ModificarComponent implements OnInit
   //Método al enviar el fomulario
   public onSubmit(cliente: Cliente)
   {
-    console.log(cliente)
+    //Asignamos el id de la nueva localidad al objeto cliente
+    this.selectedCliente.IdLocalidad = this.idLocalidad;
       //Nos suscribimos al servicio y traemos el método del backend
       this.clienteService.onUpdateCliente(cliente).subscribe
       (
@@ -170,19 +163,16 @@ export class ModificarComponent implements OnInit
         {
           if (data === 2)
           {
-            console.log(data)
             this.message = 'Ese EMAIL ya está registrado, ingresá otro';
             this.isCreateFailed = true;
           }
           else if (data === 3)
           {
-            console.log(data)
             this.message = 'Ese USUARIO ya está registrado, ingresá otro';
             this.isCreateFailed = true;
           }
           else if (data === 0)
           {
-            console.log(data)
             swal.fire('Fantástico', '¡El cliente se editó con éxito!', 'success');
             this.isCreateFailed = false;
             this.router.navigate(['/home']);
@@ -192,23 +182,57 @@ export class ModificarComponent implements OnInit
       );
   }
 
-  modificarSelfie()
+  //Metodo para modificar la foto de perfil
+   modificarSelfie()
   {
-    swal.fire('En Construccion','Pronto podras modificar de tu foto de perfil','info');
+    (async () => {
+
+      const { value: file } = await swal.fire({
+        title: 'Selecione la imagen',
+        input: 'file',
+        width: 600,
+        imageWidth: 100,
+        inputAttributes: {
+          'accept': 'image/*',
+          'aria-label': 'Upload your profile picture'
+        }
+      })
+
+    if (file != null) {
+      if(this.validarFoto(file['name'])){
+      
+        const reader = new FileReader()
+        reader.onload = (e) => {
+        
+          this.fotoUsuario = e.target.result;
+          this.selectedCliente.SelfieCliente = this.fotoUsuario;
+        }
+        reader.readAsDataURL(file)
+      }else{
+        swal.fire('Formato invalido', 'Solo se permite imagenes .jpg y .png', 'warning');
+      }
+     
+    }else{
+      swal.fire('Campo Vacio', 'Seleccione un archivo', 'warning');
+     }
+      
+      
+      })()
   }
 
   //Métodos para cargar los select filtrados por el id del select seleccionado(Pais-->Provincia-->Localidad)
   onSelectPais(id: number): void
   {
     this.limpiarForm();
-    this.localidadesAux = null;
-    this.provinciasAux = null;
-    this.provinciasAux = this.provincias.filter(item => item.id_pais == id);
+    this.localidades = null;
+    this.provincias = this.provinciasAux;
+    this.provincias = this.provincias.filter(item => item.id_pais == id);
   }
 
   onSelectProv(id: number): void
   {
-    this.localidadesAux = this.localidades.filter(item => item.id_provincia == id);
+    this.localidades = this.localidadesAux;
+    this.localidades = this.localidades.filter(item => item.id_provincia == id);
   }
 
   //Método para resetear las alerts
@@ -229,5 +253,34 @@ export class ModificarComponent implements OnInit
       }
     );
   }
+
+  //Metodo validar extension del archivo subido
+  validarFoto(foto: any): boolean{
+    let extPermitidas = /(.jpg|.png)$/i;
+
+    if(!extPermitidas.exec(foto))
+    {
+        
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+ }
+
+ //metodo modificar password
+ modificarPassword(){
+  
+ }
+
+ //Metodo para formatear fecha a aaaa-mm-dd
+ formatDate(date:string): string{
+   let fechaString = date.split("-",3)
+  let diaString = fechaString[0];
+  let mesString = fechaString[1];
+  let anioString = fechaString[2];
+   return `${anioString}-${mesString}-${diaString}`;
+ }
 
 }

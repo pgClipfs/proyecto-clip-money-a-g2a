@@ -187,6 +187,7 @@
     <Compile Include="Models\NewPasswordValidator.cs" />
     <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\PasswordModify.cs" />
     <Compile Include="Models\Provincia.cs" />
     <Compile Include="Models\SituacionCrediticia.cs" />
     <Compile Include="Models\TipoCuentaVirtual.cs" />

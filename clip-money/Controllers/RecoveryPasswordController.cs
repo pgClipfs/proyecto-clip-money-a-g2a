@@ -40,5 +40,17 @@ namespace clip_money.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpPost]
+        [Route("modificarpassword")]
+        public int modificarPassword(PasswordModify pw)
+        {
+            GestorValidarPassword gVPassword = new GestorValidarPassword();
+             //Modificar contraseña y resetear el token 
+            return gVPassword.modificarPassdesdeApp(pw);
+
+        }
+
+
     }
 }

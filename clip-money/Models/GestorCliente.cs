@@ -488,6 +488,7 @@ namespace clip_money.Models
                         comm.Parameters.Add(new SqlParameter("@telefono", mod.Telefono));
                         comm.Parameters.Add(new SqlParameter("@email", mod.Email));
                         comm.Parameters.Add(new SqlParameter("@nombreUsuario", mod.NombreUsuario));
+                        comm.Parameters.Add(new SqlParameter("@selfie", mod.SelfieCliente));
 
                         comm.ExecuteNonQuery();
 

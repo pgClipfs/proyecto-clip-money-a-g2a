@@ -149,6 +149,7 @@ form = this.fb.group({
           reader.readAsDataURL(event.target.files[0]);
           reader.onload = (event: any) => {
             this.selfie = event.target.result;
+            console.log(this.selfie)
           };
         }else if (type == 1){
           reader.readAsDataURL(event.target.files[0]);
