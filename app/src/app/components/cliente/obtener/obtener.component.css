@@ -150,6 +150,9 @@ tr td:last-child{
 #icon
 {
     width:20rem;
+    height: 20rem;
+    min-width: 20rem;
+    min-height: 20rem;
     margin-top: 15px;
     border-radius: 50%;
 }

@@ -90,8 +90,8 @@
 #img-usuario{
     position: absolute;
     top: 0;
-    width: auto;
-    height: 70%;
+    width: 4rem;
+    height: 4rem;
     max-width: 7rem;
     max-height: 7rem;
     image-rendering:optimizeQuality;
