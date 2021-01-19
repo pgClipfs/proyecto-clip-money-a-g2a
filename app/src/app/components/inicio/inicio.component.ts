@@ -35,9 +35,9 @@ export class InicioComponent implements OnInit {
   operaciones: Operacion[];
   email: string;
   //selectedOp: Operacion =new Operacion();
-  
+
 form = this.fb.group({
-  inputSelfie: ['', [Validators.required]], 
+  inputSelfie: ['', [Validators.required]],
   inputfrenteDni: ['', [Validators.required]],
   inputdorsoDni: ['', [Validators.required]]
 
@@ -59,11 +59,11 @@ form = this.fb.group({
         }else{
           this.isAcountValid = false;
         }
-        
+
       },
       err => {
-      
-       
+
+
       }
     );
 
@@ -87,10 +87,10 @@ form = this.fb.group({
               {
                 this.operaciones = data;
               }else{
-                
+
               }
 
-              
+
             },
             err =>{
 
@@ -103,7 +103,7 @@ form = this.fb.group({
           this.nombreTipoCuenta = '---';
         }
 
-      
+
       },
       err =>{
         this.nroCuenta = '---';
@@ -111,7 +111,7 @@ form = this.fb.group({
         this.nombreTipoCuenta = '---';
       }
     )
-    
+
   }
 
 
@@ -125,14 +125,11 @@ form = this.fb.group({
       data => {
         if (data){
           swal.fire('Has verificado tu identidad', 'Tu cuenta ha sido activada con exito', 'success');
-          this.router.navigate(['/home/inicio']);
+          this.router.navigate(['/home']);
         }else{
           swal.fire('Ups', 'Fallo en la verificacion de tu identidad', 'error');
         }
     })
-
-
-
   }
 
   //Metodo previsualizar fotos en el inicio
@@ -161,8 +158,8 @@ form = this.fb.group({
           reader.onload = (event: any) => {
             this.dorsoDni = event.target.result;
           };
-        }   
-        
+        }
+
       }
     }
     else{
@@ -170,7 +167,7 @@ form = this.fb.group({
       {
         this.valorInputSelfie='';
         swal.fire('Formato invalido', 'Solo se permite imagenes .jpg y .png', 'warning');
-  
+
       }else if (type == 1)
       {
         this.valorInputFrente='';
@@ -181,10 +178,10 @@ form = this.fb.group({
         this.valorInputDorso='';
         swal.fire('Formato invalido', 'Solo se permite imagenes .jpg y .png', 'warning');
       }
-      
+
     }
 
- 
+
   }
 
  onDetallesCuenta(){
